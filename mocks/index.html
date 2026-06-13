@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>あしカラダ松山店｜モック比較ビューア</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{ --bar:#16241f; --bar-2:#1f3329; --txt:#e8efe9; --muted:#9fb0a7; }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{font-family:"Noto Sans JP",sans-serif;background:#0e1814;display:flex;flex-direction:column;overflow:hidden}
+
+  /* top bar */
+  .bar{background:linear-gradient(180deg,var(--bar),var(--bar-2));color:var(--txt);flex:0 0 auto;
+       display:flex;align-items:center;gap:18px;padding:12px 20px;box-shadow:0 6px 20px rgba(0,0,0,.4);z-index:10;flex-wrap:wrap}
+  .bar .title{font-weight:900;font-size:15px;letter-spacing:.02em;display:flex;align-items:center;gap:9px;white-space:nowrap}
+  .bar .title .dot{width:22px;height:22px;border-radius:7px;background:linear-gradient(135deg,#3f9f78,#2f8f6e)}
+  .bar .title small{display:block;font-weight:400;font-size:11px;color:var(--muted)}
+
+  .tabs{display:flex;gap:8px;background:rgba(255,255,255,.06);padding:5px;border-radius:14px}
+  .tab{appearance:none;border:0;cursor:pointer;background:transparent;color:var(--txt);font-family:inherit;
+       font-size:13.5px;font-weight:700;padding:9px 16px;border-radius:10px;transition:.18s;display:flex;flex-direction:column;line-height:1.25;align-items:flex-start;text-align:left}
+  .tab .sub{font-size:10.5px;font-weight:500;color:var(--muted)}
+  .tab:hover{background:rgba(255,255,255,.08)}
+  .tab.active{color:#0e1814}
+  .tab.active .sub{color:rgba(14,24,20,.65)}
+  .tab[data-k="a"].active{background:linear-gradient(135deg,#c6a868,#a9854f)}
+  .tab[data-k="b"].active{background:linear-gradient(135deg,#9bb085,#7e9171)}
+  .tab[data-k="c"].active{background:linear-gradient(135deg,#46b083,#2f8f6e)}
+  .tab[data-k="d"].active{background:linear-gradient(135deg,#e08bb0,#d9789f)}
+
+  .spacer{flex:1}
+  .controls{display:flex;align-items:center;gap:8px}
+  .seg{display:flex;background:rgba(255,255,255,.06);border-radius:10px;padding:4px}
+  .seg button{appearance:none;border:0;background:transparent;color:var(--muted);cursor:pointer;font-family:inherit;
+       font-size:12.5px;font-weight:700;padding:7px 12px;border-radius:7px;transition:.15s;display:flex;align-items:center;gap:6px}
+  .seg button.active{background:rgba(255,255,255,.14);color:#fff}
+  .openlink{color:var(--muted);font-size:12px;text-decoration:none;padding:8px 12px;border:1px solid rgba(255,255,255,.14);border-radius:9px;transition:.15s;white-space:nowrap}
+  .openlink:hover{color:#fff;border-color:rgba(255,255,255,.3)}
+
+  /* stage */
+  .stage{flex:1;display:flex;align-items:flex-start;justify-content:center;overflow:auto;padding:22px;position:relative}
+  .frameWrap{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.5);
+       transition:width .25s ease;position:relative}
+  .frameWrap.desktop{width:1280px;max-width:100%}
+  .frameWrap.mobile{width:390px}
+  iframe{display:block;width:100%;height:100%;border:0;background:#fff}
+  .frameWrap.desktop iframe{height:calc(100vh - 110px - 44px)}
+  .frameWrap.mobile iframe{height:calc(100vh - 110px - 44px)}
+
+  .hint{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);color:var(--muted);font-size:11px;letter-spacing:.04em}
+
+  @media(max-width:760px){
+    .bar{gap:10px;padding:10px 12px}
+    .title small{display:none}
+    .controls{order:3;width:100%;justify-content:space-between}
+    .tab{padding:8px 11px}
+  }
+</style>
+</head>
+<body>
+  <div class="bar">
+    <div class="title"><span class="dot"></span><div>あしカラダ松山店<small>高品質化モック 3案 比較ビューア</small></div></div>
+
+    <div class="tabs" role="tablist">
+      <button class="tab active" data-k="a" data-src="mock-a-premium.html">案A<span class="sub">上質・高級スパ系</span></button>
+      <button class="tab" data-k="b" data-src="mock-b-natural.html">案B<span class="sub">ナチュラル癒し系</span></button>
+      <button class="tab" data-k="c" data-src="mock-c-clean.html">案C<span class="sub">クリーン洗練</span></button>
+      <button class="tab" data-k="d" data-src="mock-d-irodori.html">案D<span class="sub">彩り・和の余白</span></button>
+    </div>
+
+    <div class="spacer"></div>
+
+    <div class="controls">
+      <div class="seg" id="device">
+        <button data-d="desktop" class="active">🖥 PC</button>
+        <button data-d="mobile">📱 スマホ</button>
+      </div>
+      <a class="openlink" id="openNew" href="mock-a-premium.html" target="_blank">単体で開く ↗</a>
+    </div>
+  </div>
+
+  <div class="stage">
+    <div class="frameWrap desktop" id="frameWrap">
+      <iframe id="frame" src="mock-a-premium.html" title="preview"></iframe>
+    </div>
+  </div>
+
+<script>
+  const tabs = document.querySelectorAll('.tab');
+  const frame = document.getElementById('frame');
+  const frameWrap = document.getElementById('frameWrap');
+  const openNew = document.getElementById('openNew');
+  const deviceSeg = document.getElementById('device');
+
+  function selectTab(tab){
+    tabs.forEach(t=>t.classList.toggle('active', t===tab));
+    const src = tab.dataset.src;
+    frame.src = src;
+    openNew.href = src;
+  }
+  tabs.forEach(tab=>tab.addEventListener('click', ()=>selectTab(tab)));
+
+  deviceSeg.querySelectorAll('button').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      deviceSeg.querySelectorAll('button').forEach(b=>b.classList.toggle('active', b===btn));
+      frameWrap.classList.remove('desktop','mobile');
+      frameWrap.classList.add(btn.dataset.d);
+    });
+  });
+
+  // キーボード 1/2/3 で切り替え
+  document.addEventListener('keydown',e=>{
+    if(e.key==='1') selectTab(tabs[0]);
+    if(e.key==='2') selectTab(tabs[1]);
+    if(e.key==='3') selectTab(tabs[2]);
+  });
+</script>
+</body>
+</html>

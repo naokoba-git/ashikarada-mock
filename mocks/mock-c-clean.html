@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>案C クリーン洗練｜あしカラダ松山店</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#2f8f6e; --green-deep:#1f7a5c; --green-dark:#14563f; --green-50:#eef7f3; --green-100:#dcefe5;
+    --ink:#102a22; --slate:#475a52; --muted:#7b8a83; --line:#e3ece8; --bg:#f7faf9; --white:#fff;
+    --amber:#e8a13a;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:"Noto Sans JP",sans-serif;color:var(--ink);background:var(--white);line-height:1.85;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 28px}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  .eyebrow{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.18em;color:var(--green-deep);background:var(--green-50);padding:6px 14px;border-radius:999px}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:700;font-size:15px;border-radius:12px;padding:14px 26px;transition:.2s;cursor:pointer}
+  .btn-green{background:var(--green);color:#fff;box-shadow:0 8px 18px -8px rgba(47,143,110,.8)}
+  .btn-green:hover{background:var(--green-deep);transform:translateY(-2px)}
+  .btn-dark{background:var(--green-dark);color:#fff}
+  .btn-dark:hover{background:#0e3e2c}
+  .btn-line{background:#fff;color:var(--green-deep);border:1.5px solid var(--line)}
+  .btn-line:hover{border-color:var(--green);background:var(--green-50)}
+
+  /* header */
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:74px}
+  .brand{font-weight:900;font-size:22px;color:var(--green-dark);letter-spacing:.02em;display:flex;align-items:center;gap:9px}
+  .brand .dot{width:26px;height:26px;border-radius:8px;background:linear-gradient(135deg,var(--green),var(--green-deep))}
+  .menu{display:flex;gap:28px;font-size:14px;font-weight:500;color:var(--slate)}
+  .menu a:hover{color:var(--green-deep)}
+  .nav-cta{display:flex;gap:10px}
+  .nav-cta .btn{padding:10px 18px;font-size:14px}
+
+  /* hero */
+  .hero{background:linear-gradient(180deg,var(--green-50),#fff);position:relative;overflow:hidden}
+  .hero .wrap{display:grid;grid-template-columns:1.02fr .98fr;gap:48px;align-items:center;padding:64px 28px 76px}
+  .hero h1{font-size:clamp(36px,5vw,58px);font-weight:900;line-height:1.34;letter-spacing:.01em;margin:18px 0 20px}
+  .hero h1 .g{color:var(--green-deep)}
+  .hero .lead{font-size:17px;color:var(--slate);max-width:480px}
+  .hero .badge{margin-top:26px;display:flex;align-items:center;gap:16px;background:#fff;border:1px solid var(--green-100);border-radius:16px;padding:16px 20px;box-shadow:0 14px 30px -22px rgba(47,143,110,.6)}
+  .hero .badge .icon{width:46px;height:46px;border-radius:12px;background:var(--green-50);display:grid;place-items:center;font-size:22px}
+  .hero .badge .off{font-weight:900;font-size:22px;color:var(--green-deep);line-height:1.2}
+  .hero .badge small{display:block;color:var(--muted);font-size:12px}
+  .hero-actions{display:flex;gap:12px;margin-top:30px;flex-wrap:wrap}
+  .hero-visual{position:relative}
+  .hero-visual .main{border-radius:24px;overflow:hidden;aspect-ratio:4/4.4;box-shadow:0 40px 70px -40px rgba(20,86,63,.6)}
+  .hero-visual .main img{width:100%;height:100%;object-fit:cover}
+  .hero-visual .float{position:absolute;background:#fff;border-radius:16px;box-shadow:0 20px 40px -20px rgba(20,86,63,.4);padding:14px 18px;display:flex;align-items:center;gap:10px}
+  .hero-visual .float.f1{top:24px;left:-22px}
+  .hero-visual .float.f2{bottom:28px;right:-18px}
+  .hero-visual .float .n{font-weight:900;font-size:20px;color:var(--green-deep)}
+  .hero-visual .float .t{font-size:12px;color:var(--muted)}
+  .hero-visual .float .av{width:34px;height:34px;border-radius:10px;background:var(--green-50);display:grid;place-items:center;font-size:18px}
+
+  /* trust strip */
+  .strip{background:var(--green-dark);color:#fff}
+  .strip .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:30px 28px}
+  .strip .it{text-align:center}
+  .strip .it .n{font-weight:900;font-size:26px}
+  .strip .it .l{font-size:13px;opacity:.85}
+
+  section{padding:88px 0}
+  .sec-head{text-align:center;margin-bottom:50px}
+  .sec-head h2{font-size:clamp(26px,3.2vw,38px);font-weight:900;margin:14px 0 10px}
+  .sec-head p{color:var(--muted)}
+
+  /* stores quick */
+  .stores .grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .scard{border:1px solid var(--line);border-radius:20px;padding:30px;background:#fff;transition:.25s;display:flex;flex-direction:column}
+  .scard:hover{border-color:var(--green-100);box-shadow:0 24px 50px -34px rgba(20,86,63,.5);transform:translateY(-4px)}
+  .scard .top{display:flex;align-items:center;justify-content:space-between}
+  .scard .pin{font-size:12px;font-weight:700;color:var(--green-deep);background:var(--green-50);padding:5px 12px;border-radius:999px}
+  .scard h3{font-size:24px;font-weight:900;margin:14px 0 2px}
+  .scard .area{color:var(--muted);font-size:14px;margin-bottom:18px}
+  .scard .row{display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-top:1px solid var(--line);font-size:14px;color:var(--slate)}
+  .scard .tel{font-weight:900;font-size:19px;color:var(--ink)}
+  .scard .btn{width:100%;margin-top:18px}
+
+  /* pricing */
+  .pricing{background:var(--bg)}
+  .ptabs{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .ptable{background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden}
+  .ptable.feat{border:2px solid var(--green);position:relative;box-shadow:0 30px 60px -42px rgba(47,143,110,.7)}
+  .ptable .head{padding:26px 28px;display:flex;align-items:center;justify-content:space-between}
+  .ptable.feat .head{background:var(--green);color:#fff}
+  .ptable .head .label{font-weight:900;font-size:19px}
+  .ptable .head .off{font-size:13px;font-weight:700;background:#fff;color:var(--green-deep);padding:5px 14px;border-radius:999px}
+  .ptable .head .sub{font-size:13px;color:var(--muted)}
+  .pitem{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:18px 28px;border-top:1px solid var(--line)}
+  .pitem .nm{font-weight:700;font-size:15px}
+  .pitem .nm .pill{display:inline-block;font-size:11px;font-weight:700;color:var(--green-deep);background:var(--green-50);border-radius:999px;padding:2px 9px;margin-left:6px}
+  .pitem .nm .pill.w{color:#b5681f;background:#fbecd6}
+  .pitem .desc{font-size:12px;color:var(--muted)}
+  .pitem .yen{font-weight:900;font-size:21px;white-space:nowrap}
+  .pitem .yen small{font-size:12px;color:var(--muted);font-weight:500}
+  .price-foot{text-align:center;margin-top:38px}
+
+  /* reasons */
+  .rgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+  .rcard{display:grid;grid-template-columns:150px 1fr;border:1px solid var(--line);border-radius:20px;overflow:hidden;transition:.25s}
+  .rcard:hover{box-shadow:0 24px 50px -36px rgba(20,86,63,.5);transform:translateY(-3px)}
+  .rcard .ph{background-size:cover;background-position:center}
+  .rcard .bd{padding:26px 26px}
+  .rcard .num{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:9px;background:var(--green-50);color:var(--green-deep);font-weight:900;font-size:14px}
+  .rcard h4{font-size:18px;font-weight:900;margin:10px 0 8px}
+  .rcard p{font-size:14px;color:var(--slate)}
+
+  /* access */
+  .acard{display:grid;grid-template-columns:1.05fr 1fr;border:1px solid var(--line);border-radius:24px;overflow:hidden;margin-bottom:24px}
+  .acard:nth-child(even){grid-template-columns:1fr 1.05fr}
+  .acard:nth-child(even) .ph{order:2}
+  .acard .ph{min-height:300px;background-size:cover;background-position:center}
+  .acard .info{padding:42px 42px}
+  .acard .pin{font-size:12px;font-weight:700;color:var(--green-deep);background:var(--green-50);padding:5px 12px;border-radius:999px}
+  .acard h3{font-size:28px;font-weight:900;margin:12px 0 18px}
+  .arow{display:flex;gap:14px;padding:11px 0;border-top:1px solid var(--line);font-size:14px;color:var(--slate)}
+  .arow .k{font-weight:700;color:var(--green-deep);min-width:64px}
+  .arow .tel{font-weight:900;font-size:20px;color:var(--ink)}
+  .acard .btn{margin-top:20px}
+
+  /* line */
+  .lineban .box{background:#06C755;color:#fff;border-radius:28px;padding:50px;display:grid;grid-template-columns:1.3fr 1fr;align-items:center;gap:30px}
+  .lineban h2{font-size:32px;font-weight:900;margin:8px 0 12px}
+  .lineban p{opacity:.95;margin-bottom:18px}
+  .lineban .perks{display:flex;gap:10px;flex-wrap:wrap}
+  .lineban .perks span{background:rgba(255,255,255,.18);border-radius:999px;padding:6px 14px;font-size:13px;font-weight:700}
+  .lineban .cta{text-align:center}
+  .lineban .cta .big{font-weight:900;font-size:42px;line-height:1}
+  .lineban .cta .btn{background:#fff;color:#06C755;margin-top:16px;width:100%}
+
+  /* voices */
+  .voices{background:var(--bg)}
+  .vgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .vcard{background:#fff;border:1px solid var(--line);border-radius:18px;padding:26px 24px}
+  .vcard .stars{color:var(--amber);font-size:14px;letter-spacing:1px}
+  .vcard h5{font-size:16px;font-weight:900;margin:8px 0 8px}
+  .vcard p{font-size:13px;color:var(--slate);line-height:1.8}
+  .vcard .who{margin-top:16px;padding-top:14px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);display:flex;align-items:center;gap:8px}
+  .vcard .who .av{width:30px;height:30px;border-radius:50%;background:var(--green-50);display:grid;place-items:center}
+
+  /* final */
+  .final{background:linear-gradient(135deg,var(--green-dark),var(--green-deep));color:#fff;text-align:center}
+  .final h2{font-size:clamp(26px,3.6vw,40px);font-weight:900;margin-bottom:14px}
+  .final p{opacity:.92;margin-bottom:30px}
+  .final-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .final-actions .btn-line{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.4)}
+  .final-actions .btn-line:hover{background:rgba(255,255,255,.2)}
+  .final-actions .btn-green{background:#fff;color:var(--green-deep)}
+
+  footer{background:#0e2c20;color:#9db4aa;padding:50px 0 36px;font-size:13px}
+  .foot-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px;border-bottom:1px solid rgba(255,255,255,.1);padding-bottom:24px}
+  .foot-top .brand{color:#fff}
+  .foot-tel{display:flex;gap:30px}
+  .foot-tel .tel{font-weight:900;color:#fff;font-size:18px}
+  .copy{margin-top:20px;color:#6f877c}
+
+  @media(max-width:880px){
+    .menu,.nav-cta{display:none}
+    .hero .wrap{grid-template-columns:1fr}.hero-visual{max-width:420px;margin:0 auto}
+    .strip .wrap{grid-template-columns:1fr 1fr}
+    .stores .grid,.ptabs,.rgrid,.lineban .box{grid-template-columns:1fr}
+    .vgrid{grid-template-columns:1fr 1fr}
+    .acard,.acard:nth-child(even){grid-template-columns:1fr}.acard:nth-child(even) .ph{order:0}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand"><span class="dot"></span>あしカラダ</div>
+    <nav class="menu">
+      <a href="#">初めての方へ</a>
+      <a href="#price">メニュー・料金</a>
+      <a href="#reason">施術の特徴</a>
+      <a href="#access">店舗案内</a>
+      <a href="#voice">お客様の声</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-line" href="#">大街道店</a>
+      <a class="btn btn-green" href="#">空港通り店を予約</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" style="padding:0">
+  <div class="wrap">
+    <div class="hero-copy">
+      <span class="eyebrow">愛媛・松山のリラクゼーションサロン</span>
+      <h1>心も体も、<br><span class="g">ほぐれる時間</span>を。</h1>
+      <p class="lead">横揉み施術とアロマテラピーで、本格的なリラクゼーションをリーズナブルに。確かな技術で、一日の疲れをやさしくほどきます。</p>
+      <div class="badge">
+        <div class="icon">🎟️</div>
+        <div>
+          <div class="off">全メニュー 500円OFF</div>
+          <small>ピースポ会員様特別割引 ／ 会員以外の方も通常料金でご利用OK</small>
+        </div>
+      </div>
+      <div class="hero-actions">
+        <a class="btn btn-green" href="#">大街道店を予約する</a>
+        <a class="btn btn-dark" href="#">空港通り店を予約する</a>
+        <a class="btn btn-line" href="#price">料金を見る</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="main"><img src="https://storage.readdy-site.link/project_files/f4855191-8498-4dea-80b6-ea07112d8fed/d7b4e8b6-9652-4bcf-b4eb-f92cf8751890_IMG_2020.jpeg" alt="施術風景"></div>
+      <div class="float f1"><span class="av">⭐</span><div><div class="n">高評価</div><div class="t">お客様満足の声多数</div></div></div>
+      <div class="float f2"><div><div class="n">¥3,700〜</div><div class="t">全身60分（税込）</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST STRIP -->
+<div class="strip">
+  <div class="wrap">
+    <div class="it"><div class="n">2店舗</div><div class="l">松山市内で営業中</div></div>
+    <div class="it"><div class="n">翌1:00</div><div class="l">大街道店は深夜まで</div></div>
+    <div class="it"><div class="n">¥3,700〜</div><div class="l">全身60分・定額制</div></div>
+    <div class="it"><div class="n">駐車場</div><div class="l">空港通り店は完備</div></div>
+  </div>
+</div>
+
+<!-- STORES QUICK -->
+<section class="stores" id="store">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">STORES</span>
+      <h2>松山市内に2店舗</h2>
+      <p>お仕事帰りにも、観光の合間にも。お近くの店舗をどうぞ。</p>
+    </div>
+    <div class="grid">
+      <div class="scard">
+        <div class="top"><span class="pin">大街道・銀天街エリア</span><span style="font-size:13px;color:var(--muted)">詳細 →</span></div>
+        <h3>大街道店</h3>
+        <p class="area">コメダ珈琲店の2階</p>
+        <div class="row"><span>営業時間</span><span>10:00〜翌1:00</span></div>
+        <div class="row"><span>電話予約</span><span class="tel">0120-919-323</span></div>
+        <a class="btn btn-green" href="#">大街道店を予約する</a>
+      </div>
+      <div class="scard">
+        <div class="top"><span class="pin">松山西部・駐車場完備</span><span style="font-size:13px;color:var(--muted)">詳細 →</span></div>
+        <h3>空港通り店</h3>
+        <p class="area">松山空港近く</p>
+        <div class="row"><span>営業時間</span><span>10:00〜24:00</span></div>
+        <div class="row"><span>電話予約</span><span class="tel">0120-695-427</span></div>
+        <a class="btn btn-dark" href="#">空港通り店を予約する</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="price">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">PRICE</span>
+      <h2>分かりやすい料金体系</h2>
+      <p>初めての方も安心の定額制。全身60分 3,700円（税込）より。</p>
+    </div>
+    <div class="ptabs">
+      <div class="ptable feat">
+        <div class="head"><div><div class="label">ピースポ会員様</div></div><span class="off">全メニュー 500円OFF</span></div>
+        <div class="pitem"><div><div class="nm">足底30分＋全身60分<span class="pill">1番人気</span></div></div><div class="yen">5,800円<small> 税込</small></div></div>
+        <div class="pitem"><div><div class="nm">顔・頭30分＋全身60分</div><div class="desc">睡眠改善コース</div></div><div class="yen">5,400円<small> 税込</small></div></div>
+        <div class="pitem"><div><div class="nm">アロマ60分＋顔・頭15分<span class="pill w">女性限定</span></div><div class="desc">アロマスペシャル</div></div><div class="yen">5,900円<small> 税込</small></div></div>
+      </div>
+      <div class="ptable">
+        <div class="head"><div><div class="label">一般のお客様</div><div class="sub">通常料金・定額制</div></div></div>
+        <div class="pitem"><div><div class="nm">足底30分＋全身60分<span class="pill">1番人気</span></div></div><div class="yen">6,300円<small> 税込</small></div></div>
+        <div class="pitem"><div><div class="nm">顔・頭30分＋全身60分</div><div class="desc">睡眠改善コース</div></div><div class="yen">5,900円<small> 税込</small></div></div>
+        <div class="pitem"><div><div class="nm">アロマ60分＋顔・頭15分<span class="pill w">女性限定</span></div><div class="desc">アロマスペシャル</div></div><div class="yen">6,400円<small> 税込</small></div></div>
+      </div>
+    </div>
+    <div class="price-foot"><a class="btn btn-line" href="#">全メニュー・料金を見る</a></div>
+  </div>
+</section>
+
+<!-- REASONS -->
+<section id="reason">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">REASON</span>
+      <h2>あしカラダが選ばれる理由</h2>
+      <p>価格と質、その両方にこだわった本格リラクゼーション。</p>
+    </div>
+    <div class="rgrid">
+      <div class="rcard"><div class="ph" style="background-image:url('https://storage.readdy-site.link/project_files/f4855191-8498-4dea-80b6-ea07112d8fed/48996b8b-b212-416b-831a-3b0535365f95_IMG_1861.jpeg')"></div><div class="bd"><span class="num">1</span><h4>横揉み施術</h4><p>横向きでリラックスしながら受けられる独自の施術法。うつ伏せが苦手な方も安心です。</p></div></div>
+      <div class="rcard"><div class="ph" style="background-image:url('https://storage.readdy-site.link/project_files/f4855191-8498-4dea-80b6-ea07112d8fed/399bdb2a-af0c-410d-b3f7-c7b94a806242_unnamed.jpg')"></div><div class="bd"><span class="num">2</span><h4>アロマテラピー（女性限定）</h4><p>上質なアロマオイルを使用した本格トリートメント。女性に大人気のメニューです。</p></div></div>
+      <div class="rcard"><div class="ph" style="background-image:url('https://storage.readdy-site.link/project_files/f4855191-8498-4dea-80b6-ea07112d8fed/d7b4e8b6-9652-4bcf-b4eb-f92cf8751890_IMG_2020.jpeg')"></div><div class="bd"><span class="num">3</span><h4>リーズナブルな価格</h4><p>全身60分3,700円（税込）から。高品質な施術を気軽に続けられる価格設定です。</p></div></div>
+      <div class="rcard"><div class="ph" style="background-image:url('https://storage.readdy-site.link/project_files/f4855191-8498-4dea-80b6-ea07112d8fed/e3705560-d994-4ce3-aae3-4b649022b4b6_unnamed.jpg')"></div><div class="bd"><span class="num">4</span><h4>確かな技術力</h4><p>価格だけでなく施術の質で選ばれています。経験豊富なセラピストが丁寧に対応します。</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ACCESS -->
+<section id="access">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">ACCESS</span>
+      <h2>店舗案内</h2>
+      <p>アクセスしやすい立地で、あなたのそばに。</p>
+    </div>
+    <div class="acard">
+      <div class="ph" style="background-image:url('https://storage.readdy-site.link/project_files/f4855191-8498-4dea-80b6-ea07112d8fed/e3705560-d994-4ce3-aae3-4b649022b4b6_unnamed.jpg')"></div>
+      <div class="info">
+        <span class="pin">中心街・大街道</span>
+        <h3>大街道店</h3>
+        <div class="arow"><span class="k">所在地</span><span>松山市2番町3-8-21　コメダ珈琲店の2階</span></div>
+        <div class="arow"><span class="k">営業</span><span>10:00〜翌1:00（最終受付24:00）</span></div>
+        <div class="arow"><span class="k">予約</span><span class="tel">0120-919-323</span></div>
+        <a class="btn btn-green" href="#">大街道店を予約する</a>
+      </div>
+    </div>
+    <div class="acard">
+      <div class="ph" style="background-image:url('https://storage.readdy-site.link/project_files/f4855191-8498-4dea-80b6-ea07112d8fed/48996b8b-b212-416b-831a-3b0535365f95_IMG_1861.jpeg')"></div>
+      <div class="info">
+        <span class="pin">松山西部・駐車場完備</span>
+        <h3>空港通り店</h3>
+        <div class="arow"><span class="k">所在地</span><span>松山市空港通1丁目15-1【1階】</span></div>
+        <div class="arow"><span class="k">営業</span><span>10:00〜24:00（年中無休／年末年始除く）</span></div>
+        <div class="arow"><span class="k">予約</span><span class="tel">0120-695-427</span></div>
+        <a class="btn btn-dark" href="#">空港通り店を予約する</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LINE -->
+<section class="lineban">
+  <div class="wrap">
+    <div class="box">
+      <div>
+        <span class="eyebrow" style="background:rgba(255,255,255,.2);color:#fff">LINE 友だち追加</span>
+        <h2>友だち追加で特典がいっぱい！</h2>
+        <p>簡単なアンケートに答えるだけで500円割引クーポンをプレゼント。お得な情報・限定クーポンもLINEで受け取れます。</p>
+        <div class="perks"><span>500円クーポン</span><span>来店ごとにポイント</span><span>限定情報</span></div>
+      </div>
+      <div class="cta">
+        <div class="big">¥500</div>
+        <div style="font-size:13px;opacity:.9">割引クーポンをプレゼント</div>
+        <a class="btn" href="#">今すぐ友だち追加（無料）</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VOICES -->
+<section class="voices" id="voice">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">VOICE</span>
+      <h2>お客様の声</h2>
+      <p>多くのお客様にご満足いただいています。</p>
+    </div>
+    <div class="vgrid">
+      <div class="vcard"><div class="stars">★★★★★</div><h5>肩こりが楽に</h5><p>デスクワークで慢性的な肩こりに悩んでいましたが、横揉み施術でとても楽に。リーズナブルなので定期的に通えます。</p><div class="who"><span class="av">👩</span>40代女性</div></div>
+      <div class="vcard"><div class="stars">★★★★★</div><h5>仕事帰りに便利</h5><p>大街道店は遅くまで営業しているので、仕事帰りに立ち寄れて便利。スタッフの方も丁寧でリフレッシュできます。</p><div class="who"><span class="av">👨</span>50代男性</div></div>
+      <div class="vcard"><div class="stars">★★★★★</div><h5>アロマが最高</h5><p>アロマテラピーが本当に気持ち良くて毎月通っています。ピースポ会員割引があるのも助かります。</p><div class="who"><span class="av">👩</span>40代女性</div></div>
+      <div class="vcard"><div class="stars">★★★★★</div><h5>むくみが解消</h5><p>立ち仕事で足がパンパンでしたが、足つぼを受けてからむくみが解消。スタッフさんの技術力も高いです。</p><div class="who"><span class="av">👩</span>50代女性</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL -->
+<section class="final">
+  <div class="wrap">
+    <h2>心と体を、リフレッシュしませんか？</h2>
+    <p>初めての方も安心してご利用いただけます。お気軽にお問い合わせください。</p>
+    <div class="final-actions">
+      <a class="btn btn-green" href="#">大街道店を予約する</a>
+      <a class="btn btn-line" href="#">空港通り店を予約する</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div><div class="brand" style="font-size:22px;font-weight:900">あしカラダ</div><p style="margin-top:8px;color:#7f998d">愛媛・松山のリラクゼーションサロン</p></div>
+      <div class="foot-tel">
+        <div><div style="font-size:12px">大街道店</div><div class="tel">0120-919-323</div></div>
+        <div><div style="font-size:12px">空港通り店</div><div class="tel">0120-695-427</div></div>
+      </div>
+    </div>
+    <div class="copy">© あしカラダ松山店　大街道店・空港通り店</div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>案D 彩り（和の余白エディトリアル）｜あしカラダ松山店</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#fbf7f2; --cream-2:#f4ece2; --paper:#fffdfa;
+    --taupe:#8c8579; --taupe-deep:#6e665a; --taupe-soft:#b3aa9c;
+    --sakura:#d9789f; --sakura-soft:#f5e1ea; --sakura-deep:#c25f88;
+    --sage:#9dae8e; --line:#e8e0d6; --ink:#4a4438;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:400;color:var(--ink);background:var(--cream);line-height:2;-webkit-font-smoothing:antialiased;letter-spacing:.04em}
+  .mincho{font-family:"Shippori Mincho",serif}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 32px}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+  /* latin eyebrow */
+  .eyebrow{font-family:"Jost",sans-serif;font-weight:400;letter-spacing:.42em;font-size:11px;color:var(--sakura);text-transform:uppercase}
+  .eyebrow.taupe{color:var(--taupe-soft)}
+
+  /* sparkle */
+  .spark{color:var(--sakura);opacity:.55;font-size:13px;position:absolute;pointer-events:none;animation:tw 4s ease-in-out infinite}
+  @keyframes tw{0%,100%{opacity:.2;transform:scale(.85)}50%{opacity:.7;transform:scale(1.1)}}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:"Zen Kaku Gothic New";font-weight:500;font-size:14px;border-radius:999px;padding:15px 30px;transition:.28s;cursor:pointer;letter-spacing:.08em}
+  .btn-sakura{background:var(--sakura);color:#fff;box-shadow:0 12px 24px -12px rgba(217,120,159,.8)}
+  .btn-sakura:hover{background:var(--sakura-deep);transform:translateY(-2px)}
+  .btn-taupe{background:var(--taupe);color:#fff}
+  .btn-taupe:hover{background:var(--taupe-deep)}
+  .btn-line{background:transparent;color:var(--taupe-deep);border:1px solid var(--line)}
+  .btn-line:hover{border-color:var(--sakura);color:var(--sakura-deep)}
+
+  /* header */
+  header{position:sticky;top:0;z-index:50;background:rgba(251,247,242,.86);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:82px}
+  .brand{display:flex;align-items:baseline;gap:10px}
+  .brand .jp{font-family:"Shippori Mincho";font-weight:600;font-size:23px;letter-spacing:.14em;color:var(--taupe-deep)}
+  .brand .en{font-family:"Jost";font-size:10px;letter-spacing:.34em;color:var(--taupe-soft);text-transform:uppercase}
+  .menu{display:flex;gap:32px;font-size:13.5px;color:var(--taupe);font-weight:500}
+  .menu a{position:relative;padding:4px 0}
+  .menu a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--sakura);transition:.3s}
+  .menu a:hover{color:var(--sakura-deep)}.menu a:hover::after{width:100%}
+  .nav-cta .btn{padding:11px 22px}
+
+  /* hero */
+  .hero{position:relative;background:var(--cream);overflow:hidden}
+  .hero .inner{max-width:1240px;margin:0 auto;padding:64px 32px 0;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;min-height:74vh}
+  .hero-visual{position:relative}
+  .hero-visual .photo{border-radius:140px 18px 140px 18px;overflow:hidden;aspect-ratio:5/4;box-shadow:0 40px 80px -40px rgba(140,133,121,.6)}
+  .hero-visual .photo img{width:100%;height:100%;object-fit:cover}
+  .hero-visual .chip{position:absolute;background:var(--paper);border:1px solid var(--line);border-radius:18px 4px 18px 4px;padding:14px 20px;box-shadow:0 20px 40px -24px rgba(140,133,121,.6)}
+  .hero-visual .chip.c1{right:-18px;top:34px}
+  .hero-visual .chip .off{font-family:"Shippori Mincho";font-size:22px;color:var(--sakura-deep);line-height:1}
+  .hero-visual .chip small{display:block;font-size:11px;color:var(--taupe);letter-spacing:.06em;margin-top:4px}
+  .hero-copy{align-self:center;display:flex;gap:26px;align-items:flex-start}
+  .hero-headline{writing-mode:vertical-rl;text-orientation:mixed;font-family:"Shippori Mincho";font-weight:600;
+       font-size:clamp(34px,4.6vw,56px);line-height:1.9;letter-spacing:.18em;color:var(--taupe-deep);height:auto}
+  .hero-headline .em{color:var(--sakura-deep)}
+  .hero-side{writing-mode:vertical-rl;font-size:13.5px;color:var(--taupe);letter-spacing:.16em;line-height:2.4;padding-top:8px}
+  .hero-foot{position:relative;z-index:3;max-width:1240px;margin:0 auto;padding:34px 32px 0;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .hero-foot .lead{font-size:14.5px;color:var(--taupe);margin-right:auto;max-width:420px}
+  .wave{display:block;width:100%;color:var(--paper);margin-top:30px}
+
+  /* section base */
+  section{padding:110px 0;position:relative}
+  .sec-head{text-align:center;margin-bottom:60px}
+  .sec-head .eyebrow{display:block;margin-bottom:18px}
+  .sec-head h2{font-family:"Shippori Mincho";font-weight:600;font-size:clamp(27px,3.4vw,40px);color:var(--taupe-deep);letter-spacing:.1em;line-height:1.6}
+  .sec-head p{color:var(--taupe);font-size:14px;margin-top:14px;letter-spacing:.08em}
+  .rule{width:1px;height:50px;background:var(--line);margin:0 auto 26px}
+
+  .bg-paper{background:var(--paper)}
+  .bg-cream2{background:var(--cream-2)}
+
+  /* stores quick */
+  .store-grid{display:grid;grid-template-columns:1fr 1fr;gap:34px}
+  .store-card{background:var(--paper);border:1px solid var(--line);border-radius:8px 40px 8px 40px;padding:44px 42px;transition:.3s;position:relative}
+  .store-card:hover{transform:translateY(-4px);box-shadow:0 30px 60px -36px rgba(140,133,121,.6)}
+  .store-card .en{font-family:"Jost";letter-spacing:.3em;font-size:11px;color:var(--sakura);text-transform:uppercase}
+  .store-card h3{font-family:"Shippori Mincho";font-weight:600;font-size:27px;color:var(--taupe-deep);margin:8px 0 4px;letter-spacing:.08em}
+  .store-card .area{font-size:13px;color:var(--taupe-soft);margin-bottom:24px}
+  .store-row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-top:1px solid var(--line);font-size:13.5px;color:var(--taupe)}
+  .store-row .tel{font-family:"Shippori Mincho";font-size:21px;color:var(--ink);letter-spacing:.02em}
+  .store-card .btn{width:100%;margin-top:24px}
+
+  /* reasons — floating editorial */
+  .reasons{position:relative;overflow:hidden}
+  .reason-lead{text-align:center;margin-bottom:70px}
+  .reason-lead .vt{writing-mode:vertical-rl;font-family:"Shippori Mincho";font-weight:600;font-size:clamp(22px,2.8vw,30px);
+       color:var(--taupe-deep);letter-spacing:.22em;line-height:2.1;margin:0 auto;height:auto;display:inline-block}
+  .reason-lead .vt .em{color:var(--sakura-deep)}
+  .reason-list{display:flex;flex-direction:column;gap:90px;max-width:1000px;margin:0 auto}
+  .reason{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+  .reason:nth-child(even) .ph{order:2}
+  .reason .ph{position:relative}
+  .reason .ph img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:120px 14px 120px 14px;box-shadow:0 34px 64px -38px rgba(140,133,121,.7)}
+  .reason:nth-child(even) .ph img{border-radius:14px 120px 14px 120px}
+  .reason .no{font-family:"Jost";font-weight:300;font-size:13px;letter-spacing:.3em;color:var(--sakura)}
+  .reason h4{font-family:"Shippori Mincho";font-weight:600;font-size:25px;color:var(--taupe-deep);margin:10px 0 16px;letter-spacing:.07em}
+  .reason h4 .tag{font-size:12px;color:var(--sakura-deep);margin-left:8px}
+  .reason p{font-size:14.5px;color:var(--taupe);line-height:2.1}
+
+  /* pricing */
+  .price-wrap{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--paper)}
+  .pcol{padding:0}
+  .pcol+.pcol{border-left:1px solid var(--line)}
+  .pcol .ph{text-align:center;padding:34px 24px 26px;border-bottom:1px solid var(--line)}
+  .pcol.member .ph{background:var(--sakura-soft)}
+  .pcol .ph .en{font-family:"Jost";letter-spacing:.3em;font-size:10px;color:var(--sakura);text-transform:uppercase}
+  .pcol .ph .ttl{font-family:"Shippori Mincho";font-size:22px;color:var(--taupe-deep);margin-top:8px;letter-spacing:.08em}
+  .pcol .ph .badge{display:inline-block;margin-top:10px;background:var(--sakura);color:#fff;font-size:11px;letter-spacing:.1em;padding:4px 16px;border-radius:999px}
+  .pcol .ph .badge.ghost{background:transparent;color:var(--taupe-soft);border:1px solid var(--line)}
+  .pitem{padding:22px 30px;border-bottom:1px solid var(--line)}
+  .pitem:last-child{border-bottom:0}
+  .pitem .nm{font-size:14.5px;font-weight:500;color:var(--ink);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .pitem .nm .pill{font-family:"Jost";font-size:10px;letter-spacing:.08em;background:var(--cream-2);color:var(--taupe-deep);padding:3px 10px;border-radius:999px;text-transform:uppercase}
+  .pitem .nm .pill.w{background:var(--sakura-soft);color:var(--sakura-deep)}
+  .pitem .desc{font-size:12px;color:var(--taupe-soft);margin-top:2px}
+  .pitem .yen{font-family:"Shippori Mincho";font-size:24px;color:var(--taupe-deep);text-align:right;margin-top:6px}
+  .pitem .yen small{font-size:12px;color:var(--taupe-soft)}
+  .price-foot{text-align:center;margin-top:44px}
+
+  /* access */
+  .acard{display:grid;grid-template-columns:1.05fr 1fr;gap:0;background:var(--paper);border:1px solid var(--line);border-radius:6px;overflow:hidden;margin-bottom:30px}
+  .acard:nth-child(even){grid-template-columns:1fr 1.05fr}
+  .acard:nth-child(even) .ph{order:2}
+  .acard .ph{min-height:340px;background-size:cover;background-position:center}
+  .acard .info{padding:50px 48px}
+  .acard .info .en{font-family:"Jost";letter-spacing:.3em;font-size:10px;color:var(--sakura);text-transform:uppercase}
+  .acard .info h3{font-family:"Shippori Mincho";font-weight:600;font-size:30px;color:var(--taupe-deep);margin:8px 0 24px;letter-spacing:.08em}
+  .arow{display:flex;gap:18px;padding:14px 0;border-top:1px solid var(--line);font-size:13.5px;color:var(--taupe)}
+  .arow .k{color:var(--sakura-deep);min-width:64px;letter-spacing:.12em}
+  .arow .tel{font-family:"Shippori Mincho";font-size:21px;color:var(--ink)}
+  .acard .btn{margin-top:24px}
+
+  /* line */
+  .line .box{background:var(--paper);border:1px solid var(--line);border-radius:8px 60px 8px 60px;padding:60px;text-align:center;position:relative;overflow:hidden}
+  .line .box::before{content:"";position:absolute;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,var(--sakura-soft),transparent 70%);top:-120px;right:-80px}
+  .line .box>*{position:relative}
+  .line h2{font-family:"Shippori Mincho";font-weight:600;font-size:32px;color:var(--taupe-deep);margin:14px 0 12px;letter-spacing:.08em}
+  .line p{color:var(--taupe);font-size:14px;max-width:520px;margin:0 auto 26px}
+  .line .perks{display:flex;gap:34px;justify-content:center;margin-bottom:32px;flex-wrap:wrap}
+  .line .perk .n{font-family:"Shippori Mincho";font-size:26px;color:var(--sakura-deep)}
+  .line .perk .l{font-size:12px;color:var(--taupe)}
+  .line .box .btn{background:#06C755;color:#fff;padding:16px 42px;font-size:15px}
+
+  /* voices */
+  .vgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:30px}
+  .vcard{background:var(--paper);border:1px solid var(--line);border-radius:6px 30px 6px 30px;padding:38px 40px;position:relative}
+  .vcard .mk{font-family:"Shippori Mincho";font-size:60px;color:var(--sakura-soft);position:absolute;top:18px;right:30px;line-height:1}
+  .vcard .stars{color:var(--sakura);letter-spacing:3px;font-size:13px}
+  .vcard h5{font-family:"Shippori Mincho";font-weight:600;font-size:19px;color:var(--taupe-deep);margin:12px 0 12px;letter-spacing:.06em}
+  .vcard p{font-size:14px;color:var(--taupe);line-height:2}
+  .vcard .who{margin-top:18px;padding-top:14px;border-top:1px solid var(--line);font-size:12.5px;color:var(--taupe-soft);letter-spacing:.08em}
+
+  /* final */
+  .final{text-align:center;background:var(--cream-2);position:relative;overflow:hidden}
+  .final .vt{writing-mode:vertical-rl;font-family:"Shippori Mincho";font-weight:600;font-size:clamp(26px,3.4vw,38px);
+       color:var(--taupe-deep);letter-spacing:.24em;line-height:2;height:auto;display:inline-block;margin:0 auto 34px}
+  .final .vt .em{color:var(--sakura-deep)}
+  .final p{color:var(--taupe);font-size:14px;margin-bottom:32px}
+  .final-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+  footer{background:var(--taupe-deep);color:#d8d1c6;padding:60px 0 40px;font-size:13px}
+  .foot-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:30px;border-bottom:1px solid rgba(255,255,255,.12);padding-bottom:28px}
+  .foot-top .jp{font-family:"Shippori Mincho";font-size:22px;color:#fff;letter-spacing:.14em}
+  .foot-top .en{font-family:"Jost";font-size:10px;letter-spacing:.3em;color:#b3aa9c;display:block;margin-top:6px}
+  .foot-tel{display:flex;gap:40px}
+  .foot-tel .tel{font-family:"Shippori Mincho";color:#fff;font-size:19px}
+  .copy{margin-top:24px;color:#a39b8d;font-family:"Jost";letter-spacing:.1em;font-size:11px}
+
+  @media(max-width:860px){
+    .menu,.nav-cta{display:none}
+    .hero .inner{grid-template-columns:1fr;min-height:auto;padding:40px 28px 0;gap:30px}
+    /* 縦書きはモバイルでは横書きに切り替え（見切れ防止） */
+    .hero-copy{order:-1;flex-direction:column-reverse;align-items:center;gap:16px;text-align:center}
+    .hero-headline{writing-mode:horizontal-tb;font-size:clamp(30px,8vw,42px);line-height:1.7;letter-spacing:.1em}
+    .hero-side{writing-mode:horizontal-tb;padding-top:0;font-size:12px;letter-spacing:.18em}
+    .reason-lead .vt{writing-mode:horizontal-tb;height:auto;line-height:1.7}
+    .final .vt{writing-mode:horizontal-tb;height:auto;line-height:1.7;margin-bottom:26px}
+    .hero-visual .chip.c1{right:8px}
+    .store-grid,.price-wrap,.vgrid{grid-template-columns:1fr}
+    .pcol+.pcol{border-left:0;border-top:1px solid var(--line)}
+    .reason,.reason:nth-child(even) .ph{grid-template-columns:1fr}
+    .reason .ph{order:-1!important}
+    .acard,.acard:nth-child(even){grid-template-columns:1fr}.acard:nth-child(even) .ph{order:0}
+    .line .box{padding:40px 26px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand"><span class="jp">あしカラダ</span><span class="en">Matsuyama</span></div>
+    <nav class="menu">
+      <a href="#">初めての方へ</a>
+      <a href="#price">メニュー・料金</a>
+      <a href="#reason">施術の特徴</a>
+      <a href="#access">店舗案内</a>
+      <a href="#voice">お客様の声</a>
+    </nav>
+    <div class="nav-cta"><a class="btn btn-sakura" href="#">ご予約</a></div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" style="padding:0">
+  <span class="spark" style="top:18%;left:46%">✦</span>
+  <span class="spark" style="top:62%;left:38%;animation-delay:1.2s">✦</span>
+  <span class="spark" style="top:30%;right:8%;animation-delay:2.1s">✦</span>
+  <div class="inner">
+    <div class="hero-visual">
+      <div class="photo"><img src="https://storage.readdy-site.link/project_files/f4855191-8498-4dea-80b6-ea07112d8fed/48996b8b-b212-416b-831a-3b0535365f95_IMG_1861.jpeg" alt="施術の様子"></div>
+      <div class="chip c1"><div class="off mincho">500円 OFF</div><small>ピースポ会員様特別割引</small></div>
+    </div>
+    <div class="hero-copy">
+      <div class="hero-side">愛媛・松山のリラクゼーションサロン</div>
+      <h1 class="hero-headline">心も体も、<br><span class="em">ほぐれる</span>時間を。</h1>
+    </div>
+  </div>
+  <div class="hero-foot">
+    <p class="lead">横揉み施術とアロマテラピーで、本格的なリラクゼーションをリーズナブルに。一日の終わりに、自分をいたわるひとときを。</p>
+    <a class="btn btn-sakura" href="#">大街道店を予約する</a>
+    <a class="btn btn-taupe" href="#">空港通り店を予約する</a>
+    <a class="btn btn-line" href="#price">料金を見る</a>
+  </div>
+  <svg class="wave" viewBox="0 0 1440 70" preserveAspectRatio="none" style="height:54px"><path fill="currentColor" d="M0,30 C360,80 1080,-12 1440,30 L1440,70 L0,70 Z"></path></svg>
+</section>
+
+<!-- STORES -->
+<section class="bg-paper" id="store">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Salons</span>
+      <div class="rule"></div>
+      <h2>松山に、二つの場所</h2>
+      <p>お仕事帰りにも、おでかけの合間にも。</p>
+    </div>
+    <div class="store-grid">
+      <div class="store-card">
+        <div class="en">Okaido</div>
+        <h3>大街道店</h3>
+        <p class="area">大街道・銀天街エリア ／ コメダ珈琲店の2階</p>
+        <div class="store-row"><span>営業時間</span><span>10:00 — 翌 1:00</span></div>
+        <div class="store-row"><span>ご予約</span><span class="tel">0120-919-323</span></div>
+        <a class="btn btn-line" href="#">大街道店を予約する</a>
+      </div>
+      <div class="store-card">
+        <div class="en">Kuukou-dori</div>
+        <h3>空港通り店</h3>
+        <p class="area">松山西部エリア ／ 松山空港近く・駐車場完備</p>
+        <div class="store-row"><span>営業時間</span><span>10:00 — 24:00</span></div>
+        <div class="store-row"><span>ご予約</span><span class="tel">0120-695-427</span></div>
+        <a class="btn btn-sakura" href="#">空港通り店を予約する</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REASONS -->
+<section class="reasons" id="reason">
+  <span class="spark" style="top:10%;left:14%">✦</span>
+  <span class="spark" style="top:46%;right:10%;animation-delay:1.6s">✦</span>
+  <div class="wrap">
+    <div class="reason-lead">
+      <span class="eyebrow">Why chosen</span>
+      <div class="vt mincho" style="margin-top:24px">あしカラダが<br><span class="em">選ばれる</span>理由</div>
+    </div>
+    <div class="reason-list">
+      <div class="reason">
+        <div class="ph"><img src="https://storage.readdy-site.link/project_files/f4855191-8498-4dea-80b6-ea07112d8fed/48996b8b-b212-416b-831a-3b0535365f95_IMG_1861.jpeg" alt="横揉み施術"></div>
+        <div class="tx"><div class="no">01 — Side massage</div><h4 class="mincho">横揉み施術</h4><p>横向きでリラックスしながら受けられる独自の施術法。うつ伏せが苦手な方も、力を抜いたまま、ゆっくりとほぐれていきます。</p></div>
+      </div>
+      <div class="reason">
+        <div class="ph"><img src="https://storage.readdy-site.link/project_files/f4855191-8498-4dea-80b6-ea07112d8fed/399bdb2a-af0c-410d-b3f7-c7b94a806242_unnamed.jpg" alt="アロマテラピー"></div>
+        <div class="tx"><div class="no">02 — Aroma therapy</div><h4 class="mincho">アロマテラピー<span class="tag">女性限定</span></h4><p>上質なアロマオイルを使った本格トリートメント。香りと手のぬくもりが、こわばった心まで静かにほどいていきます。</p></div>
+      </div>
+      <div class="reason">
+        <div class="ph"><img src="https://storage.readdy-site.link/project_files/f4855191-8498-4dea-80b6-ea07112d8fed/d7b4e8b6-9652-4bcf-b4eb-f92cf8751890_IMG_2020.jpeg" alt="リーズナブルな価格"></div>
+        <div class="tx"><div class="no">03 — Reasonable</div><h4 class="mincho">続けられる価格</h4><p>全身60分 3,700円（税込）より。質の高い施術を、特別な日だけでなく、暮らしのなかで気軽に続けられる価格で。</p></div>
+      </div>
+      <div class="reason">
+        <div class="ph"><img src="https://storage.readdy-site.link/project_files/f4855191-8498-4dea-80b6-ea07112d8fed/e3705560-d994-4ce3-aae3-4b649022b4b6_unnamed.jpg" alt="確かな技術力"></div>
+        <div class="tx"><div class="no">04 — Skilled hands</div><h4 class="mincho">確かな技術力</h4><p>価格だけでなく、施術の質で選ばれています。経験を重ねたセラピストが、その日の体調に合わせて丁寧に向き合います。</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="bg-paper" id="price">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Price</span>
+      <div class="rule"></div>
+      <h2>分かりやすい料金</h2>
+      <p>初めての方も安心の定額制。全身60分 3,700円（税込）より。</p>
+    </div>
+    <div class="price-wrap">
+      <div class="pcol member">
+        <div class="ph"><div class="en">Member</div><div class="ttl mincho">ピースポ会員様</div><div class="badge">全メニュー 500円OFF</div></div>
+        <div class="pitem"><div class="nm">足底30分 ＋ 全身60分 <span class="pill">Popular</span></div><div class="yen mincho">5,800円<small> 税込</small></div></div>
+        <div class="pitem"><div class="nm">顔・頭30分 ＋ 全身60分</div><div class="desc">睡眠改善コース</div><div class="yen mincho">5,400円<small> 税込</small></div></div>
+        <div class="pitem"><div class="nm">アロマ60分 ＋ 顔・頭15分 <span class="pill w">Ladies</span></div><div class="desc">アロマスペシャル</div><div class="yen mincho">5,900円<small> 税込</small></div></div>
+      </div>
+      <div class="pcol">
+        <div class="ph"><div class="en">Regular</div><div class="ttl mincho">一般のお客様</div><div class="badge ghost">通常料金・定額制</div></div>
+        <div class="pitem"><div class="nm">足底30分 ＋ 全身60分 <span class="pill">Popular</span></div><div class="yen mincho">6,300円<small> 税込</small></div></div>
+        <div class="pitem"><div class="nm">顔・頭30分 ＋ 全身60分</div><div class="desc">睡眠改善コース</div><div class="yen mincho">5,900円<small> 税込</small></div></div>
+        <div class="pitem"><div class="nm">アロマ60分 ＋ 顔・頭15分 <span class="pill w">Ladies</span></div><div class="desc">アロマスペシャル</div><div class="yen mincho">6,400円<small> 税込</small></div></div>
+      </div>
+    </div>
+    <div class="price-foot"><a class="btn btn-line" href="#">全メニュー・料金を見る</a></div>
+  </div>
+</section>
+
+<!-- ACCESS -->
+<section id="access">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Access</span>
+      <div class="rule"></div>
+      <h2>店舗案内</h2>
+      <p>アクセスしやすい立地で、あなたのそばに。</p>
+    </div>
+    <div class="acard">
+      <div class="ph" style="background-image:url('https://storage.readdy-site.link/project_files/f4855191-8498-4dea-80b6-ea07112d8fed/e3705560-d994-4ce3-aae3-4b649022b4b6_unnamed.jpg')"></div>
+      <div class="info">
+        <div class="en">Okaido</div>
+        <h3 class="mincho">大街道店</h3>
+        <div class="arow"><span class="k">所在地</span><span>松山市2番町3-8-21　コメダ珈琲店の2階</span></div>
+        <div class="arow"><span class="k">営業</span><span>10:00 — 翌1:00（最終受付 24:00）</span></div>
+        <div class="arow"><span class="k">予約</span><span class="tel">0120-919-323</span></div>
+        <a class="btn btn-line" href="#">大街道店を予約する</a>
+      </div>
+    </div>
+    <div class="acard">
+      <div class="ph" style="background-image:url('https://storage.readdy-site.link/project_files/f4855191-8498-4dea-80b6-ea07112d8fed/48996b8b-b212-416b-831a-3b0535365f95_IMG_1861.jpeg')"></div>
+      <div class="info">
+        <div class="en">Kuukou-dori</div>
+        <h3 class="mincho">空港通り店</h3>
+        <div class="arow"><span class="k">所在地</span><span>松山市空港通1丁目15-1【1階】</span></div>
+        <div class="arow"><span class="k">営業</span><span>10:00 — 24:00（年中無休／年末年始除く）</span></div>
+        <div class="arow"><span class="k">予約</span><span class="tel">0120-695-427</span></div>
+        <a class="btn btn-sakura" href="#">空港通り店を予約する</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LINE -->
+<section class="line bg-cream2">
+  <div class="wrap">
+    <div class="box">
+      <span class="eyebrow">LINE</span>
+      <h2 class="mincho">友だち追加で、特典を。</h2>
+      <p>簡単なアンケートに答えるだけで、500円割引クーポンをプレゼント。お得な情報や限定クーポンも、LINEでそっとお届けします。</p>
+      <div class="perks">
+        <div class="perk"><div class="n mincho">500円</div><div class="l">初回割引クーポン</div></div>
+        <div class="perk"><div class="n mincho">point</div><div class="l">来店ごとに貯まる</div></div>
+        <div class="perk"><div class="n mincho">限定</div><div class="l">会員だけの情報</div></div>
+      </div>
+      <a class="btn" href="#">今すぐ友だち追加する（無料）</a>
+    </div>
+  </div>
+</section>
+
+<!-- VOICES -->
+<section class="bg-paper" id="voice">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Voice</span>
+      <div class="rule"></div>
+      <h2>お客様の声</h2>
+      <p>多くのお客様にご満足いただいています。</p>
+    </div>
+    <div class="vgrid">
+      <div class="vcard"><div class="mk mincho">”</div><div class="stars">★★★★★</div><h5 class="mincho">肩こりが楽になりました</h5><p>デスクワークで慢性的な肩こりに悩んでいましたが、横揉み施術を受けてからとても楽に。続けやすい価格なのも嬉しいです。</p><div class="who">40代女性</div></div>
+      <div class="vcard"><div class="mk mincho">”</div><div class="stars">★★★★★</div><h5 class="mincho">仕事帰りに通っています</h5><p>大街道店は遅くまで営業しているので、仕事帰りに立ち寄れて便利。スタッフの方も丁寧で、いつもリフレッシュできます。</p><div class="who">50代男性</div></div>
+      <div class="vcard"><div class="mk mincho">”</div><div class="stars">★★★★★</div><h5 class="mincho">アロマが最高です</h5><p>アロマテラピーが本当に気持ち良くて、毎月通っています。会員割引があるのも助かります。心身ともにほどける時間です。</p><div class="who">40代女性</div></div>
+      <div class="vcard"><div class="mk mincho">”</div><div class="stars">★★★★★</div><h5 class="mincho">足のむくみが解消</h5><p>立ち仕事で足がパンパンになっていましたが、足つぼを受けてからむくみが解消。スタッフさんの技術力も高いです。</p><div class="who">50代女性</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL -->
+<section class="final">
+  <span class="spark" style="top:20%;left:24%">✦</span>
+  <span class="spark" style="bottom:24%;right:22%;animation-delay:1.4s">✦</span>
+  <div class="wrap">
+    <div class="vt mincho">心と体に、<br><span class="em">彩り</span>を。</div>
+    <p>初めての方も安心してご利用いただけます。お気軽にお問い合わせください。</p>
+    <div class="final-actions">
+      <a class="btn btn-sakura" href="#">大街道店を予約する</a>
+      <a class="btn btn-taupe" href="#">空港通り店を予約する</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div><div class="jp">あしカラダ</div><span class="en">Matsuyama Relaxation Salon</span></div>
+      <div class="foot-tel">
+        <div><div style="font-size:11px;letter-spacing:.2em;color:#b3aa9c">大街道店</div><div class="tel">0120-919-323</div></div>
+        <div><div style="font-size:11px;letter-spacing:.2em;color:#b3aa9c">空港通り店</div><div class="tel">0120-695-427</div></div>
+      </div>
+    </div>
+    <div class="copy">© あしカラダ松山店　OKAIDO ・ KUUKOU-DORI</div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,5 +1,13 @@
 # 修正履歴
 
+## 2026-06-14
+### 機能追加: 公開プレビュー（GitHub公開リポジトリ＋Vercelデプロイ・noindex）
+- **変更ファイル**: 全mock HTML（noindex meta追加）, `mocks/robots.txt`（新規）, `mocks/vercel.json`（新規）, `mocks/index.html`（「4案」表記修正・キー4対応）, `mocks/.gitignore`（新規）
+- **内容**: クライアント共有用にモック4案比較ビューアを公開。GitHub公開リポジトリ `naokoba-git/ashikarada-mock` へpush、Vercel CLIで `mocks/` をサイトルートとして本番デプロイ。検索インデックス防止を3層（meta robots / robots.txt / `X-Robots-Tag` ヘッダー）で実装。
+- **公開URL**: https://mocks-neon.vercel.app （誰でも閲覧可・検索除外）
+- **理由**: ユーザーがクライアントに4案を切替表示で見せるためのURLを希望。検索結果には出したくないためnoindex指定。
+- **コスト対策**: `vercel.json` に `ignoreCommand: exit 0` を設定。git連携の自動デプロイは張らず、更新は `vercel --prod` で明示デプロイする運用（過去の高額請求対策）。
+
 ## 2026-06-13
 ### 機能追加: 案D「彩り・和の余白」追加（桔梗が丘整骨院参考）
 - **変更ファイル**: `mocks/mock-d-irodori.html`（新規）, `mocks/index.html`（タブ追加）

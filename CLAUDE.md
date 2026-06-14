@@ -58,7 +58,13 @@ ashikarada/
 - 店頭看板（busy・ヒーロー不可）: `public.readdy.ai/.../709c1087.jpg`
 - ベースURL: `https://storage.readdy-site.link/project_files/f4855191-8498-4dea-80b6-ea07112d8fed/`
 
-## プレビュー方法
+## 公開プレビュー（クライアント共有用）
+- **公開URL**: https://mocks-neon.vercel.app （4案タブ切替・PC/スマホ切替・noindex）
+- **GitHub**: https://github.com/naokoba-git/ashikarada-mock （public）
+- **検索除外**: meta robots / robots.txt / `X-Robots-Tag` ヘッダーの3層でnoindex
+- **更新デプロイ**: 修正後 `vercel deploy --prod --cwd mocks --yes`（git連携の自動デプロイは未設定＝push単体では反映されない。コスト対策で意図的にこの運用）
+
+## プレビュー方法（ローカル）
 ```bash
 cd mocks && python3 -m http.server 8777
 # ビューア: http://localhost:8777/index.html  （タブで案A〜D切替・PC/スマホ切替・キー1〜4）

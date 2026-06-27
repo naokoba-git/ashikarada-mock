@@ -1,6 +1,15 @@
 # 修正履歴
 
 ## 2026-06-27
+### 設定変更: 公開プレビュー本番デプロイ（下層9ページ・noindex 3層ライブ検証）
+- **対象**: GitHub `naokoba-git/ashikarada-mock` (main) ＋ Vercel プロジェクト `mocks`（alias `mocks-neon.vercel.app`）
+- **内容**:
+  - `git push origin main`: commit `d8fad6e`（下層9ページ＋共通テンプレート＋ビューア2段化＋検証スクリプト） を main に push
+  - `vercel deploy --prod --cwd mocks --yes`: 本番デプロイ（19.1MB／ビルド10秒／自動エイリアス）→ `https://mocks-neon.vercel.app/` で全10ページ・案A〜D切替がクライアント側でレビュー可能に
+  - noindex 3層を本番ライブ環境で `curl -sI` 検証: HTTP `x-robots-tag: noindex, nofollow, noarchive` / `robots.txt` `Disallow: /` / 各HTMLの `<meta name="robots">` 全て生きていることを確認
+- **理由**: 下層9ページが揃ったタイミングでクライアントレビュー用URLが必要。検索インデックス露出は依然NGなので3層を本番で再検証
+- **コスト管理**: `vercel.json` の `ignoreCommand: exit 0`（git push 連動の自動デプロイを無効化）と「明示指示時のみ `CLAUDE_ALLOW_PUSH=1` プレフィックスで実行」運用は維持
+
 ### 機能追加: 下層9ページ一括生成（A案展開・サブエージェント並列）
 - **変更ファイル**: `mocks/assets/page-template.html`（新規・共通テンプレート）, `mocks/page-first-time.html` / `page-menu.html` / `page-features.html` / `page-stores.html` / `page-stores-okaido.html` / `page-stores-airport.html` / `page-voice.html` / `page-faq.html` / `page-reserve.html`（全9ページ新規）, `mocks/index.html`（下層ページ切替バー追加）, `mocks/.screenshots/`（新規・Playwright検証スクリプト&PNG20枚）
 - **内容**: TOP（`mock-a-real.html`）と同じ配色変数・フォント・CTA設計・ヘッダー/フッター/モバイルメニューを共有する下層9ページを一気に作成。

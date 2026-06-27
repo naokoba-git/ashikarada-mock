@@ -2,7 +2,7 @@
 
 ## 概要
 愛媛・松山のリラクゼーションサロン「あしカラダ」の既存サイトを高品質化するための**デザインモック制作**プロジェクト。
-**2026-06-27 にA案（上質・高級スパ系）で方向性確定。実テキスト反映版TOP（`mock-a-real.html`）が確定モック。次は下層ページ作成へ。**
+**2026-06-27 にA案（上質・高級スパ系）で方向性確定。TOP（`mock-a-real.html`）＋下層9ページ（`page-*.html`）が完成。次はクライアントレビュー → 本実装移行へ。**
 
 - **対象サイト**: https://あしカラダ松山店.jp/ （Punycode: `https://xn--l8jzb2o0cyjn09v9ed4ox.jp/`）
 - **既存サイトの作り**: readdy 製（画像は `storage.readdy-site.link` / `public.readdy.ai` にホスト）
@@ -36,8 +36,19 @@ ashikarada/
     ├── mock-b-natural.html  ← 案B ナチュラル癒し系
     ├── mock-c-clean.html    ← 案C クリーン洗練（現グリーン路線を磨く）
     ├── mock-d-irodori.html  ← 案D 彩り・和の余白（桔梗が丘整骨院 参考）
+    ├── page-first-time.html         ★ 下層: 初めての方へ
+    ├── page-menu.html               ★ 下層: メニュー・料金
+    ├── page-features.html           ★ 下層: 施術の特徴
+    ├── page-stores.html             ★ 下層: 店舗案内（2店舗一覧）
+    ├── page-stores-okaido.html      ★ 下層: 大街道店 詳細
+    ├── page-stores-airport.html     ★ 下層: 空港通り店 詳細
+    ├── page-voice.html              ★ 下層: お客様の声
+    ├── page-faq.html                ★ 下層: よくある質問
+    ├── page-reserve.html            ★ 下層: ご予約
     ├── _contact.html    ← 開発用：使用画像のコンタクトシート
+    ├── .screenshots/    ← Playwright自動検証スクリプト＆PNG（20枚）
     └── assets/
+        ├── page-template.html  ★ 下層共通テンプレート（ヘッダー/フッター/CSS/CTA骨格）
         ├── line-qr.svg  ← LINE公式 lin.ee/wmRAMM9 のQR（SVG・A案ink色）
         └── line-qr.png  ← 同上 PNG 480px
 ```
@@ -93,36 +104,47 @@ cd mocks && python3 -m http.server 8777
   - 電話: `tel:0120919323`（大街道店）/ `tel:0120695427`（空港通り店）
   - 三福グループ: `https://www.sanpuku.co.jp/` / P・SPO: `https://pspo.jp/`
 
-## 下層ページ（次セッションで作る対象・実サイト構造に準拠）
-| ナビ | URL | 内容 |
+## 下層ページ（A案展開・完成済み）
+| ナビ | ファイル | 内容 |
 |---|---|---|
-| 初めての方へ | `/first-time` | 来店フロー・服装・所要時間・FAQ要約 |
-| メニュー・料金 | `/menu` | 全コース料金一覧（会員/一般）、ピースポ会員案内 |
-| 施術の特徴 | `/features` | 横揉み施術／アロマテラピー／確かな技術力の詳細 |
-| 店舗案内 | `/stores` | 2店舗概要 |
-| 大街道店詳細 | `/stores/okaido` | 個別ページ（地図・写真・営業時間） |
-| 空港通り店詳細 | `/stores/airport` | 個別ページ（地図・写真・営業時間・駐車場） |
-| お客様の声 | `/voice` | 全レビュー一覧 |
-| よくある質問 | `/faq` | FAQ |
-| ご予約 | `/reserve` | 予約導線（Hot Pepper Beauty にリダイレクト案内） |
+| 初めての方へ | `page-first-time.html` | 来店フロー5ステップ／持ち物・服装／所要時間／初回特典／FAQ6問 |
+| メニュー・料金 | `page-menu.html` | 人気組合せ（会員/一般）／単品4カテゴリ／ピースポ会員案内／注意事項 |
+| 施術の特徴 | `page-features.html` | 4特徴の大カード詳細／お悩み別おすすめ6ケース |
+| 店舗案内 | `page-stores.html` | 2店舗比較表／大カード／共通サービス3点 |
+| 大街道店詳細 | `page-stores-okaido.html` | ヒーロー＋情報＋地図iframe＋アクセス3点＋ギャラリー＋特色3点 |
+| 空港通り店詳細 | `page-stores-airport.html` | 駐車場ハイライト＋情報＋地図iframe＋アクセス3点＋ギャラリー＋特色3点 |
+| お客様の声 | `page-voice.html` | 数値サマリー／レビュー12件／フィルター見せ／投稿導線 |
+| よくある質問 | `page-faq.html` | 5カテゴリ（料金/施術/予約/店舗/会員）アコーディオン計24問 |
+| ご予約 | `page-reserve.html` | 3予約方法カード／フロー4ステップ／注意事項 |
+
+## 共通テンプレート
+- `mocks/assets/page-template.html` — 下層ページ共通の骨格（ヘッダー＋フッター＋全CSS＋CTAストリップ＋モバイルメニュー＋FAQアコーディオンスクリプト）。`<!-- CONTENT -->` を差し替えてページ化する設計。
+- ナビゲーション current 表現: 下層ページのヘッダー該当 `<a>` に `class="current"` を付与（`menu a.current` でゴールド下線が常時表示）。
+
+## 検証
+- `mocks/.screenshots/_shot.cjs` … Playwright headless で全10ページ × PC(1280) / SP(390) = 20枚スクショ＋検証（status, header, footer, cta, h1, JSエラー）
+- `mocks/.screenshots/verify-shots.sh` … 上記の起動スクリプト（`NODE_PATH=/opt/homebrew/lib/node_modules/designlang/node_modules` を使用）
 
 ## 開発履歴
 - 2026-06-13: モック4案＋比較ビューア作成。案A〜CはオリジナルLP構成、案Dは桔梗が丘整骨院を参考。案Dはスマホ縦書き見切れ修正済み。
 - 2026-06-14: 公開プレビュー（GitHub + Vercel + noindex 3層）公開。
-- 2026-06-27: **A案で方向性確定**。実テキスト・実CTAリンク・実電話・実会社概要を反映した `mock-a-real.html` を作成。両店舗予約CTAを同色統一、料金表2カード完全整列、LINE公式QRをA案テイストで2カラム組込み。
+- 2026-06-27 セッション2: **A案で方向性確定**。実テキスト・実CTAリンク・実電話・実会社概要を反映した `mock-a-real.html` を作成。両店舗予約CTAを同色統一、料金表2カード完全整列、LINE公式QRをA案テイストで2カラム組込み。
+- 2026-06-27 セッション3: **下層9ページ一気に完成**。共通テンプレート抽出→Task並列で9サブエージェント同時生成→Playwrightで20枚スクショ全項目PASS。`index.html` ビューアを「上段4案＋下段A案下層10ページピル型ナビ」の2段構成に拡張。
 
 ## TODO（次にやること）
 - [x] 4案からベースを選定 → **A案で確定（2026-06-27）**
-- [ ] **下層ページ（上記表）を順次作成** ← 次セッションの主タスク
+- [x] **下層9ページ作成** → 完成（2026-06-27）
+- [ ] クライアントレビュー → 文言・写真差し替えの反映
 - [ ] スマホ最適化の最終調整
 - [ ] 実画像の差し替え／追加撮影の検討
 - [ ] 本実装の技術スタック決定（静的HTML / Next.js / 既存readdy更新 など）
+- [ ] 公開プレビューへのデプロイ（明示指示後・`vercel deploy --prod --cwd mocks --yes`）
 
 ## 注意点
 - **push/deploy禁止**（明示指示があるまでローカルコミットのみ）
 - ユーザーはプログラミング素人 → 実装前に方向性確認・推奨モデル提示
 - 並列で別プロジェクト（小林建工 ITAZU, localhost:8799）も稼働中。Chromeタブを取り違えないこと（あしカラダは8777）。
-- **下層ページ作成時**: `mock-a-real.html` のヘッダー/フッター/CTA設計・配色変数をそのまま流用すること（共通コンポーネントとして抽出は次フェーズ判断）
+- **下層ページのヘッダー/フッター/CTAは `assets/page-template.html` 由来**。修正時はテンプレートを更新し、各 page-*.html へ同期する（または共通化を本実装フェーズで判断）。
 - 料金行や2カラムレイアウト等の高さ揃えは Playwrightで実寸計測 → CSSで `min-height`/`align-items:stretch` 調整が確実
 
-最終更新: 2026-06-27
+最終更新: 2026-06-27 セッション3

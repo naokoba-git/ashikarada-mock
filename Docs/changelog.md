@@ -1,6 +1,23 @@
 # 修正履歴
 
 ## 2026-06-27
+### 機能追加: 下層9ページ一括生成（A案展開・サブエージェント並列）
+- **変更ファイル**: `mocks/assets/page-template.html`（新規・共通テンプレート）, `mocks/page-first-time.html` / `page-menu.html` / `page-features.html` / `page-stores.html` / `page-stores-okaido.html` / `page-stores-airport.html` / `page-voice.html` / `page-faq.html` / `page-reserve.html`（全9ページ新規）, `mocks/index.html`（下層ページ切替バー追加）, `mocks/.screenshots/`（新規・Playwright検証スクリプト&PNG20枚）
+- **内容**: TOP（`mock-a-real.html`）と同じ配色変数・フォント・CTA設計・ヘッダー/フッター/モバイルメニューを共有する下層9ページを一気に作成。
+  - `page-template.html`: A案ヘッダー/フッター/CTA/モバイルメニュー/全CSSをまとめた骨格（`<!-- CONTENT -->` 差込み式）
+  - `page-first-time`: 来店フロー5ステップ／持ち物・服装／所要時間／初回特典／FAQ6問
+  - `page-menu`: 人気の組合せ（会員/一般2カラム）／単品メニュー4カテゴリ／ピースポ会員案内／注意事項
+  - `page-features`: 4特徴を交互大カードで詳細／お悩み別おすすめ6ケース
+  - `page-stores`: 2店舗比較表／大カード2件／共通サービス3つ
+  - `page-stores-okaido` / `page-stores-airport`: ヒーロー+店舗情報+地図iframe+アクセス3カード+ギャラリー3枚+特色3点
+  - `page-voice`: 数値サマリー（4.8/5.0・15年・9割）／レビュー12件／フィルター見せ／投稿導線
+  - `page-faq`: 5カテゴリ別アコーディオン（料金/施術/予約/店舗/会員）計24問・テンプレ末尾のスクリプトで動作
+  - `page-reserve`: 3予約方法カード（Hot Pepper/電話/LINE）／予約フロー4ステップ／注意事項
+  - `index.html`: 上段4案タブはそのまま、下段に「A案 ／ ページ」ピル型ナビ10件を追加。A案以外を選ぶと下段は自動で隠れる
+- **理由**: A案確定後の本実装に向け、サイト全体構造を実テキスト・実CTAで再現する必要があったため
+- **手法**: 共通テンプレート抽出 → Task並列で9サブエージェントを同時起動（各エージェントが自分の担当ページのみ Write） → Playwrightで全ページ自動検証（20スクショ・JSエラー0・status 200・header/footer/h1全項目PASS）→ Claude in Chromeで実機確認
+- **検証**: `mocks/.screenshots/verify-shots.sh` で再現可能。Issues: 0 / 20
+
 ### 機能追加: A案ベース 実テキスト完全再現TOP（確定案）
 - **変更ファイル**: `mocks/mock-a-real.html`（新規）, `mocks/index.html`（「A実」タブ追加・デフォルト切替）
 - **内容**: 実サイト（`xn--l8jzb2o0cyjn09v9ed4ox.jp`）をWebFetch + Claude in Chromeで全文取得し、A案の上質・高級スパ系トンマナで実テキストを反映。実CTAリンク（Hot Pepper Beauty: `slnH000278593`/`slnH000403924`）、tel:リンク、LINE（`lin.ee/wmRAMM9`）、三福グループ/P・SPO 会社概要、郵便番号まで忠実再現。

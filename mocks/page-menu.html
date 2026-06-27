@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>メニュー・料金｜あしカラダ松山店</title>
+<meta name="description" content="あしカラダ松山店のメニュー・料金一覧。横揉み施術・アロマテラピー・足底・全身マッサージなど、ピースポ会員価格と一般価格をわかりやすくご案内します。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#22302c; --ink-soft:#3c4a45; --gold:#a9854f; --gold-deep:#8a6a3a;
+    --cream:#f7f2e9; --cream-2:#efe7d8; --paper:#fffdf9; --line:#e0d6c4;
+    --muted:#6f7a73; --line-green:#06c755;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:"Zen Kaku Gothic New",sans-serif;color:var(--ink);background:var(--paper);line-height:1.8;-webkit-font-smoothing:antialiased}
+  .serif{font-family:"Shippori Mincho",serif}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 32px}
+  .eyebrow{font-family:"Shippori Mincho",serif;letter-spacing:.32em;font-size:12px;color:var(--gold-deep);text-transform:uppercase;display:inline-block}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+
+  /* ===== Header ===== */
+  header{position:sticky;top:0;z-index:50;background:rgba(255,253,249,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:84px;gap:24px}
+  .brand{display:flex;align-items:center;gap:14px}
+  .brand .mark{font-family:"Shippori Mincho",serif;font-weight:700;font-size:24px;letter-spacing:.16em;line-height:1}
+  .brand small{display:block;font-size:10px;letter-spacing:.34em;color:var(--gold-deep);margin-top:6px}
+  .menu{display:flex;gap:26px;font-size:13.5px;color:var(--ink-soft)}
+  .menu a{position:relative;padding:4px 0;white-space:nowrap}
+  .menu a::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:1px;background:var(--gold);transition:.3s}
+  .menu a:hover::after,.menu a.current::after{width:100%}
+  .menu a.current{color:var(--ink)}
+  .nav-cta{display:flex;gap:8px;align-items:center}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-size:14px;font-weight:500;border-radius:2px;padding:13px 22px;transition:.25s;cursor:pointer;letter-spacing:.04em;border:0}
+  .btn-gold{background:var(--gold);color:#fff}
+  .btn-gold:hover{background:var(--gold-deep)}
+  .btn-outline{border:1px solid var(--ink);color:var(--ink);background:transparent}
+  .btn-outline:hover{background:var(--ink);color:var(--cream)}
+  .btn-ghost{border:1px solid var(--line);color:var(--ink-soft);background:transparent}
+  .btn-ghost:hover{border-color:var(--gold);color:var(--ink)}
+  .btn-line{background:var(--line-green);color:#fff;display:inline-flex;align-items:center;gap:7px}
+  .btn-line:hover{background:#04a847}
+  .btn-line .ico{width:16px;height:16px;flex:0 0 16px}
+
+  .head-cta{font-size:12.5px;padding:11px 14px;letter-spacing:.02em}
+  .head-cta .lbl{display:flex;flex-direction:column;line-height:1.15;text-align:left;align-items:flex-start}
+  .head-cta .lbl small{font-size:9.5px;letter-spacing:.16em;opacity:.85;font-weight:500}
+  .head-cta .lbl b{font-size:12.5px;font-weight:600;letter-spacing:.04em}
+  .ham{display:none;background:none;border:0;color:var(--ink);font-size:22px;cursor:pointer}
+
+  /* ===== Page hero (下層共通) ===== */
+  .page-hero{position:relative;padding:90px 0 70px;background:var(--cream);border-bottom:1px solid var(--line);overflow:hidden}
+  .page-hero::before{content:"";position:absolute;top:-80px;right:-80px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(169,133,79,.10),transparent 70%);pointer-events:none}
+  .page-hero .wrap{position:relative;z-index:1}
+  .page-hero .crumb{font-size:12px;color:var(--muted);letter-spacing:.1em;margin-bottom:18px}
+  .page-hero .crumb a{color:var(--muted)}
+  .page-hero .crumb a:hover{color:var(--gold-deep)}
+  .page-hero .crumb span{margin:0 8px;color:var(--line)}
+  .page-hero h1{font-family:"Shippori Mincho",serif;font-size:clamp(32px,4.5vw,52px);font-weight:600;line-height:1.35;margin:8px 0 12px;letter-spacing:.04em}
+  .page-hero p.lead{color:var(--muted);font-size:15px;max-width:640px}
+  .page-hero .divider{width:46px;height:1px;background:var(--gold);margin-bottom:18px}
+
+  /* ===== Section base ===== */
+  section{padding:90px 0}
+  .sec-head{text-align:center;margin-bottom:54px}
+  .sec-head h2{font-family:"Shippori Mincho",serif;font-size:clamp(26px,3.2vw,38px);font-weight:600;margin:14px 0 14px;letter-spacing:.04em}
+  .sec-head p{color:var(--muted);font-size:14.5px}
+  .divider{width:46px;height:1px;background:var(--gold);margin:0 auto}
+  .sec-cream{background:var(--cream)}
+
+  /* ===== Cards / boxes (汎用) ===== */
+  .card{background:var(--paper);border:1px solid var(--line);padding:36px 32px;transition:.3s}
+  .card:hover{transform:translateY(-3px);box-shadow:0 22px 46px -28px rgba(40,30,15,.3)}
+  .card h3{font-family:"Shippori Mincho",serif;font-size:22px;font-weight:600;margin-bottom:10px}
+  .card .num{font-family:"Shippori Mincho",serif;color:var(--gold);font-size:13px;letter-spacing:.2em;margin-bottom:6px;display:block}
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+
+  /* ===== Flow / steps ===== */
+  .flow{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border:1px solid var(--line);background:var(--paper)}
+  .flow-step{padding:32px 24px;border-right:1px solid var(--line);position:relative}
+  .flow-step:last-child{border-right:0}
+  .flow-step .no{font-family:"Shippori Mincho",serif;color:var(--gold);font-size:13px;letter-spacing:.2em}
+  .flow-step h4{font-family:"Shippori Mincho",serif;font-size:18px;font-weight:600;margin:10px 0 8px}
+  .flow-step p{font-size:13px;color:var(--ink-soft)}
+
+  /* ===== FAQ accordion ===== */
+  .faq-list{max-width:880px;margin:0 auto}
+  .faq-q{border-top:1px solid var(--line);padding:24px 0;cursor:pointer;display:flex;align-items:flex-start;gap:18px}
+  .faq-q .mk{font-family:"Shippori Mincho",serif;color:var(--gold);font-size:22px;line-height:1;flex:0 0 auto;margin-top:2px}
+  .faq-q .qt{flex:1;font-weight:500;font-size:15.5px}
+  .faq-q .ar{flex:0 0 auto;color:var(--gold-deep);transition:.25s;font-size:14px}
+  .faq-q.open .ar{transform:rotate(180deg)}
+  .faq-a{display:none;padding:0 0 24px 40px;color:var(--ink-soft);font-size:14.5px;line-height:1.9}
+  .faq-q.open + .faq-a{display:block}
+  .faq-a p{margin-bottom:10px}
+  .faq-list .faq-q:last-of-type{border-bottom:1px solid var(--line)}
+  .faq-list .faq-q.open:last-of-type{border-bottom:0}
+
+  /* ===== CTA strip ===== */
+  .cta-strip{background:linear-gradient(135deg,var(--ink),#2f413b);color:#fff;padding:80px 0;text-align:center}
+  .cta-strip h2{font-family:"Shippori Mincho",serif;font-size:clamp(26px,3vw,38px);margin-bottom:14px}
+  .cta-strip p{color:#cfd6d0;margin-bottom:30px;font-size:14.5px}
+  .cta-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .cta-actions .btn{padding:15px 26px}
+  .cta-actions .btn-outline{border-color:#fff;color:#fff}
+  .cta-actions .btn-outline:hover{background:#fff;color:var(--ink)}
+  .cta-tel{margin-top:30px;display:flex;gap:30px;justify-content:center;flex-wrap:wrap}
+  .cta-tel .item{font-size:13px;color:#cdc1a8;letter-spacing:.08em}
+  .cta-tel .item .tel{font-family:"Shippori Mincho",serif;font-size:20px;color:#fff;display:block;margin-top:4px;letter-spacing:.04em}
+
+  /* ===== Footer ===== */
+  footer{background:#1b2622;color:#aeb6b0;padding:70px 0 36px;font-size:13px}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.4fr;gap:40px;padding-bottom:36px;border-bottom:1px solid rgba(255,255,255,.1)}
+  .foot-col h5{color:#fff;font-family:"Shippori Mincho",serif;font-size:15px;letter-spacing:.16em;margin-bottom:18px;font-weight:500}
+  .foot-col ul{list-style:none}
+  .foot-col li{margin-bottom:9px}
+  .foot-col a{color:#aeb6b0;transition:.2s}
+  .foot-col a:hover{color:#e7c98c}
+  .foot-brand .mark{font-family:"Shippori Mincho",serif;color:#fff;font-size:24px;letter-spacing:.14em;margin-bottom:14px;display:block}
+  .foot-brand .desc{font-size:12.5px;line-height:1.9;color:#8b938c;margin-bottom:18px}
+  .foot-brand .corp{margin-top:14px}
+  .foot-brand .corp a{display:block;font-size:12px;color:#8b938c;margin-bottom:5px}
+  .foot-brand .corp a:hover{color:#e7c98c}
+  .addr-block{margin-bottom:18px}
+  .addr-block .nm{color:#e7c98c;font-family:"Shippori Mincho",serif;font-size:14px;margin-bottom:5px;letter-spacing:.1em}
+  .addr-block .ad{font-size:12px;color:#9aa39c;line-height:1.7}
+  .addr-block .tel{font-family:"Shippori Mincho",serif;color:#e7c98c;font-size:17px;display:inline-block;margin-top:4px;letter-spacing:.04em}
+  .copy{margin-top:24px;color:#7e867f;font-size:12px;text-align:center;letter-spacing:.06em}
+
+  /* ===== Mobile menu ===== */
+  .mobile-menu{display:none;position:fixed;inset:0;background:rgba(20,28,25,.97);z-index:100;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:30px}
+  .mobile-menu.open{display:flex}
+  .mobile-menu a{color:#fff;font-size:17px;letter-spacing:.1em;font-family:"Shippori Mincho",serif}
+  .mobile-menu .cta-set{margin-top:30px;display:flex;flex-direction:column;gap:10px;width:100%;max-width:320px}
+  .mobile-menu .cta-set .btn{width:100%}
+  .mobile-menu .cta-set .btn-outline{border-color:rgba(255,255,255,.5);color:#fff}
+  .mobile-close{position:absolute;top:24px;right:24px;background:none;border:0;color:#fff;font-size:30px;cursor:pointer}
+
+  @media(max-width:1100px){
+    .menu{gap:18px;font-size:13px}
+    .head-cta{padding:10px 12px;font-size:12px}
+  }
+  @media(max-width:980px){
+    .menu,.nav-cta{display:none}
+    .ham{display:inline-flex}
+    .grid-2,.grid-3,.grid-4{grid-template-columns:1fr}
+    .flow{grid-template-columns:1fr 1fr}
+    .flow-step{border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .flow-step:nth-child(2n){border-right:0}
+    .foot-grid{grid-template-columns:1fr 1fr;gap:30px}
+    section{padding:64px 0}
+    .page-hero{padding:60px 0 50px}
+  }
+  @media(max-width:560px){
+    .wrap{padding:0 22px}
+    .nav{height:68px}
+    .brand .mark{font-size:20px}
+    .brand small{font-size:9px;letter-spacing:.28em}
+    .flow{grid-template-columns:1fr}
+    .flow-step{border-right:0}
+    .foot-grid{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="mock-a-real.html" class="brand">
+      <div>
+        <div class="mark">あしカラダ</div>
+        <small>MATSUYAMA RELAXATION</small>
+      </div>
+    </a>
+    <nav class="menu">
+      <a href="page-first-time.html">初めての方へ</a>
+      <a href="page-menu.html" class="current">メニュー・料金</a>
+      <a href="page-features.html">施術の特徴</a>
+      <a href="page-stores.html">店舗案内</a>
+      <a href="page-voice.html">お客様の声</a>
+      <a href="page-faq.html">よくある質問</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-gold head-cta" href="https://beauty.hotpepper.jp/kr/slnH000278593/" target="_blank" rel="noopener">
+        <span class="lbl"><small>OKAIDO</small><b>大街道店予約</b></span>
+      </a>
+      <a class="btn btn-gold head-cta" href="https://beauty.hotpepper.jp/kr/slnH000403924/" target="_blank" rel="noopener">
+        <span class="lbl"><small>AIRPORT</small><b>空港通り店予約</b></span>
+      </a>
+      <a class="btn btn-line head-cta" href="https://lin.ee/wmRAMM9" target="_blank" rel="noopener" aria-label="LINE友だち追加">
+        <svg class="ico" viewBox="0 0 36 36" fill="currentColor" aria-hidden="true"><path d="M18 3C9.7 3 3 8.4 3 15c0 6 5.4 11 12.7 11.9.5.1 1.2.3 1.4.8.1.4 0 1.1-.1 1.5-.1.4-.4 1.7 1.5.9 1.9-.8 10.2-6 13.9-10.3C34.8 17 36 14.6 36 12c0-6.6-8.1-9-18-9z"/></svg>
+        LINE
+      </a>
+    </div>
+    <button class="ham" id="ham" aria-label="メニュー">☰</button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="mclose" aria-label="閉じる">×</button>
+  <a href="page-first-time.html">初めての方へ</a>
+  <a href="page-menu.html">メニュー・料金</a>
+  <a href="page-features.html">施術の特徴</a>
+  <a href="page-stores.html">店舗案内</a>
+  <a href="page-voice.html">お客様の声</a>
+  <a href="page-faq.html">よくある質問</a>
+  <div class="cta-set">
+    <a class="btn btn-gold" href="https://beauty.hotpepper.jp/kr/slnH000278593/" target="_blank" rel="noopener">大街道店を予約する</a>
+    <a class="btn btn-gold" href="https://beauty.hotpepper.jp/kr/slnH000403924/" target="_blank" rel="noopener">空港通り店を予約する</a>
+    <a class="btn btn-line" href="https://lin.ee/wmRAMM9" target="_blank" rel="noopener">
+      <svg class="ico" viewBox="0 0 36 36" fill="currentColor"><path d="M18 3C9.7 3 3 8.4 3 15c0 6 5.4 11 12.7 11.9.5.1 1.2.3 1.4.8.1.4 0 1.1-.1 1.5-.1.4-.4 1.7 1.5.9 1.9-.8 10.2-6 13.9-10.3C34.8 17 36 14.6 36 12c0-6.6-8.1-9-18-9z"/></svg>
+      LINE友だち追加
+    </a>
+  </div>
+</div>
+
+<!-- ===== ここから下が各ページのコンテンツ ===== -->
+<section class="page-hero">
+  <div class="wrap">
+    <div class="crumb"><a href="mock-a-real.html">ホーム</a><span>›</span>メニュー・料金</div>
+    <div class="divider"></div>
+    <span class="eyebrow">MENU & PRICE</span>
+    <h1>メニュー・料金</h1>
+    <p class="lead">分かりやすい定額制。全身60分 ¥3,700（税込）から、ご予算とお時間に合わせてお選びいただけます。</p>
+  </div>
+</section>
+
+<!-- 全料金表（会員/一般） -->
+<style>
+  .ptable{border:1px solid var(--line);background:var(--paper);display:flex;flex-direction:column}
+  .ptable.feature{border-color:var(--gold);box-shadow:0 30px 60px -40px rgba(140,106,58,.5)}
+  .ptable-head{padding:34px 30px;text-align:center;border-bottom:1px solid var(--line);min-height:220px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:10px}
+  .ptable.feature .ptable-head{background:var(--ink);color:#fff}
+  .ptable-head .label{font-size:13px;letter-spacing:.2em;color:var(--muted)}
+  .ptable.feature .ptable-head .label{color:#e7c98c}
+  .ptable-head .big{font-family:"Shippori Mincho",serif;font-size:26px}
+  .ptable.feature .ptable-head .big{color:#fff}
+  .ptable-head .off-badge{display:inline-block;background:var(--gold);color:#fff;font-size:12px;letter-spacing:.1em;padding:5px 14px;border-radius:2px}
+  .ptable-head .sub-note{font-size:11.5px;color:var(--muted);display:block;line-height:1.5}
+  .ptable.feature .ptable-head .sub-note{color:#cdc1a8}
+  .pitem{padding:20px 26px;border-bottom:1px solid var(--line)}
+  .pitem:last-child{border-bottom:0}
+  .pitem .nm{font-size:14.5px;font-weight:500;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .pitem .nm .pill{font-size:10px;background:var(--cream-2);color:var(--gold-deep);padding:3px 9px;border-radius:2px;letter-spacing:.06em}
+  .pitem .nm .pill.pink{background:#f1d9d6;color:#a85345}
+  .pitem .desc{color:var(--muted);font-size:12.5px;margin:3px 0 0}
+  .pitem .yen{font-family:"Shippori Mincho",serif;font-size:22px;text-align:right;margin-top:6px;color:var(--ink)}
+  .pitem .yen small{font-size:12px;color:var(--muted)}
+  .menu-cat{margin-top:80px}
+  .menu-cat:first-of-type{margin-top:0}
+  .menu-cat h3{font-family:"Shippori Mincho",serif;font-size:24px;text-align:center;margin-bottom:8px;font-weight:600}
+  .menu-cat .cat-sub{text-align:center;color:var(--muted);font-size:13px;margin-bottom:36px}
+</style>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="divider"></div>
+      <span class="eyebrow" style="margin-top:18px">SIGNATURE COURSE</span>
+      <h2>人気の組み合わせコース</h2>
+      <p>足底・全身・顔頭・アロマを組み合わせた、満足度の高い人気コース。</p>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:stretch">
+      <div class="ptable feature">
+        <div class="ptable-head">
+          <div class="label">ピースポ会員様</div>
+          <div class="big">会員特別価格</div>
+          <span class="off-badge">全メニュー ¥500 OFF</span>
+          <span class="sub-note">通常料金より¥500割引でご利用可能</span>
+        </div>
+        <div class="pitem">
+          <div class="nm">足底30分 ＋ 全身60分 <span class="pill">1番人気</span></div>
+          <div class="yen serif">¥5,800<small> 税込</small></div>
+        </div>
+        <div class="pitem">
+          <div class="nm">顔・頭30分 ＋ 全身60分</div>
+          <div class="desc">睡眠改善コース</div>
+          <div class="yen serif">¥5,400<small> 税込</small></div>
+        </div>
+        <div class="pitem">
+          <div class="nm">アロマ60分 ＋ 顔・頭15分 <span class="pill pink">女性限定</span></div>
+          <div class="desc">アロマスペシャル</div>
+          <div class="yen serif">¥5,900<small> 税込</small></div>
+        </div>
+      </div>
+      <div class="ptable">
+        <div class="ptable-head">
+          <div class="label">一般のお客様</div>
+          <div class="big">通常料金・定額制</div>
+          <span class="sub-note">どなたでもご利用いただけます</span>
+        </div>
+        <div class="pitem">
+          <div class="nm">足底30分 ＋ 全身60分 <span class="pill">1番人気</span></div>
+          <div class="yen serif">¥6,300<small> 税込</small></div>
+        </div>
+        <div class="pitem">
+          <div class="nm">顔・頭30分 ＋ 全身60分</div>
+          <div class="desc">睡眠改善コース</div>
+          <div class="yen serif">¥5,900<small> 税込</small></div>
+        </div>
+        <div class="pitem">
+          <div class="nm">アロマ60分 ＋ 顔・頭15分 <span class="pill pink">女性限定</span></div>
+          <div class="desc">アロマスペシャル</div>
+          <div class="yen serif">¥6,400<small> 税込</small></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 単品メニュー -->
+<section class="sec-cream">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="divider"></div>
+      <span class="eyebrow" style="margin-top:18px">SINGLE MENU</span>
+      <h2>単品メニュー</h2>
+      <p>お時間や体調に合わせてお選びいただけます。表示は税込価格（会員 / 一般）。</p>
+    </div>
+
+    <div class="menu-cat">
+      <h3>全身マッサージ</h3>
+      <p class="cat-sub">横揉み施術で深いリラックス</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:880px;margin:0 auto">
+        <div class="card" style="padding:24px 28px;display:flex;justify-content:space-between;align-items:center">
+          <span style="font-weight:500">全身 60分</span>
+          <span class="serif" style="font-size:20px;color:var(--gold-deep)">¥3,700 / ¥4,200</span>
+        </div>
+        <div class="card" style="padding:24px 28px;display:flex;justify-content:space-between;align-items:center">
+          <span style="font-weight:500">全身 90分</span>
+          <span class="serif" style="font-size:20px;color:var(--gold-deep)">¥5,500 / ¥6,000</span>
+        </div>
+        <div class="card" style="padding:24px 28px;display:flex;justify-content:space-between;align-items:center">
+          <span style="font-weight:500">全身 120分</span>
+          <span class="serif" style="font-size:20px;color:var(--gold-deep)">¥7,300 / ¥7,800</span>
+        </div>
+        <div class="card" style="padding:24px 28px;display:flex;justify-content:space-between;align-items:center">
+          <span style="font-weight:500">延長 30分</span>
+          <span class="serif" style="font-size:20px;color:var(--gold-deep)">¥1,800 / ¥1,800</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-cat">
+      <h3>足底（足つぼ）</h3>
+      <p class="cat-sub">疲れた足を芯からほぐす</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:880px;margin:0 auto">
+        <div class="card" style="padding:24px 28px;display:flex;justify-content:space-between;align-items:center">
+          <span style="font-weight:500">足底 30分</span>
+          <span class="serif" style="font-size:20px;color:var(--gold-deep)">¥2,100 / ¥2,600</span>
+        </div>
+        <div class="card" style="padding:24px 28px;display:flex;justify-content:space-between;align-items:center">
+          <span style="font-weight:500">足底 60分</span>
+          <span class="serif" style="font-size:20px;color:var(--gold-deep)">¥3,700 / ¥4,200</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-cat">
+      <h3>顔・頭（ヘッドスパ）</h3>
+      <p class="cat-sub">眼精疲労・睡眠改善におすすめ</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:880px;margin:0 auto">
+        <div class="card" style="padding:24px 28px;display:flex;justify-content:space-between;align-items:center">
+          <span style="font-weight:500">顔・頭 15分</span>
+          <span class="serif" style="font-size:20px;color:var(--gold-deep)">¥1,100 / ¥1,100</span>
+        </div>
+        <div class="card" style="padding:24px 28px;display:flex;justify-content:space-between;align-items:center">
+          <span style="font-weight:500">顔・頭 30分</span>
+          <span class="serif" style="font-size:20px;color:var(--gold-deep)">¥2,100 / ¥2,600</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-cat">
+      <h3>アロマテラピー <span style="font-size:12px;color:#a85345;background:#f1d9d6;padding:3px 10px;border-radius:2px;font-family:'Zen Kaku Gothic New',sans-serif;letter-spacing:.06em;font-weight:500">女性限定</span></h3>
+      <p class="cat-sub">上質なアロマオイルで深いやすらぎへ</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:880px;margin:0 auto">
+        <div class="card" style="padding:24px 28px;display:flex;justify-content:space-between;align-items:center">
+          <span style="font-weight:500">アロマ 60分</span>
+          <span class="serif" style="font-size:20px;color:var(--gold-deep)">¥4,800 / ¥5,300</span>
+        </div>
+        <div class="card" style="padding:24px 28px;display:flex;justify-content:space-between;align-items:center">
+          <span style="font-weight:500">アロマ 90分</span>
+          <span class="serif" style="font-size:20px;color:var(--gold-deep)">¥6,800 / ¥7,300</span>
+        </div>
+      </div>
+    </div>
+
+    <p style="text-align:center;color:var(--muted);font-size:12.5px;margin-top:36px;line-height:1.9">※ 表示価格は税込・「会員 / 一般」の順です。<br>※ ピースポ会員は全メニュー¥500割引でご利用いただけます。</p>
+  </div>
+</section>
+
+<!-- ピースポ会員 -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="divider"></div>
+      <span class="eyebrow" style="margin-top:18px">P・SPO MEMBER</span>
+      <h2>ピースポ会員のご案内</h2>
+      <p>あしカラダ松山店全店舗・グループ各店で使える、お得な会員プログラム。</p>
+    </div>
+    <div style="background:var(--cream);border:1px solid var(--line);padding:50px 46px;max-width:980px;margin:0 auto">
+      <div class="grid-3">
+        <div>
+          <span class="num serif" style="color:var(--gold);font-size:13px;letter-spacing:.2em">BENEFIT 01</span>
+          <h3 style="font-family:'Shippori Mincho',serif;font-size:19px;margin:8px 0 8px">全メニュー¥500割引</h3>
+          <p style="font-size:13.5px;color:var(--ink-soft)">あしカラダ全メニューが、会員価格で何度でもご利用いただけます。</p>
+        </div>
+        <div>
+          <span class="num serif" style="color:var(--gold);font-size:13px;letter-spacing:.2em">BENEFIT 02</span>
+          <h3 style="font-family:'Shippori Mincho',serif;font-size:19px;margin:8px 0 8px">グループ店共通</h3>
+          <p style="font-size:13.5px;color:var(--ink-soft)">24時間ジムP・SPOなど、三福グループ各店でもご利用いただける会員証。</p>
+        </div>
+        <div>
+          <span class="num serif" style="color:var(--gold);font-size:13px;letter-spacing:.2em">BENEFIT 03</span>
+          <h3 style="font-family:'Shippori Mincho',serif;font-size:19px;margin:8px 0 8px">限定キャンペーン</h3>
+          <p style="font-size:13.5px;color:var(--ink-soft)">会員様限定の季節キャンペーンや、お得な情報をお届けします。</p>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:38px"><a class="btn btn-outline" href="https://pspo.jp/" target="_blank" rel="noopener">ピースポ公式サイト ↗</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- 注意事項 -->
+<section class="sec-cream">
+  <div class="wrap" style="max-width:880px">
+    <div class="sec-head">
+      <div class="divider"></div>
+      <span class="eyebrow" style="margin-top:18px">NOTES</span>
+      <h2>料金に関する注意事項</h2>
+    </div>
+    <div style="background:var(--paper);border:1px solid var(--line);padding:36px 38px">
+      <ul style="list-style:none;font-size:14px;color:var(--ink-soft);line-height:2.1">
+        <li>・ 表示価格はすべて税込です。</li>
+        <li>・ ピースポ会員価格は、ピースポ会員様のみご利用いただけます（受付時に会員証をご提示ください）。</li>
+        <li>・ アロマテラピーコースは女性限定となります。</li>
+        <li>・ コース内容・お時間は店舗によって一部異なる場合がございます。詳しくは各店舗にお問い合わせください。</li>
+        <li>・ 当日の延長は空き状況により承れない場合がございます。</li>
+        <li>・ 各種クレジットカード・電子マネー・QRコード決済をご利用いただけます。</li>
+      </ul>
+    </div>
+  </div>
+</section>
+<!-- ===== コンテンツここまで ===== -->
+
+<!-- 共通CTAストリップ（各ページの末尾に） -->
+<section class="cta-strip">
+  <div class="wrap">
+    <h2 class="serif">心と体を、リフレッシュしませんか。</h2>
+    <p>初めての方も安心してご利用いただけます。お気軽にお問い合わせください。</p>
+    <div class="cta-actions">
+      <a class="btn btn-gold" href="https://beauty.hotpepper.jp/kr/slnH000278593/" target="_blank" rel="noopener">大街道店を予約する</a>
+      <a class="btn btn-gold" href="https://beauty.hotpepper.jp/kr/slnH000403924/" target="_blank" rel="noopener">空港通り店を予約する</a>
+      <a class="btn btn-line" href="https://lin.ee/wmRAMM9" target="_blank" rel="noopener">
+        <svg class="ico" viewBox="0 0 36 36" fill="currentColor" style="width:16px;height:16px"><path d="M18 3C9.7 3 3 8.4 3 15c0 6 5.4 11 12.7 11.9.5.1 1.2.3 1.4.8.1.4 0 1.1-.1 1.5-.1.4-.4 1.7 1.5.9 1.9-.8 10.2-6 13.9-10.3C34.8 17 36 14.6 36 12c0-6.6-8.1-9-18-9z"/></svg>
+        LINEで予約
+      </a>
+    </div>
+    <div class="cta-tel">
+      <div class="item">
+        大街道店
+        <a class="tel" href="tel:0120919323">0120-919-323</a>
+      </div>
+      <div class="item">
+        空港通り店
+        <a class="tel" href="tel:0120695427">0120-695-427</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-col foot-brand">
+        <span class="mark">あしカラダ</span>
+        <p class="desc">愛媛・松山のリラクゼーションサロン。心と体をほぐす本格施術をリーズナブルにご提供します。</p>
+        <div class="corp">
+          <h5 style="font-size:12px;margin-bottom:8px;letter-spacing:.18em">会社概要</h5>
+          <a href="https://www.sanpuku.co.jp/" target="_blank" rel="noopener">三福グループ ↗</a>
+          <a href="https://pspo.jp/" target="_blank" rel="noopener">24時間スポーツジムP・SPO ↗</a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h5>メニュー</h5>
+        <ul>
+          <li><a href="page-first-time.html">初めての方へ</a></li>
+          <li><a href="page-menu.html">メニュー・料金</a></li>
+          <li><a href="page-features.html">施術の特徴</a></li>
+          <li><a href="page-voice.html">お客様の声</a></li>
+          <li><a href="page-faq.html">よくある質問</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>店舗情報</h5>
+        <ul>
+          <li><a href="page-stores.html">店舗案内</a></li>
+          <li><a href="page-stores-okaido.html">大街道店</a></li>
+          <li><a href="page-stores-airport.html">空港通り店</a></li>
+          <li><a href="page-reserve.html">ご予約</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>店舗所在地</h5>
+        <div class="addr-block">
+          <div class="nm">大街道店</div>
+          <div class="ad">〒790-0002<br>愛媛県松山市2番町3-8-21<br>コメダ珈琲店の2階</div>
+          <a class="tel" href="tel:0120919323">0120-919-323</a>
+        </div>
+        <div class="addr-block">
+          <div class="nm">空港通り店</div>
+          <div class="ad">〒791-8036<br>愛媛県松山市空港通1丁目15-1<br>1階（無料駐車場完備）</div>
+          <a class="tel" href="tel:0120695427">0120-695-427</a>
+        </div>
+      </div>
+    </div>
+    <div class="copy">© 2026 あしカラダ 愛媛・松山. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+  const ham = document.getElementById('ham');
+  const mm = document.getElementById('mobileMenu');
+  const mclose = document.getElementById('mclose');
+  ham && ham.addEventListener('click',()=>mm.classList.add('open'));
+  mclose && mclose.addEventListener('click',()=>mm.classList.remove('open'));
+  mm && mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>mm.classList.remove('open')));
+  // FAQ accordion (使うページのみ動作)
+  document.querySelectorAll('.faq-q').forEach(q=>q.addEventListener('click',()=>q.classList.toggle('open')));
+</script>
+</body>
+</html>

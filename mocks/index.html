@@ -65,7 +65,8 @@
     <div class="title"><span class="dot"></span><div>あしカラダ松山店<small>高品質化モック 4案 比較ビューア</small></div></div>
 
     <div class="tabs" role="tablist">
-      <button class="tab active" data-k="a" data-src="mock-a-premium.html">案A<span class="sub">上質・高級スパ系</span></button>
+      <button class="tab active" data-k="a" data-src="mock-a-real.html">A実<span class="sub">実テキスト反映版</span></button>
+      <button class="tab" data-k="a" data-src="mock-a-premium.html">案A<span class="sub">上質・高級スパ系</span></button>
       <button class="tab" data-k="b" data-src="mock-b-natural.html">案B<span class="sub">ナチュラル癒し系</span></button>
       <button class="tab" data-k="c" data-src="mock-c-clean.html">案C<span class="sub">クリーン洗練</span></button>
       <button class="tab" data-k="d" data-src="mock-d-irodori.html">案D<span class="sub">彩り・和の余白</span></button>
@@ -78,13 +79,13 @@
         <button data-d="desktop" class="active">🖥 PC</button>
         <button data-d="mobile">📱 スマホ</button>
       </div>
-      <a class="openlink" id="openNew" href="mock-a-premium.html" target="_blank">単体で開く ↗</a>
+      <a class="openlink" id="openNew" href="mock-a-real.html" target="_blank">単体で開く ↗</a>
     </div>
   </div>
 
   <div class="stage">
     <div class="frameWrap desktop" id="frameWrap">
-      <iframe id="frame" src="mock-a-premium.html" title="preview"></iframe>
+      <iframe id="frame" src="mock-a-real.html" title="preview"></iframe>
     </div>
   </div>
 
@@ -111,12 +112,13 @@
     });
   });
 
-  // キーボード 1/2/3 で切り替え
+  // キーボード 1〜5 で切り替え
   document.addEventListener('keydown',e=>{
     if(e.key==='1') selectTab(tabs[0]);
     if(e.key==='2') selectTab(tabs[1]);
     if(e.key==='3') selectTab(tabs[2]);
     if(e.key==='4') selectTab(tabs[3]);
+    if(e.key==='5') selectTab(tabs[4]);
   });
 </script>
 </body>

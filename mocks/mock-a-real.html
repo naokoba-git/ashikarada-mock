@@ -148,15 +148,31 @@
   .access-actions{margin-top:24px;display:flex;gap:10px;flex-wrap:wrap}
 
   /* ===== LINE ===== */
-  .line-sec{background:linear-gradient(135deg,var(--ink),#2f413b);color:#fff;text-align:center}
-  .line-sec .eyebrow{color:#e7c98c}
-  .line-sec h2{font-family:"Shippori Mincho",serif;font-size:36px;margin:16px 0 14px}
-  .line-sec p{color:#cfd6d0;max-width:600px;margin:0 auto 14px}
-  .line-sec .perks{display:flex;gap:40px;justify-content:center;margin:34px 0 36px;flex-wrap:wrap}
-  .line-sec .perk{font-size:14px;color:#e9e4d8;max-width:200px}
-  .line-sec .perk b{display:block;font-family:"Shippori Mincho",serif;font-size:26px;color:#e7c98c;margin-bottom:6px}
-  .line-sec .btn-line{padding:18px 44px;font-size:16px}
-  .line-sec .note{font-size:12px;color:#9ba9a2;margin-top:14px;letter-spacing:.04em}
+  .line-sec{background:linear-gradient(135deg,var(--ink),#2f413b);color:#fff;position:relative;overflow:hidden}
+  .line-sec::before{content:"";position:absolute;top:-120px;right:-120px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle, rgba(231,201,140,.10), transparent 70%);pointer-events:none}
+  .line-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:64px;align-items:center;position:relative;z-index:1}
+  .line-text .eyebrow{color:#e7c98c}
+  .line-text h2{font-family:"Shippori Mincho",serif;font-size:clamp(28px,3vw,38px);margin:16px 0 18px;color:#fff;line-height:1.4}
+  .line-text p.lead{color:#cfd6d0;font-size:15px;margin-bottom:34px;max-width:520px}
+  .line-text .perks{display:flex;gap:28px;flex-wrap:wrap}
+  .line-text .perk{font-size:13px;color:#e9e4d8;max-width:170px;line-height:1.7}
+  .line-text .perk b{display:block;font-family:"Shippori Mincho",serif;font-size:26px;color:#e7c98c;margin-bottom:6px;letter-spacing:.02em;line-height:1}
+
+  .line-qr-card{background:var(--paper);border:1px solid var(--gold);padding:34px 30px;text-align:center;border-radius:3px;box-shadow:0 30px 60px -30px rgba(0,0,0,.5);position:relative}
+  .line-qr-card::before,.line-qr-card::after{content:"";position:absolute;width:14px;height:14px;border:1px solid var(--gold)}
+  .line-qr-card::before{top:8px;left:8px;border-right:0;border-bottom:0}
+  .line-qr-card::after{bottom:8px;right:8px;border-left:0;border-top:0}
+  .qr-frame{position:relative;width:230px;margin:0 auto 20px;padding:14px;background:#fff;border:1px solid var(--line)}
+  .qr-img{width:100%;display:block}
+  .qr-mark{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:50px;height:50px;background:#06c755;border-radius:11px;display:flex;align-items:center;justify-content:center;color:#fff;border:4px solid #fff;box-shadow:0 4px 10px rgba(0,0,0,.2)}
+  .qr-mark svg{width:28px;height:28px}
+  .qr-note{margin-bottom:18px}
+  .qr-note small{display:block;font-size:10.5px;letter-spacing:.22em;color:var(--gold-deep);margin-bottom:5px;font-weight:500}
+  .qr-note b{font-family:"Shippori Mincho",serif;font-size:18px;color:var(--ink);font-weight:600;letter-spacing:.06em}
+  .line-qr-card .divider-or{display:flex;align-items:center;gap:12px;color:var(--muted);font-size:10px;letter-spacing:.3em;margin:18px 0}
+  .line-qr-card .divider-or::before,.line-qr-card .divider-or::after{content:"";flex:1;height:1px;background:var(--line)}
+  .line-qr-card .btn-line{width:100%;font-size:13.5px;padding:14px 18px;letter-spacing:.06em}
+  .line-qr-card .note{font-size:11px;color:var(--muted);margin-top:12px;letter-spacing:.04em}
 
   /* ===== Voices ===== */
   .voice-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
@@ -228,6 +244,10 @@
     .access-item .ph{min-height:240px}
     .reason{grid-template-columns:130px 1fr}
     .reason .ph{min-height:auto}
+    .line-grid{grid-template-columns:1fr;gap:40px;text-align:center}
+    .line-text .perks{justify-content:center}
+    .line-text h2 br{display:none}
+    .line-qr-card{max-width:380px;margin:0 auto}
   }
   @media(max-width:560px){
     .wrap{padding:0 22px}
@@ -499,19 +519,36 @@
 <!-- LINE -->
 <section class="line-sec">
   <div class="wrap">
-    <span class="eyebrow">LINE MEMBERSHIP</span>
-    <h2>友だち追加で、特典がいっぱい</h2>
-    <p>登録するだけでお得がいっぱい！簡単なアンケートに答えるだけで、¥500割引クーポンをプレゼント。</p>
-    <div class="perks">
-      <div class="perk"><b>¥500</b>アンケート回答で<br>初回割引クーポン</div>
-      <div class="perk"><b>限定</b>お得な情報・<br>限定クーポンをお届け</div>
-      <div class="perk"><b>POINT</b>来店するたびに<br>ポイントが貯まる</div>
+    <div class="line-grid">
+      <div class="line-text">
+        <span class="eyebrow">LINE MEMBERSHIP</span>
+        <h2>友だち追加で、<br>特典がいっぱい。</h2>
+        <p class="lead">登録するだけでお得がいっぱい！簡単なアンケートに答えるだけで、¥500割引クーポンをプレゼント。お得な情報や限定クーポンもLINEでお届けします。</p>
+        <div class="perks">
+          <div class="perk"><b>¥500</b>アンケート回答で<br>初回割引クーポン</div>
+          <div class="perk"><b>限定</b>お得な情報・<br>限定クーポンをお届け</div>
+          <div class="perk"><b>POINT</b>来店するたびに<br>ポイントが貯まる</div>
+        </div>
+      </div>
+      <div class="line-qr-card">
+        <div class="qr-frame">
+          <img src="assets/line-qr.svg" alt="あしカラダ松山 公式LINE 友だち追加QRコード" class="qr-img">
+          <div class="qr-mark" aria-hidden="true">
+            <svg viewBox="0 0 36 36" fill="currentColor"><path d="M18 3C9.7 3 3 8.4 3 15c0 6 5.4 11 12.7 11.9.5.1 1.2.3 1.4.8.1.4 0 1.1-.1 1.5-.1.4-.4 1.7 1.5.9 1.9-.8 10.2-6 13.9-10.3C34.8 17 36 14.6 36 12c0-6.6-8.1-9-18-9z"/></svg>
+          </div>
+        </div>
+        <div class="qr-note">
+          <small>PC・タブレットの方は</small>
+          <b>QRコードでスキャン</b>
+        </div>
+        <div class="divider-or">OR</div>
+        <a class="btn btn-line" href="https://lin.ee/wmRAMM9" target="_blank" rel="noopener">
+          <svg class="ico" viewBox="0 0 36 36" fill="currentColor" style="width:18px;height:18px"><path d="M18 3C9.7 3 3 8.4 3 15c0 6 5.4 11 12.7 11.9.5.1 1.2.3 1.4.8.1.4 0 1.1-.1 1.5-.1.4-.4 1.7 1.5.9 1.9-.8 10.2-6 13.9-10.3C34.8 17 36 14.6 36 12c0-6.6-8.1-9-18-9z"/></svg>
+          スマホの方はタップで友だち追加
+        </a>
+        <div class="note">無料で追加できます</div>
+      </div>
     </div>
-    <a class="btn btn-line" href="https://lin.ee/wmRAMM9" target="_blank" rel="noopener">
-      <svg class="ico" viewBox="0 0 36 36" fill="currentColor" style="width:20px;height:20px"><path d="M18 3C9.7 3 3 8.4 3 15c0 6 5.4 11 12.7 11.9.5.1 1.2.3 1.4.8.1.4 0 1.1-.1 1.5-.1.4-.4 1.7 1.5.9 1.9-.8 10.2-6 13.9-10.3C34.8 17 36 14.6 36 12c0-6.6-8.1-9-18-9z"/></svg>
-      今すぐ友だち追加する
-    </a>
-    <div class="note">無料で追加できます</div>
   </div>
 </section>
 

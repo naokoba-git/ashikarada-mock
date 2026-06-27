@@ -2,7 +2,7 @@
 
 ## 概要
 愛媛・松山のリラクゼーションサロン「あしカラダ」の既存サイトを高品質化するための**デザインモック制作**プロジェクト。
-本実装ではなく、まず方向性を決めるためのモック4案を作成し、ユーザーが比較検討している段階。
+**2026-06-27 にA案（上質・高級スパ系）で方向性確定。実テキスト反映版TOP（`mock-a-real.html`）が確定モック。次は下層ページ作成へ。**
 
 - **対象サイト**: https://あしカラダ松山店.jp/ （Punycode: `https://xn--l8jzb2o0cyjn09v9ed4ox.jp/`）
 - **既存サイトの作り**: readdy 製（画像は `storage.readdy-site.link` / `public.readdy.ai` にホスト）
@@ -30,12 +30,16 @@ ashikarada/
 │   ├── prompts.md       ← プロンプト履歴
 │   └── changelog.md     ← 修正履歴
 └── mocks/
-    ├── index.html       ← 【比較ビューア】4案をタブ切替＋PC/スマホ切替で表示
-    ├── mock-a-premium.html  ← 案A 上質・高級スパ系
+    ├── index.html       ← 【比較ビューア】「A実」をデフォルト表示・案A〜D比較も可
+    ├── mock-a-real.html ★ A案実テキスト確定版（TOPページ・本実装基準）
+    ├── mock-a-premium.html  ← 案A（方向性確認用・ダミー文言）
     ├── mock-b-natural.html  ← 案B ナチュラル癒し系
     ├── mock-c-clean.html    ← 案C クリーン洗練（現グリーン路線を磨く）
     ├── mock-d-irodori.html  ← 案D 彩り・和の余白（桔梗が丘整骨院 参考）
-    └── _contact.html    ← 開発用：使用画像のコンタクトシート
+    ├── _contact.html    ← 開発用：使用画像のコンタクトシート
+    └── assets/
+        ├── line-qr.svg  ← LINE公式 lin.ee/wmRAMM9 のQR（SVG・A案ink色）
+        └── line-qr.png  ← 同上 PNG 480px
 ```
 
 ## モック4案の方向性
@@ -73,20 +77,52 @@ cd mocks && python3 -m http.server 8777
 ※ Claude in Chrome のスクショがビューア(iframe)でフリーズする事象あり → **Playwright headless** でスクショ確認するのが確実。
 　 Playwrightは `NODE_PATH=/opt/homebrew/lib/node_modules/designlang/node_modules node script.cjs` で実行（グローバルのdesignlang配下にplaywright@1.60あり）。
 
+## A案（確定案）デザイン仕様
+- **トンマナ**: ダーク/ゴールドの上質・高級スパ系・余白広め
+- **フォント**: `Shippori Mincho`（見出し・¥価格）/ `Zen Kaku Gothic New`（本文）
+- **配色変数**: `--ink:#22302c` / `--gold:#a9854f` / `--gold-deep:#8a6a3a` / `--cream:#f7f2e9` / `--paper:#fffdf9` / `--line:#e0d6c4` / `--line-green:#06c755`（LINE導線のみ）
+- **共通CTA設計**:
+  - `btn-gold`（予約・主要CTA）／`btn-outline`（副次）／`btn-ghost`（軽い遷移）／`btn-line`（LINE専用・緑）
+  - **両店舗の予約ボタンは必ず同色gold・対等表現**（片方を強調しない）
+  - LINEは緑のまま（性質の違う導線として区別）
+- **セクション骨格**: Hero → 2店舗quick → Pricing(会員/一般) → Reasons(4) → Access(2) → LINE(QR+CTA) → Voices(4) → Final CTA → Footer(4col)
+- **共通実URL（実接続済み）**:
+  - 大街道店予約: `https://beauty.hotpepper.jp/kr/slnH000278593/`
+  - 空港通り店予約: `https://beauty.hotpepper.jp/kr/slnH000403924/`
+  - LINE友だち追加: `https://lin.ee/wmRAMM9`
+  - 電話: `tel:0120919323`（大街道店）/ `tel:0120695427`（空港通り店）
+  - 三福グループ: `https://www.sanpuku.co.jp/` / P・SPO: `https://pspo.jp/`
+
+## 下層ページ（次セッションで作る対象・実サイト構造に準拠）
+| ナビ | URL | 内容 |
+|---|---|---|
+| 初めての方へ | `/first-time` | 来店フロー・服装・所要時間・FAQ要約 |
+| メニュー・料金 | `/menu` | 全コース料金一覧（会員/一般）、ピースポ会員案内 |
+| 施術の特徴 | `/features` | 横揉み施術／アロマテラピー／確かな技術力の詳細 |
+| 店舗案内 | `/stores` | 2店舗概要 |
+| 大街道店詳細 | `/stores/okaido` | 個別ページ（地図・写真・営業時間） |
+| 空港通り店詳細 | `/stores/airport` | 個別ページ（地図・写真・営業時間・駐車場） |
+| お客様の声 | `/voice` | 全レビュー一覧 |
+| よくある質問 | `/faq` | FAQ |
+| ご予約 | `/reserve` | 予約導線（Hot Pepper Beauty にリダイレクト案内） |
+
 ## 開発履歴
-- 2026-06-13: モック4案＋比較ビューア作成。案A〜CはオリジナルLP構成、案Dは桔梗が丘整骨院を参考に和の余白エディトリアル。案Dはスマホ縦書き見切れ・縦書き列割れを修正済み。
+- 2026-06-13: モック4案＋比較ビューア作成。案A〜CはオリジナルLP構成、案Dは桔梗が丘整骨院を参考。案Dはスマホ縦書き見切れ修正済み。
+- 2026-06-14: 公開プレビュー（GitHub + Vercel + noindex 3層）公開。
+- 2026-06-27: **A案で方向性確定**。実テキスト・実CTAリンク・実電話・実会社概要を反映した `mock-a-real.html` を作成。両店舗予約CTAを同色統一、料金表2カード完全整列、LINE公式QRをA案テイストで2カラム組込み。
 
 ## TODO（次にやること）
-- [ ] **4案からベースを選定**（単独 or 良いとこ取り）← まずここをユーザーに確認
-- [ ] 選定案のスマホ最適化を詰める
-- [ ] 予約リンク・電話リンク（`tel:`）を実接続
+- [x] 4案からベースを選定 → **A案で確定（2026-06-27）**
+- [ ] **下層ページ（上記表）を順次作成** ← 次セッションの主タスク
+- [ ] スマホ最適化の最終調整
 - [ ] 実画像の差し替え／追加撮影の検討
-- [ ] （案D採用時）Adobe Fonts契約で ryo-gothic-plusn / azo-sans-web に寄せるか検討
 - [ ] 本実装の技術スタック決定（静的HTML / Next.js / 既存readdy更新 など）
 
 ## 注意点
 - **push/deploy禁止**（明示指示があるまでローカルコミットのみ）
 - ユーザーはプログラミング素人 → 実装前に方向性確認・推奨モデル提示
 - 並列で別プロジェクト（小林建工 ITAZU, localhost:8799）も稼働中。Chromeタブを取り違えないこと（あしカラダは8777）。
+- **下層ページ作成時**: `mock-a-real.html` のヘッダー/フッター/CTA設計・配色変数をそのまま流用すること（共通コンポーネントとして抽出は次フェーズ判断）
+- 料金行や2カラムレイアウト等の高さ揃えは Playwrightで実寸計測 → CSSで `min-height`/`align-items:stretch` 調整が確実
 
-最終更新: 2026-06-13
+最終更新: 2026-06-27

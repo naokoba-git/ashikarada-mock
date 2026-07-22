@@ -6,9 +6,10 @@
 **2026-07-22 にリブランド確定：店舗名「あしカラダ」→「P・SPO リラクゼーション」、新ドメイン `pspo-relaxation.jp`。**
 **2026-07-23 に Cloudflare Pages デプロイ完了（Phase 1）: `https://pspo-relaxation.pages.dev`（GitHub連携・pushで自動デプロイ・noindex 3層）。実TOPを `index.html` にリネームし比較ビューアを退避、クライアントには「完全に実際と同じ」実サイトを表示。クリーンURL（`/menu` 等）実装済み。詳細は memory `project_pspo-relaxation-hosting-domain` / `project_cloudflare-pages-clean-url-behavior` 参照。**
 
-## 🔜 次セッション開始点（2026-07-23 終了時点）
+## 🔜 次セッション開始点（2026-07-23 セッション6 終了時点）
 **タスク: `pspo-relaxation.jp` のネームサーバー切替（本番ドメイン接続）。⚠️メール稼働中＝手順厳守。**
-- 完了済み: Pagesデプロイ・実サイト化・クリーンURL・全push・docs/memory更新。ローカル未pushは docsコミット `fe1e360` のみ（サイト内容は反映不要）。
+- 完了済み: Pagesデプロイ・実サイト化・クリーンURL。**セッション6でTOPナビ統一・ロゴ相対パス修正・店舗マップ刷新（公式pb埋込+geo構造化）を実施し全pushしライブ検証済み**。ローカル未pushは本保存のdocsコミットのみ（サイト内容は反映不要）。
+- セッション6の詳細: memory `reference_google-maps-embed-place-label`（マップ埋込の正攻法）・`feedback_post-deploy-live-verify-cache`（デプロイ後ライブ確認のキャッシュ注意）を新設。
 - 中断理由: Cloudflare「サイト追加」画面がブラウザのレンダラー不調で描画できず（スクショ連続タイムアウト）。高リスク作業のためユーザーに段取り提示して終了。
 - **再開手順（推奨=オプションA）**:
   1. ユーザーがCloudflareで**ゾーンだけ追加**（`ドメイン概要`→`サイトを追加`→`pspo-relaxation.jp`→**Freeプラン選択**）。※NSを切らない限り無害。
@@ -182,4 +183,6 @@ cd mocks && python3 -m http.server 8777
 
 - 2026-07-23 セッション5（Cloudflare Pages デプロイ）: **Cloudflare Pages に本番デプロイ（Phase1）**。①GitHub連携（`ashikarada-mock` 限定）でプロジェクト`pspo-relaxation`作成→`pspo-relaxation.pages.dev`公開 ②未pushだった9コミットをpush（origin/main が9遅れていた）＋`_headers`でX-Robots-Tag移植（noindex3層復活）③「完全に実際と同じ」指示で**比較ビューアを`viewer.html`に退避・実TOPを`index.html`にリネーム**し`/`で実サイト配信 ④**クリーンURL不具合を発見・修正**（TOPは`/menu`でリンクするが該当ファイル無く未定義URLがTOPにフォールバック＝「下層ページ消えた」の正体）→`_redirects`で`/menu`等→`page-*.html`を200リライト＋下層10ページのナビ237箇所もクリーンURL統一 ⑤ドメイン`pspo-relaxation.jp`のDNS棚卸し（さくら管理・メール稼働中＝NS切替はメールDNS複製が先）。全push済み。CF Pages固有の落とし穴は memory `project_cloudflare-pages-clean-url-behavior`。
 
-最終更新: 2026-07-23 セッション5（Cloudflare Pages デプロイ・実サイト化・クリーンURL・DNS棚卸し）
+- 2026-07-23 セッション6（TOPナビ統一・ロゴ修正・店舗マップ刷新）: ①**TOPグローバルメニューをクリーンURL別ページリンクに統一**（`#first`等アンカー→`/first-time`等。`初めての方へ`/`よくある質問`のリンク切れ2件解消。本文CTAのページ内スクロールは据置）②**ロゴ/QRの相対パスをroot-relativeに統一**（`/stores/okaido`のネスト階層で相対`assets/`が404→`/assets/`へ全11p+テンプレ修正）③**店舗マップを公式pb埋込コードに刷新**（クライアント提供の共有リンク解決→店名`あしカラダ`ラベル付き情報カード表示・中心ズレ補正・ズーム`1d3000`街区レベル）＋**JSON-LDにgeo座標/hasMapを全6箇所追加**（マップと構造化の位置一致）。全pushしライブで両店の描画・店名・位置を検証。新memory: `reference_google-maps-embed-place-label` / `feedback_post-deploy-live-verify-cache`。
+
+最終更新: 2026-07-23 セッション6（TOPナビ統一・ロゴ相対パス修正・店舗マップ刷新・geo構造化）

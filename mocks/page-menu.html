@@ -202,9 +202,10 @@
 {
   "@context": "https://schema.org",
   "@type": "Organization",
+  "@id": "https://pspo-relaxation.jp/#organization",
   "name": "P・SPO リラクゼーション",
   "url": "https://pspo-relaxation.jp/",
-  "logo": "https://storage.readdy-site.link/project_files/f4855191-8498-4dea-80b6-ea07112d8fed/48996b8b-b212-416b-831a-3b0535365f95_IMG_1861.jpeg",
+  "logo": "https://pspo-relaxation.jp/assets/logo-pspo.png",
   "parentOrganization": {
     "@type": "Organization",
     "name": "三福グループ",
@@ -232,6 +233,52 @@
       "position": 2,
       "name": "メニュー・料金",
       "item": "https://pspo-relaxation.jp/menu"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "OfferCatalog",
+  "name": "メニュー・料金",
+  "url": "https://pspo-relaxation.jp/menu",
+  "provider": {
+    "@id": "https://pspo-relaxation.jp/#organization"
+  },
+  "itemListElement": [
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": "足底30分＋全身60分",
+        "serviceType": "リラクゼーションマッサージ"
+      },
+      "price": "6300",
+      "priceCurrency": "JPY",
+      "description": "一番人気の組み合わせ。ピースポ会員は5,800円"
+    },
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": "顔・頭30分＋全身60分［睡眠改善コース］",
+        "serviceType": "リラクゼーションマッサージ"
+      },
+      "price": "5900",
+      "priceCurrency": "JPY",
+      "description": "ピースポ会員は5,400円"
+    },
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": "アロマ60分＋顔・頭15分［女性限定／アロマスペシャル］",
+        "serviceType": "アロマトリートメント"
+      },
+      "price": "6400",
+      "priceCurrency": "JPY",
+      "description": "ピースポ会員は5,900円"
     }
   ]
 }

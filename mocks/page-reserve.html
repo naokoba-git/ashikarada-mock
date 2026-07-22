@@ -100,7 +100,7 @@
   .flow-step{padding:32px 24px;border-right:1px solid var(--line);position:relative}
   .flow-step:last-child{border-right:0}
   .flow-step .no{font-family:"Shippori Mincho",serif;color:var(--gold);font-size:13px;letter-spacing:.2em}
-  .flow-step h4{font-family:"Shippori Mincho",serif;font-size:18px;font-weight:600;margin:10px 0 8px}
+  .flow-step h3{font-family:"Shippori Mincho",serif;font-size:18px;font-weight:600;margin:10px 0 8px}
   .flow-step p{font-size:13px;color:var(--ink-soft)}
 
   /* ===== FAQ accordion ===== */
@@ -131,7 +131,7 @@
   /* ===== Footer ===== */
   footer{background:#1b2622;color:#aeb6b0;padding:70px 0 36px;font-size:13px}
   .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.4fr;gap:40px;padding-bottom:36px;border-bottom:1px solid rgba(255,255,255,.1)}
-  .foot-col h5{color:#fff;font-family:"Shippori Mincho",serif;font-size:15px;letter-spacing:.16em;margin-bottom:18px;font-weight:500}
+  .foot-col .foot-title{color:#fff;font-family:"Shippori Mincho",serif;font-size:15px;letter-spacing:.16em;margin-bottom:18px;font-weight:500}
   .foot-col ul{list-style:none}
   .foot-col li{margin-bottom:9px}
   .foot-col a{color:#aeb6b0;transition:.2s}
@@ -290,7 +290,7 @@
   .step-line .st{padding:32px 24px;border-right:1px solid var(--line);text-align:center}
   .step-line .st:last-child{border-right:0}
   .step-line .st .no{font-family:"Shippori Mincho",serif;color:var(--gold);font-size:13px;letter-spacing:.2em}
-  .step-line .st h4{font-family:"Shippori Mincho",serif;font-size:17px;margin:8px 0 6px;font-weight:600}
+  .step-line .st h3{font-family:"Shippori Mincho",serif;font-size:17px;margin:8px 0 6px;font-weight:600}
   .step-line .st p{font-size:13px;color:var(--ink-soft)}
   @media(max-width:980px){
     .reserve-ways{grid-template-columns:1fr;gap:30px}
@@ -376,22 +376,22 @@
     <div class="step-line">
       <div class="st">
         <div class="no">STEP 01</div>
-        <h4>方法を選ぶ</h4>
+        <h3>方法を選ぶ</h3>
         <p>Hot Pepper Beauty・電話・LINE から、ご都合の良い方法でご予約ください。</p>
       </div>
       <div class="st">
         <div class="no">STEP 02</div>
-        <h4>店舗・日時・コース</h4>
+        <h3>店舗・日時・コース</h3>
         <p>ご希望の店舗・日時・コースをお伝えください。空き状況を確認のうえご案内します。</p>
       </div>
       <div class="st">
         <div class="no">STEP 03</div>
-        <h4>予約完了</h4>
+        <h3>予約完了</h3>
         <p>予約完了のお知らせをご確認ください。LINE予約の場合はトークでご案内します。</p>
       </div>
       <div class="st">
         <div class="no">STEP 04</div>
-        <h4>ご来店</h4>
+        <h3>ご来店</h3>
         <p>ご予約時間に店舗へ。お会員証・クーポンをご利用の方はご提示ください。</p>
       </div>
     </div>
@@ -451,14 +451,14 @@
       <div class="foot-col foot-brand">
         <span class="mark">P・SPO リラクゼーション</span>
         <p class="desc">愛媛・松山のリラクゼーションサロン。心と体をほぐす本格施術をリーズナブルにご提供します。</p>
-        <div class="corp">
-          <h5 style="font-size:12px;margin-bottom:8px;letter-spacing:.18em">会社概要</h5>
+        <nav class="corp" aria-label="会社概要">
+          <p class="foot-title" style="font-size:12px;margin-bottom:8px;letter-spacing:.18em">会社概要</p>
           <a href="https://www.sanpuku.co.jp/" target="_blank" rel="noopener">三福グループ ↗</a>
           <a href="https://pspo.jp/" target="_blank" rel="noopener">24時間スポーツジムP・SPO ↗</a>
-        </div>
+        </nav>
       </div>
-      <div class="foot-col">
-        <h5>メニュー</h5>
+      <nav class="foot-col" aria-label="フッターメニュー">
+        <p class="foot-title">メニュー</p>
         <ul>
           <li><a href="/first-time">初めての方へ</a></li>
           <li><a href="/menu">メニュー・料金</a></li>
@@ -467,18 +467,18 @@
           <li><a href="/faq">よくある質問</a></li>
           <li><a href="/tickets">お得なチケット</a></li>
         </ul>
-      </div>
-      <div class="foot-col">
-        <h5>店舗情報</h5>
+      </nav>
+      <nav class="foot-col" aria-label="店舗情報">
+        <p class="foot-title">店舗情報</p>
         <ul>
           <li><a href="/stores">店舗案内</a></li>
           <li><a href="/stores/okaido">大街道店</a></li>
           <li><a href="/stores/airport">空港通り店</a></li>
           <li><a href="/reserve">ご予約</a></li>
         </ul>
-      </div>
+      </nav>
       <div class="foot-col">
-        <h5>店舗所在地</h5>
+        <p class="foot-title">店舗所在地</p>
         <div class="addr-block">
           <div class="nm">大街道店</div>
           <div class="ad">〒790-0002<br>愛媛県松山市2番町3-8-21<br>コメダ珈琲店の2階</div>

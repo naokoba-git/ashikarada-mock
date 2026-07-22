@@ -74,7 +74,12 @@
   .hero-bg::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%, transparent 40%, rgba(15,22,19,.45))}
   .hero .wrap{position:relative;z-index:2;color:#fff;padding-top:60px;padding-bottom:60px}
   .hero .eyebrow{color:#e7c98c}
-  .hero h1{font-size:clamp(40px,6vw,76px);line-height:1.28;font-weight:600;margin:22px 0 24px;text-shadow:0 2px 30px rgba(0,0,0,.25)}
+  .hero h1{font-size:clamp(40px,6vw,76px);line-height:1.28;font-weight:600;margin:0 0 24px;text-shadow:0 2px 30px rgba(0,0,0,.25)}
+  /* h1にサイト主題（地域＋業種）を内包しつつ、見た目は従来のeyebrow＋キャッチのまま */
+  .hero h1 .eyebrow{display:block;width:fit-content;max-width:100%;font-size:12px;font-weight:400;line-height:1.8;letter-spacing:.32em;text-shadow:none}
+  .hero h1 .h1-main{display:block;margin-top:24px}
+  /* ヒーローが縦中央寄せになるPC幅のみ、旧構造と同じ位置に揃える補正 */
+  @media(min-width:981px){ .hero h1{padding-top:6px} }
   .hero p.lead{font-size:18px;color:#f1ece1;max-width:560px;font-weight:300;letter-spacing:.02em}
   .hero-discount{margin-top:38px;display:inline-flex;align-items:center;gap:20px;background:rgba(255,253,249,.1);border:1px solid rgba(231,201,140,.5);backdrop-filter:blur(6px);padding:18px 28px;border-radius:4px;max-width:560px}
   .hero-discount .off{font-family:"Shippori Mincho",serif;font-size:32px;color:#e7c98c;line-height:1;white-space:nowrap}
@@ -441,8 +446,10 @@
 <section class="hero" style="padding:0">
   <div class="hero-bg"></div>
   <div class="wrap">
-    <span class="eyebrow">愛媛・松山のマッサージ・リラクゼーションサロン</span>
-    <h1 class="serif">心も体も、<br>ほぐれる時間を。</h1>
+    <h1 class="serif">
+      <span class="eyebrow">愛媛・松山のマッサージ・リラクゼーションサロン</span>
+      <span class="h1-main">心も体も、<br>ほぐれる時間を。</span>
+    </h1>
     <p class="lead">横揉み施術とアロマテラピーで、本格的なリラクゼーションをリーズナブルに。一日の疲れを、静かに解いていく場所。</p>
     <div class="hero-discount">
       <div>

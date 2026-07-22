@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -uo pipefail
-cd "$(dirname "$0")"
+cd "$(dirname "$0")/.."
 
 echo "=== 1. 見出し並び（h1が1つ・スキップ無しを確認）==="
 fail=0

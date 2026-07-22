@@ -1,0 +1,6 @@
+name,orig_bytes,webp_bytes,reduction,width,height
+hero-therapist,203380,69346,66%,1500,1000
+aroma,184351,65874,65%,1500,1000
+fullbody,195556,65824,67%,1500,1000
+footcare,166041,56054,67%,1500,1000
+storefront,379536,131116,66%,864,1184

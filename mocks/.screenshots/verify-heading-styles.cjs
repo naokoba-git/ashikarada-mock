@@ -2,7 +2,8 @@
 const { chromium } = require('playwright');
 const path = require('path');
 
-const BASE = 'file://' + path.resolve(__dirname, '..');
+// ルート相対パス(/assets/)を正しく解決するため、BASE_URL でHTTP配信を指定できる
+const BASE = process.env.BASE_URL || ('file://' + path.resolve(__dirname, '..'));
 
 // [ページ, セレクタ, 期待font-size(px), 期待font-family先頭 ]
 const CHECKS = [

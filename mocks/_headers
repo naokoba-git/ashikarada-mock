@@ -4,3 +4,21 @@
 # 本番公開時にこの noindex 指定を解除する。
 /*
   X-Robots-Tag: noindex, nofollow, noarchive
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+
+# 開発用ファイルは本番公開後も恒久的に検索除外する（上の /* のnoindexを外した後も残す）
+/viewer.html
+  X-Robots-Tag: noindex, nofollow
+/mock-a-premium.html
+  X-Robots-Tag: noindex, nofollow
+/mock-b-natural.html
+  X-Robots-Tag: noindex, nofollow
+/mock-c-clean.html
+  X-Robots-Tag: noindex, nofollow
+/mock-d-irodori.html
+  X-Robots-Tag: noindex, nofollow
+/_contact.html
+  X-Robots-Tag: noindex, nofollow

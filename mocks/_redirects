@@ -13,3 +13,16 @@
 /stores/okaido    /page-stores-okaido   200
 /stores/airport   /page-stores-airport  200
 /stores           /page-stores          200
+
+# 旧形式URL（/page-*）へのアクセスはクリーンURLへ 301 で正規化する。
+# ※上の200リライト行が先にマッチするため、必ずこの順序（301は後ろ）を保つこと。
+/page-menu            /menu             301
+/page-first-time      /first-time       301
+/page-features        /features         301
+/page-stores          /stores           301
+/page-stores-okaido   /stores/okaido    301
+/page-stores-airport  /stores/airport   301
+/page-voice           /voice            301
+/page-faq             /faq              301
+/page-reserve         /reserve          301
+/page-tickets         /tickets          301

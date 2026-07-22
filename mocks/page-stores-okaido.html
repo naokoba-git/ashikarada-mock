@@ -21,6 +21,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="/assets/img/footcare.webp" type="image/webp" fetchpriority="high">
 <style>
   :root{
     --ink:#22302c; --ink-soft:#3c4a45; --gold:#a9854f; --gold-deep:#8a6a3a;
@@ -332,7 +333,9 @@
 <!-- ===== ここから下が各ページのコンテンツ ===== -->
 <style>
   .store-hero{position:relative;min-height:54vh;display:flex;align-items:flex-end;color:#fff;overflow:hidden}
-  .store-hero-bg{position:absolute;inset:0;background:linear-gradient(0deg,rgba(20,28,25,.82) 10%,rgba(20,28,25,.25) 60%,rgba(20,28,25,.55) 100%),url('https://storage.readdy-site.link/project_files/f4855191-8498-4dea-80b6-ea07112d8fed/e3705560-d994-4ce3-aae3-4b649022b4b6_unnamed.jpg') center/cover}
+  .store-hero-bg{position:absolute;inset:0;overflow:hidden}
+  .store-hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+  .store-hero-bg::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(0deg,rgba(20,28,25,.82) 10%,rgba(20,28,25,.25) 60%,rgba(20,28,25,.55) 100%)}
   .store-hero .wrap{position:relative;z-index:2;padding-top:80px;padding-bottom:60px}
   .store-hero .crumb{color:#cdc1a8;font-size:12px;letter-spacing:.1em;margin-bottom:16px}
   .store-hero .crumb a{color:#cdc1a8}
@@ -363,7 +366,14 @@
 </style>
 
 <section class="store-hero">
-  <div class="store-hero-bg"></div>
+  <div class="store-hero-bg">
+    <picture>
+      <source srcset="/assets/img/footcare.webp" type="image/webp">
+      <img class="store-hero-img" src="/assets/img/footcare.jpg"
+           alt="大街道店の施術風景。足つぼ施術を行っている様子"
+           width="1500" height="1000" fetchpriority="high" decoding="async">
+    </picture>
+  </div>
   <div class="wrap">
     <div class="crumb"><a href="/">ホーム</a><span>›</span><a href="/stores">店舗案内</a><span>›</span>大街道店</div>
     <span class="tag">OKAIDO STORE</span>

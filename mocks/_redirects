@@ -10,6 +10,7 @@
 /faq              /page-faq             200
 /reserve          /page-reserve         200
 /tickets          /page-tickets         200
+/privacy          /page-privacy         200
 /stores/okaido    /page-stores-okaido   200
 /stores/airport   /page-stores-airport  200
 /stores           /page-stores          200
@@ -26,3 +27,4 @@
 /page-faq             /faq              301
 /page-reserve         /reserve          301
 /page-tickets         /tickets          301
+/page-privacy         /privacy          301

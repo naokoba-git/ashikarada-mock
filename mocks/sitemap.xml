@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  P・SPO リラクゼーション sitemap.xml ドラフト
-  本番ドメイン https://pspo-relaxation.jp/ 用（pages.dev 用ではない）
+  P・SPO リラクゼーション sitemap.xml
+  本番ドメイン https://pspo-relaxation.jp/ 用（pages.dev 用ではない。
+  暫定的に pages.dev からも配信されるが、robots.txt の Disallow:/ と
+  X-Robots-Tag: noindex により実質クロールされない）。
   ⚠️ 現在は noindex 運用中のため、本番公開（noindex解除）まで Search Console 等へは送信しないこと。
   lastmod は各ページ実体ファイルの git 最終コミット日（2026-07-22時点の最新反映日）。
   priority / changefreq は Google では無視されるため参考値として最小限のみ付与（省略可）。
@@ -49,6 +51,10 @@
   </url>
   <url>
     <loc>https://pspo-relaxation.jp/tickets</loc>
+    <lastmod>2026-07-22</lastmod>
+  </url>
+  <url>
+    <loc>https://pspo-relaxation.jp/privacy</loc>
     <lastmod>2026-07-22</lastmod>
   </url>
 </urlset>

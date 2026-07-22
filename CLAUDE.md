@@ -115,7 +115,7 @@ cd mocks && python3 -m http.server 8777
 | 大街道店詳細 | `page-stores-okaido.html` | ヒーロー＋情報＋地図iframe＋アクセス3点＋ギャラリー＋特色3点 |
 | 空港通り店詳細 | `page-stores-airport.html` | 駐車場ハイライト＋情報＋地図iframe＋アクセス3点＋ギャラリー＋特色3点 |
 | お客様の声 | `page-voice.html` | 数値サマリー／レビュー12件／フィルター見せ／投稿導線 |
-| よくある質問 | `page-faq.html` | 5カテゴリ（料金/施術/予約/店舗/会員）アコーディオン計24問 |
+| よくある質問 | `page-faq.html` | 5カテゴリ（料金/施術/予約/店舗/会員）アコーディオン計23問（FAQPage構造化と一致） |
 | ご予約 | `page-reserve.html` | 3予約方法カード／フロー4ステップ／注意事項 |
 | お得なチケット | `page-tickets.html` | 全身60分専用回数券3プラン（1枚¥3,700／5枚¥18,500[一番お得]／10枚¥37,000）＋ご利用について。ライブ /tickets を再現（2026-07-22追加） |
 
@@ -148,7 +148,8 @@ cd mocks && python3 -m http.server 8777
 - 並列で別プロジェクト（小林建工 ITAZU, localhost:8799）も稼働中。Chromeタブを取り違えないこと（あしカラダは8777）。
 - **下層ページのヘッダー/フッター/CTAは `assets/page-template.html` 由来**。修正時はテンプレートを更新し、各 page-*.html へ同期する（または共通化を本実装フェーズで判断）。
 - 料金行や2カラムレイアウト等の高さ揃えは Playwrightで実寸計測 → CSSで `min-height`/`align-items:stretch` 調整が確実
-- **ヘッダーPCナビは7項目**（…よくある質問／お得なチケット）＋予約CTA3つ。項目増でナビが詰まるため、ハンバーガー切替の境界を **980px→1100px** に変更済み（グリッド崩れ境界は980pxのまま）。ナビ項目を今後増やす場合はこの幅で再度 overflow 検証すること
-- **お得なチケット導線**: PC上部ナビ＋フッター「メニュー」列＋モバイルメニュー最下部ボタン（btn-outline）の3箇所。リンク先は全ファイル `page-tickets.html`（`cleanUrls`未設定のため `/tickets` は不可）
+- **ヘッダーPCナビは6項目**（初めての方へ／メニュー・料金／施術の特徴／店舗案内／お客様の声／よくある質問）＋予約CTA3つ。ハンバーガー切替境界は980px。※お得なチケットを7項目目に一度入れたが中間幅(981〜1100px)でナビが詰まり横スクロールが出たため、2026-07-22にPCナビからは外した（フッター＋モバイルに集約）。ナビ項目を増やす時はこの幅で overflow 再検証必須。
+- **お得なチケット導線**: フッター「メニュー」列＋モバイルメニュー最下部ボタン（btn-outline）の2箇所（PC上部ナビには入れない方針）。リンク先は全ファイル `page-tickets.html`（`cleanUrls`未設定のため `/tickets` は不可）
+- **新ドメイン＝`pspo-relaxation.jp`**（P・SPO/三福グループのリラクゼーション部門）。全11ページ＋テンプレの`<head>`に canonical/OGP/Twitterカード＋JSON-LD構造化（Organization / DaySpa[LocalBusiness]×2店舗 / 各ページBreadcrumbList / page-faqにFAQPage23問）を追加済み（2026-07-22・sonnetワーカー実装→Opusレビュー済み）。canonicalは対応表どおり（TOP=`/`, 他は `/menu` `/stores/okaido` 等クリーンURL）。**noindex 3層は本番公開時まで維持（構造化追加時に外していない）**。geoは未設定（捏造回避・本実装時にGBP座標で追加）。og:imageは暫定でreaddyヒーロー画像→自前ホスト化時に差替。
 
 最終更新: 2026-06-27 セッション3（本番デプロイ完了）

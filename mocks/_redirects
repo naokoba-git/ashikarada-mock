@@ -1,0 +1,5 @@
+# Cloudflare Pages redirects
+# ルート / を実サイトのTOP（A案確定版）で配信する。
+# 200 = リライト（URLは "/" のまま mock-a-real.html の内容を表示）。
+# 比較ビューア(index.html)はルートから外す（A案確定のため）。
+/    /mock-a-real.html    200

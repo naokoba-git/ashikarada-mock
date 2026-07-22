@@ -1,0 +1,16 @@
+{
+  "name": "P・SPO リラクゼーション 松山",
+  "short_name": "P・SPO",
+  "description": "愛媛・松山のリラクゼーションサロン（大街道店・空港通り店）",
+  "lang": "ja",
+  "start_url": "/",
+  "scope": "/",
+  "display": "browser",
+  "background_color": "#fffdf9",
+  "theme_color": "#fffdf9",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

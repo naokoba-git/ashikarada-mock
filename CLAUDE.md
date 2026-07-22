@@ -71,6 +71,9 @@ ashikarada/
     ├── page-privacy.html            ★ 下層: プライバシーポリシー（2026-07-22追加・事業者情報は要確認プレースホルダ）
     ├── sitemap.xml       ← 公開ディレクトリへ移設済み（12URL・本番ドメイン基準）
     ├── robots.txt        ← 現在 Disallow:/（noindex 3層の1層）。公開時に差替
+    ├── favicon.ico       ← 紺地に白抜き「P」（16/32/48/64 マルチサイズ）
+    ├── favicon-32x32.png / apple-touch-icon.png(180) / icon-192.png / icon-512.png
+    ├── site.webmanifest  ← ホーム画面追加用（display:browser・theme_color #fffdf9）
     ├── _contact.html    ← 開発用：使用画像のコンタクトシート
     ├── .screenshots/    ← Playwright自動検証スクリプト＆PNG（20枚）
     └── assets/
@@ -177,6 +180,7 @@ cd mocks && python3 -m http.server 8777
 - [ ] 🔜 **ネームサーバー切替（本番ドメイン接続）**: `pspo-relaxation.jp` はさくら管理・**メール稼働中(MX/SPF)**。①Cloudflareにゾーン追加→②メール込みDNS複製→③検証→④業者へNS切替指示。⚠️複製前にNS切替するとメール断
 - [x] **SEO監査＋全面改善** → 完了（2026-07-22・スコア67/100→主要指摘を全対応・readdy画像も自前ホスト化済み）
 - [x] **プライバシーポリシー作成・sitemap移設・robots整理** → 完了（2026-07-22）。公開切替の全手順は **`Docs/公開切替手順.md`**（正本）に集約
+- [x] **ファビコン一式** → 完了（2026-07-22）。`logo-pspo.png` の上段1文字目「P」（bbox: x28-104 / y12-88 の77×77）を抽出し、紺 `#113062` 地に白抜きで再構成。**ロゴ全体は4行構成のため16pxでは判読不能** → 正方形マーク化が必須だった。再生成する場合も同じ抽出方法を踏襲すること
 - [ ] 🔜 **公開前の残り**: `Docs/公開切替手順.md` に従って noindex 3層解除／robots.txt 本番版差替／sitemap の lastmod 更新／GSC登録
 - [ ] ⏳ **プライバシーポリシーの【要確認】7箇所をクライアント回答で埋める**（正式社名・所在地・代表者・個人情報保護管理者・問い合わせメール・制定日/改定日）。`grep -c 'class="todo"' mocks/page-privacy.html` が 0 になれば完了
 - [ ] ⏳ **クライアントから透過ロゴ(PNG/SVG)＋暗地用の白/反転版** → 受領後フッターも画像化

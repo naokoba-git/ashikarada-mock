@@ -45,6 +45,7 @@ ashikarada/
     ├── page-voice.html              ★ 下層: お客様の声
     ├── page-faq.html                ★ 下層: よくある質問
     ├── page-reserve.html            ★ 下層: ご予約
+    ├── page-tickets.html            ★ 下層: お得なチケット（全身60分専用回数券・2026-07-22追加）
     ├── _contact.html    ← 開発用：使用画像のコンタクトシート
     ├── .screenshots/    ← Playwright自動検証スクリプト＆PNG（20枚）
     └── assets/
@@ -116,6 +117,7 @@ cd mocks && python3 -m http.server 8777
 | お客様の声 | `page-voice.html` | 数値サマリー／レビュー12件／フィルター見せ／投稿導線 |
 | よくある質問 | `page-faq.html` | 5カテゴリ（料金/施術/予約/店舗/会員）アコーディオン計24問 |
 | ご予約 | `page-reserve.html` | 3予約方法カード／フロー4ステップ／注意事項 |
+| お得なチケット | `page-tickets.html` | 全身60分専用回数券3プラン（1枚¥3,700／5枚¥18,500[一番お得]／10枚¥37,000）＋ご利用について。ライブ /tickets を再現（2026-07-22追加） |
 
 ## 共通テンプレート
 - `mocks/assets/page-template.html` — 下層ページ共通の骨格（ヘッダー＋フッター＋全CSS＋CTAストリップ＋モバイルメニュー＋FAQアコーディオンスクリプト）。`<!-- CONTENT -->` を差し替えてページ化する設計。
@@ -146,5 +148,7 @@ cd mocks && python3 -m http.server 8777
 - 並列で別プロジェクト（小林建工 ITAZU, localhost:8799）も稼働中。Chromeタブを取り違えないこと（あしカラダは8777）。
 - **下層ページのヘッダー/フッター/CTAは `assets/page-template.html` 由来**。修正時はテンプレートを更新し、各 page-*.html へ同期する（または共通化を本実装フェーズで判断）。
 - 料金行や2カラムレイアウト等の高さ揃えは Playwrightで実寸計測 → CSSで `min-height`/`align-items:stretch` 調整が確実
+- **ヘッダーPCナビは7項目**（…よくある質問／お得なチケット）＋予約CTA3つ。項目増でナビが詰まるため、ハンバーガー切替の境界を **980px→1100px** に変更済み（グリッド崩れ境界は980pxのまま）。ナビ項目を今後増やす場合はこの幅で再度 overflow 検証すること
+- **お得なチケット導線**: PC上部ナビ＋フッター「メニュー」列＋モバイルメニュー最下部ボタン（btn-outline）の3箇所。リンク先は全ファイル `page-tickets.html`（`cleanUrls`未設定のため `/tickets` は不可）
 
 最終更新: 2026-06-27 セッション3（本番デプロイ完了）

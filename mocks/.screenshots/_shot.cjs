@@ -13,6 +13,7 @@ const PAGES = [
   { file: 'page-voice.html',           name: '08_voice' },
   { file: 'page-faq.html',             name: '09_faq' },
   { file: 'page-reserve.html',         name: '10_reserve' },
+  { file: 'page-tickets.html',         name: '11_tickets' },
 ];
 
 const VIEWPORTS = [

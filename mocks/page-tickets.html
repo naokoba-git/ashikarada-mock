@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow, noarchive">
-<title>よくある質問｜あしカラダ松山店</title>
-<meta name="description" content="あしカラダ松山店によくお寄せいただく質問。料金・施術・予約・店舗・会員に関するご質問にお答えします。">
+<title>お得なチケット｜あしカラダ松山店</title>
+<meta name="description" content="あしカラダ松山店のお得なチケット（全身ボディケア60分専用回数券）。1枚3,700円、一番お得な5枚セット、10枚セットをご用意。店頭にてご購入いただけます。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
@@ -183,8 +183,8 @@
       <a href="page-features.html">施術の特徴</a>
       <a href="page-stores.html">店舗案内</a>
       <a href="page-voice.html">お客様の声</a>
-      <a href="page-faq.html" class="current">よくある質問</a>
-      <a href="page-tickets.html">お得なチケット</a>
+      <a href="page-faq.html">よくある質問</a>
+      <a href="page-tickets.html" class="current">お得なチケット</a>
     </nav>
     <div class="nav-cta">
       <a class="btn btn-gold head-cta" href="https://beauty.hotpepper.jp/kr/slnH000278593/" target="_blank" rel="noopener">
@@ -223,126 +223,92 @@
 
 <!-- ===== ここから下が各ページのコンテンツ ===== -->
 <style>
-  .cat-tabs{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-bottom:40px;border-bottom:1px solid var(--line);padding-bottom:0}
-  .cat-tabs a{font-size:13.5px;padding:14px 20px;color:var(--ink-soft);position:relative;letter-spacing:.06em}
-  .cat-tabs a:hover{color:var(--ink)}
-  .cat-tabs a::after{content:"";position:absolute;left:14px;right:14px;bottom:-1px;height:2px;background:var(--gold);opacity:0;transition:.2s}
-  .cat-tabs a:hover::after{opacity:.5}
-  .faq-section{margin-bottom:80px}
-  .faq-section:last-of-type{margin-bottom:0}
-  .faq-section h2{font-family:"Shippori Mincho",serif;font-size:26px;text-align:center;margin-bottom:8px;font-weight:600}
-  .faq-section .sub{text-align:center;color:var(--muted);font-size:13px;margin-bottom:34px}
-  .faq-section .anchor{position:relative;top:-90px;visibility:hidden}
+  .ticket-grid{align-items:stretch;margin-top:8px}
+  .ticket-card{background:var(--paper);border:1px solid var(--line);padding:46px 28px 36px;text-align:center;position:relative;transition:.3s;display:flex;flex-direction:column}
+  .ticket-card:hover{transform:translateY(-4px);box-shadow:0 24px 48px -30px rgba(40,30,15,.35)}
+  .ticket-card.feat{border:1.5px solid var(--gold);box-shadow:0 22px 46px -28px rgba(169,133,79,.55)}
+  .tk-badge{position:absolute;top:-15px;left:50%;transform:translateX(-50%);background:var(--gold);color:#fff;font-family:"Shippori Mincho",serif;font-size:12px;letter-spacing:.16em;padding:7px 22px;border-radius:2px;white-space:nowrap}
+  .tk-name{font-family:"Shippori Mincho",serif;font-size:23px;font-weight:600;margin-bottom:18px;letter-spacing:.04em}
+  .tk-price{font-family:"Shippori Mincho",serif;color:var(--gold-deep);font-weight:700;font-size:42px;line-height:1.05;letter-spacing:.02em}
+  .tk-price .cur{font-size:27px;margin-right:1px}
+  .tk-price .tax{font-size:13px;color:var(--muted);font-weight:400;font-family:"Zen Kaku Gothic New",sans-serif;letter-spacing:0;margin-left:5px}
+  .tk-desc{font-size:15px;color:var(--ink-soft);margin-top:20px;padding-top:18px;border-top:1px solid var(--line)}
+  .tk-bonus{font-size:13.5px;color:var(--gold-deep);font-weight:500;margin-top:auto;padding-top:10px}
+  .usage-wrap{max-width:760px;margin:0 auto}
+  .usage-list{list-style:none;background:var(--paper);border:1px solid var(--line);padding:12px 32px}
+  .usage-list li{padding:17px 0 17px 30px;border-bottom:1px solid var(--line);position:relative;font-size:14.5px;color:var(--ink-soft);line-height:1.7}
+  .usage-list li:last-child{border-bottom:0}
+  .usage-list li::before{content:"✦";position:absolute;left:2px;top:17px;color:var(--gold);font-size:13px}
+  .usage-list li b{color:var(--ink);font-weight:600}
+  .ticket-tel{text-align:center;margin-top:38px}
+  .ticket-tel .note{font-size:14px;color:var(--muted);margin-bottom:18px}
+  .ticket-tel .tels{display:flex;gap:40px;justify-content:center;flex-wrap:wrap}
+  .ticket-tel .tels .item{font-size:12.5px;color:var(--muted);letter-spacing:.08em}
+  .ticket-tel .tels .item .tel{display:block;font-family:"Shippori Mincho",serif;font-size:23px;color:var(--gold-deep);margin-top:4px;letter-spacing:.03em}
 </style>
 
 <section class="page-hero">
   <div class="wrap">
-    <div class="crumb"><a href="mock-a-real.html">ホーム</a><span>›</span>よくある質問</div>
+    <div class="crumb"><a href="mock-a-real.html">ホーム</a><span>›</span>お得なチケット</div>
     <div class="divider"></div>
-    <span class="eyebrow">FAQ</span>
-    <h1>よくある質問</h1>
-    <p class="lead">お客様からよくお寄せいただくご質問にお答えします。<br>解決しない場合は、各店舗までお気軽にお問い合わせください。</p>
+    <span class="eyebrow">Value Tickets</span>
+    <h1 class="serif">お得なチケット</h1>
+    <p class="lead">全身ボディケア60分専用の回数券をご用意しています。まとめてご購入いただくほど、1回あたりがぐっとお得に。ご自身へのご褒美にも、大切な方へのプレゼントにもお使いいただけます。</p>
   </div>
 </section>
 
 <section>
-  <div class="wrap" style="max-width:960px">
-    <nav class="cat-tabs">
-      <a href="#cat-price">料金・割引</a>
-      <a href="#cat-menu">施術・メニュー</a>
-      <a href="#cat-reserve">ご予約・キャンセル</a>
-      <a href="#cat-store">店舗について</a>
-      <a href="#cat-member">会員・LINE</a>
-    </nav>
-
-    <!-- 料金 -->
-    <div class="faq-section">
-      <span class="anchor" id="cat-price"></span>
-      <h2>料金・割引</h2>
-      <p class="sub">PRICE & DISCOUNT</p>
-      <div class="faq-list">
-        <div class="faq-q open"><span class="mk serif">Q</span><span class="qt">料金はすべて税込ですか？</span><span class="ar">▼</span></div>
-        <div class="faq-a"><p>はい、サイトに掲載している料金はすべて税込価格です。</p></div>
-        <div class="faq-q"><span class="mk serif">Q</span><span class="qt">支払い方法は何が使えますか？</span><span class="ar">▼</span></div>
-        <div class="faq-a"><p>現金のほか、各種クレジットカード（VISA / Master / JCB / AMEX）・電子マネー・QRコード決済（PayPay 等）をご利用いただけます。</p></div>
-        <div class="faq-q"><span class="mk serif">Q</span><span class="qt">ピースポ会員割引はいつまで使えますか？</span><span class="ar">▼</span></div>
-        <div class="faq-a"><p>ピースポ会員様の¥500割引は、有効な会員期間中、全メニュー対象でいつでもご利用いただけます。</p></div>
-        <div class="faq-q"><span class="mk serif">Q</span><span class="qt">LINE クーポンは何度でも使えますか？</span><span class="ar">▼</span></div>
-        <div class="faq-a"><p>LINE友だち追加で配布している¥500割引クーポンは、原則として初回ご来店時のみのご利用となります。その後はLINEで配信する各種キャンペーンクーポンをご利用ください。</p></div>
-        <div class="faq-q"><span class="mk serif">Q</span><span class="qt">会員割引と LINE クーポンは併用できますか？</span><span class="ar">▼</span></div>
-        <div class="faq-a"><p>原則として併用はできません。お得になる方をお選びください。</p></div>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="divider"></div>
+      <h2 class="serif">全身ボディケア60分 専用回数券</h2>
+      <p>全身60分のみの販売となります。お得なセットでのご購入で、さらにお得にご利用いただけます。</p>
+    </div>
+    <div class="grid-3 ticket-grid">
+      <div class="ticket-card">
+        <div class="tk-name">1枚</div>
+        <div class="tk-price"><span class="cur">￥</span>3,700<span class="tax">円（税込）</span></div>
+        <div class="tk-desc">全身ボディケア60分 × 1回</div>
+        <div class="tk-bonus">4枚までは1枚ごとに購入可能</div>
+      </div>
+      <div class="ticket-card feat">
+        <div class="tk-badge">一番お得</div>
+        <div class="tk-name">5枚セット</div>
+        <div class="tk-price"><span class="cur">￥</span>18,500<span class="tax">円（税込）</span></div>
+        <div class="tk-desc">全身ボディケア60分 × 5回</div>
+        <div class="tk-bonus">＋500円割引チケット2枚付き</div>
+      </div>
+      <div class="ticket-card">
+        <div class="tk-name">10枚セット</div>
+        <div class="tk-price"><span class="cur">￥</span>37,000<span class="tax">円（税込）</span></div>
+        <div class="tk-desc">全身ボディケア60分 × 10回</div>
+        <div class="tk-bonus">＋1枚おまけ（計11回分）</div>
       </div>
     </div>
+  </div>
+</section>
 
-    <!-- 施術・メニュー -->
-    <div class="faq-section">
-      <span class="anchor" id="cat-menu"></span>
-      <h2>施術・メニュー</h2>
-      <p class="sub">TREATMENT & MENU</p>
-      <div class="faq-list">
-        <div class="faq-q open"><span class="mk serif">Q</span><span class="qt">「横揉み施術」とはどんな施術ですか？</span><span class="ar">▼</span></div>
-        <div class="faq-a"><p>横向きの体勢で受けていただく独自の施術方法です。うつ伏せが苦手な方や、首・肩・腰までしっかりほぐしたい方に最適です。呼吸も楽で、深いリラックス効果が得られます。</p></div>
-        <div class="faq-q"><span class="mk serif">Q</span><span class="qt">アロマテラピーは男性も受けられますか？</span><span class="ar">▼</span></div>
-        <div class="faq-a"><p>申し訳ございませんが、アロマテラピーコースは女性限定とさせていただいております。男性のお客様は全身マッサージ・足底・顔頭ケアコースをご利用ください。</p></div>
-        <div class="faq-q"><span class="mk serif">Q</span><span class="qt">施術中、衣服は着たままですか？</span><span class="ar">▼</span></div>
-        <div class="faq-a"><p>はい、基本的にお召しのお洋服のままで施術を受けていただけます。動きやすい服装でのご来店をおすすめします。一部店舗では施術用のリラックスウェアもご用意しています。</p></div>
-        <div class="faq-q"><span class="mk serif">Q</span><span class="qt">施術時間の延長はできますか？</span><span class="ar">▼</span></div>
-        <div class="faq-a"><p>当日の空き状況により延長を承れる場合がございます。事前に予約時にご相談いただけるとスムーズです。延長料金は30分¥1,800（税込）です。</p></div>
-        <div class="faq-q"><span class="mk serif">Q</span><span class="qt">妊娠中・体調不良時でも受けられますか？</span><span class="ar">▼</span></div>
-        <div class="faq-a"><p>妊娠中の方の施術はお断りしております。発熱・感染症の疑い・大きな怪我など、体調がすぐれない場合もご来店をお控えください。心配な持病がある方は事前にご相談ください。</p></div>
-      </div>
+<section class="sec-cream">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="divider"></div>
+      <h2 class="serif">ご利用について</h2>
+      <p>ご購入・ご利用の前に、以下をご確認ください。</p>
     </div>
-
-    <!-- 予約・キャンセル -->
-    <div class="faq-section">
-      <span class="anchor" id="cat-reserve"></span>
-      <h2>ご予約・キャンセル</h2>
-      <p class="sub">RESERVATION</p>
-      <div class="faq-list">
-        <div class="faq-q open"><span class="mk serif">Q</span><span class="qt">予約は必要ですか？</span><span class="ar">▼</span></div>
-        <div class="faq-a"><p>当日空きがあればご予約なしでもご利用いただけますが、確実にご利用いただくためには事前のご予約をおすすめいたします。</p></div>
-        <div class="faq-q"><span class="mk serif">Q</span><span class="qt">予約方法は？</span><span class="ar">▼</span></div>
-        <div class="faq-a"><p>Hot Pepper Beauty・お電話・LINEからご予約いただけます。詳しくは <a href="page-reserve.html" style="color:var(--gold-deep);text-decoration:underline">ご予約ページ</a> をご覧ください。</p></div>
-        <div class="faq-q"><span class="mk serif">Q</span><span class="qt">キャンセル料はかかりますか？</span><span class="ar">▼</span></div>
-        <div class="faq-a"><p>原則として無料です。ただし、当日キャンセル・無断キャンセルが続く場合は次回以降のご予約をお断りする場合がございます。</p></div>
-        <div class="faq-q"><span class="mk serif">Q</span><span class="qt">遅刻した場合はどうなりますか？</span><span class="ar">▼</span></div>
-        <div class="faq-a"><p>後のご予約のお客様にご迷惑をおかけしないため、遅れた時間分は短縮させていただく場合がございます。遅れる際はお早めにお電話ください。</p></div>
-        <div class="faq-q"><span class="mk serif">Q</span><span class="qt">指名はできますか？</span><span class="ar">▼</span></div>
-        <div class="faq-a"><p>店舗にお問い合わせの上、シフト・空き状況によって対応可能です。指名料は無料ですが、ご希望に添えない場合もございますのでご了承ください。</p></div>
-      </div>
-    </div>
-
-    <!-- 店舗について -->
-    <div class="faq-section">
-      <span class="anchor" id="cat-store"></span>
-      <h2>店舗について</h2>
-      <p class="sub">STORES</p>
-      <div class="faq-list">
-        <div class="faq-q open"><span class="mk serif">Q</span><span class="qt">大街道店と空港通り店は何が違いますか？</span><span class="ar">▼</span></div>
-        <div class="faq-a"><p>料金・メニューは同じです。違いは立地と営業時間で、大街道店は中心街・夜1時まで営業、空港通り店は無料駐車場完備・夜24時まで営業しています。</p></div>
-        <div class="faq-q"><span class="mk serif">Q</span><span class="qt">駐車場はありますか？</span><span class="ar">▼</span></div>
-        <div class="faq-a"><p>空港通り店には無料駐車場がございます。大街道店には駐車場がないため、近隣のコインパーキングをご利用ください。</p></div>
-        <div class="faq-q"><span class="mk serif">Q</span><span class="qt">定休日はありますか？</span><span class="ar">▼</span></div>
-        <div class="faq-a"><p>空港通り店は年中無休（年末年始除く）です。大街道店は不定休のため、ご来店前に営業状況をご確認ください。</p></div>
-        <div class="faq-q"><span class="mk serif">Q</span><span class="qt">子ども連れでも利用できますか？</span><span class="ar">▼</span></div>
-        <div class="faq-a"><p>保護者の方の施術中、お子様にお待ちいただけるスペースは十分にございません。可能な限り大人の方にお預けいただくことをおすすめしております。</p></div>
-      </div>
-    </div>
-
-    <!-- 会員・LINE -->
-    <div class="faq-section">
-      <span class="anchor" id="cat-member"></span>
-      <h2>会員・LINE</h2>
-      <p class="sub">MEMBERSHIP & LINE</p>
-      <div class="faq-list">
-        <div class="faq-q open"><span class="mk serif">Q</span><span class="qt">ピースポ会員にはどうやって入会できますか？</span><span class="ar">▼</span></div>
-        <div class="faq-a"><p>ピースポは三福グループが運営する24時間スポーツジムの会員プログラムです。会員になることで、ジムだけでなくあしカラダなどグループ各店でも特典をご利用いただけます。詳しくは <a href="https://pspo.jp/" target="_blank" rel="noopener" style="color:var(--gold-deep);text-decoration:underline">ピースポ公式サイト</a> をご覧ください。</p></div>
-        <div class="faq-q"><span class="mk serif">Q</span><span class="qt">LINE クーポンの受け取り方は？</span><span class="ar">▼</span></div>
-        <div class="faq-a"><p><a href="https://lin.ee/wmRAMM9" target="_blank" rel="noopener" style="color:var(--gold-deep);text-decoration:underline">こちらから</a> LINE友だち追加 → 簡単なアンケートに回答 → クーポン受け取り、の3ステップです。</p></div>
-        <div class="faq-q"><span class="mk serif">Q</span><span class="qt">LINE で予約はできますか？</span><span class="ar">▼</span></div>
-        <div class="faq-a"><p>LINE トーク画面からスタッフが直接ご予約のご相談を承ります。ご希望の日時・店舗・メニューをメッセージでお送りください。</p></div>
-        <div class="faq-q"><span class="mk serif">Q</span><span class="qt">ピースポ会員以外でも利用できますか？</span><span class="ar">▼</span></div>
-        <div class="faq-a"><p>もちろんご利用いただけます。会員以外の方は「一般料金」でのご案内となります。</p></div>
+    <div class="usage-wrap">
+      <ul class="usage-list">
+        <li>全身ボディケア60分のみご利用いただけます</li>
+        <li><b>2026年度チケット販売期限：2026年12月20日まで</b></li>
+        <li>他メニューへの変更・払い戻しはできません</li>
+        <li>プレゼントとしてもご利用いただけます</li>
+        <li>店頭にてご購入いただけます</li>
+      </ul>
+      <div class="ticket-tel">
+        <p class="note">ご不明な点がございましたら、お気軽にお電話でお問い合わせください。</p>
+        <div class="tels">
+          <div class="item">大街道店<a class="tel" href="tel:0120919323">0120-919-323</a></div>
+          <div class="item">空港通り店<a class="tel" href="tel:0120695427">0120-695-427</a></div>
+        </div>
       </div>
     </div>
   </div>

@@ -1,14 +1,15 @@
 # Cloudflare Pages redirects
-# TOP/フッターが使うクリーンURL（/menu 等）を実ファイル(page-*.html)へ 200リライトで接続。
-# 200 = URLは /menu のまま page-menu.html の内容を表示（本番のクリーンURL構造）。
-# より深い階層(/stores/okaido)を先に、浅い(/stores)を後に置く。
-/menu             /page-menu.html            200
-/features         /page-features.html        200
-/first-time       /page-first-time.html      200
-/voice            /page-voice.html           200
-/faq              /page-faq.html             200
-/reserve          /page-reserve.html         200
-/tickets          /page-tickets.html         200
-/stores/okaido    /page-stores-okaido.html   200
-/stores/airport   /page-stores-airport.html  200
-/stores           /page-stores.html          200
+# TOP/フッターが使うクリーンURL（/menu 等）を実ファイルへ 200リライトで接続。
+# 宛先は .html を付けない（付けると自動クリーンURLで /page-menu へ再リダイレクトされ
+# URLが /menu のまま保てないため）。200 = URLは /menu のまま中身を表示。
+# 深い階層(/stores/okaido)を先に、浅い(/stores)を後に。
+/menu             /page-menu            200
+/features         /page-features        200
+/first-time       /page-first-time      200
+/voice            /page-voice           200
+/faq              /page-faq             200
+/reserve          /page-reserve         200
+/tickets          /page-tickets         200
+/stores/okaido    /page-stores-okaido   200
+/stores/airport   /page-stores-airport  200
+/stores           /page-stores          200

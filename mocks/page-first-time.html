@@ -40,6 +40,7 @@
   header{position:sticky;top:0;z-index:50;background:rgba(255,253,249,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
   .nav{display:flex;align-items:center;justify-content:space-between;height:84px;gap:24px}
   .brand{display:flex;align-items:center;gap:14px}
+  .logo-img{height:54px;width:auto;display:block}
   .brand .mark{font-family:"Shippori Mincho",serif;font-weight:700;font-size:24px;letter-spacing:.16em;line-height:1}
   .brand small{display:block;font-size:10px;letter-spacing:.34em;color:var(--gold-deep);margin-top:6px}
   .menu{display:flex;gap:26px;font-size:13.5px;color:var(--ink-soft)}
@@ -135,7 +136,7 @@
   .foot-col li{margin-bottom:9px}
   .foot-col a{color:#aeb6b0;transition:.2s}
   .foot-col a:hover{color:#e7c98c}
-  .foot-brand .mark{font-family:"Shippori Mincho",serif;color:#fff;font-size:24px;letter-spacing:.14em;margin-bottom:14px;display:block}
+  .foot-brand .mark{font-family:"Shippori Mincho",serif;color:#fff;font-size:24px;letter-spacing:.14em;margin-bottom:14px;display:block;word-break:keep-all}
   .foot-brand .desc{font-size:12.5px;line-height:1.9;color:#8b938c;margin-bottom:18px}
   .foot-brand .corp{margin-top:14px}
   .foot-brand .corp a{display:block;font-size:12px;color:#8b938c;margin-bottom:5px}
@@ -171,6 +172,7 @@
     .page-hero{padding:60px 0 50px}
   }
   @media(max-width:560px){
+    .logo-img{height:42px}
     .wrap{padding:0 22px}
     .nav{height:68px}
     .brand .mark{font-size:20px}
@@ -223,11 +225,8 @@
 
 <header>
   <div class="wrap nav">
-    <a href="mock-a-real.html" class="brand">
-      <div>
-        <div class="mark">あしカラダ</div>
-        <small>MATSUYAMA RELAXATION</small>
-      </div>
+    <a href="mock-a-real.html" class="brand" aria-label="P・SPO リラクゼーション">
+      <img src="assets/logo-pspo.png" alt="P・SPO リラクゼーション" class="logo-img">
     </a>
     <nav class="menu">
       <a href="page-first-time.html" class="current">初めての方へ</a>
@@ -467,7 +466,7 @@
   <div class="wrap">
     <div class="foot-grid">
       <div class="foot-col foot-brand">
-        <span class="mark">あしカラダ</span>
+        <span class="mark">P・SPO リラクゼーション</span>
         <p class="desc">愛媛・松山のリラクゼーションサロン。心と体をほぐす本格施術をリーズナブルにご提供します。</p>
         <div class="corp">
           <h5 style="font-size:12px;margin-bottom:8px;letter-spacing:.18em">会社概要</h5>

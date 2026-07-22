@@ -308,7 +308,11 @@
   .voice .who{margin-top:18px;font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:14px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
   .voice .badge{font-size:11px;color:var(--gold-deep);background:var(--cream-2);padding:2px 8px;border-radius:2px;letter-spacing:.06em}
   .filters{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:42px}
-  .filters .f{font-size:13px;padding:8px 18px;border:1px solid var(--line);background:var(--paper);color:var(--ink-soft);border-radius:2px;cursor:pointer;transition:.2s}
+  .filters .f{font-size:13px;padding:11px 18px;min-height:44px;border:1px solid var(--line);background:var(--paper);color:var(--ink-soft);border-radius:2px;cursor:pointer;transition:.2s;font-family:inherit}
+  .filters .f:focus-visible{outline:2px solid var(--gold-deep);outline-offset:2px}
+  .filter-count{text-align:center;color:var(--muted);font-size:12.5px;margin:-30px 0 34px;letter-spacing:.04em}
+  .voice[hidden]{display:none}
+  .voice-empty{text-align:center;color:var(--muted);font-size:14px;padding:40px 0}
   .filters .f:hover{border-color:var(--gold);color:var(--ink)}
   .filters .f.active{background:var(--ink);color:#fff;border-color:var(--ink)}
   .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:780px;margin:0 auto 60px;border:1px solid var(--line);background:var(--paper)}
@@ -365,29 +369,29 @@
       <p>※ 実際にご来店いただいたお客様からのアンケート抜粋です。</p>
     </div>
     <p class="disclaimer">※お客様個人の感想です。効果の感じ方には個人差があります。</p>
-    <div class="filters">
-      <button class="f active">すべて</button>
-      <button class="f">大街道店</button>
-      <button class="f">空港通り店</button>
-      <button class="f">横揉み施術</button>
-      <button class="f">アロマ</button>
-      <button class="f">足つぼ</button>
+    <div class="filters" role="group" aria-label="お客様の声のしぼり込み">
+      <button type="button" class="f active" data-filter="all" aria-pressed="true">すべて</button>
+      <button type="button" class="f" data-filter="okaido" aria-pressed="false">大街道店</button>
+      <button type="button" class="f" data-filter="airport" aria-pressed="false">空港通り店</button>
+      <button type="button" class="f" data-filter="yokomomi" aria-pressed="false">横揉み施術</button>
+      <button type="button" class="f" data-filter="aroma" aria-pressed="false">アロマ</button>
+      <button type="button" class="f" data-filter="ashitsubo" aria-pressed="false">足つぼ</button>
     </div>
+    <p class="filter-count" id="filterCount" role="status" aria-live="polite">12件を表示中</p>
     <div class="voice-grid">
-      <div class="voice"><div class="q serif">”</div><div class="stars">★★★★★</div><h3>肩こりが楽になりました</h3><p>デスクワークで慢性的な肩こりに悩んでいましたが、横揉み施術を受けてからとても楽になりました。リーズナブルな価格なので定期的に通えるのも嬉しいです。</p><div class="who"><span>40代 女性 ／ 大街道店</span><span class="badge">全身60分</span></div></div>
-      <div class="voice"><div class="q serif">”</div><div class="stars">★★★★★</div><h3>仕事帰りに利用しています</h3><p>大街道店は遅くまで営業しているので、仕事帰りに立ち寄れて便利です。スタッフの方も丁寧で、いつもリフレッシュできます。</p><div class="who"><span>50代 男性 ／ 大街道店</span><span class="badge">足底＋全身</span></div></div>
-      <div class="voice"><div class="q serif">”</div><div class="stars">★★★★★</div><h3>アロマが最高です</h3><p>アロマテラピーが本当に気持ち良くて、毎月通っています。ピースポ会員割引があるのも助かります。心身ともにリラックスできる時間です。</p><div class="who"><span>40代 女性 ／ 空港通り店</span><span class="badge">アロマ60分</span></div></div>
-      <div class="voice"><div class="q serif">”</div><div class="stars">★★★★★</div><h3>足のむくみが解消</h3><p>立ち仕事で足がパンパンになっていましたが、足つぼを受けてからむくみが解消されました。スタッフさんの技術力も高いです。</p><div class="who"><span>50代 女性 ／ 大街道店</span><span class="badge">足底60分</span></div></div>
-      <div class="voice"><div class="q serif">”</div><div class="stars">★★★★★</div><h3>横揉みが気持ちいい</h3><p>うつ伏せが苦手なので、横揉みでお願いしました。呼吸も楽で、寝てしまうほど気持ちよかったです。腰の張りも楽になりました。</p><div class="who"><span>60代 女性 ／ 空港通り店</span><span class="badge">全身90分</span></div></div>
-      <div class="voice"><div class="q serif">”</div><div class="stars">★★★★★</div><h3>駐車場が便利</h3><p>空港通り店は無料駐車場があるので、車で来られて助かります。お買い物の帰りにふらっと立ち寄れるのが嬉しいです。</p><div class="who"><span>40代 女性 ／ 空港通り店</span><span class="badge">全身60分</span></div></div>
-      <div class="voice"><div class="q serif">”</div><div class="stars">★★★★★</div><h3>睡眠の質が変わりました</h3><p>顔・頭コースを試したら、その日の夜から眠りが深くなった気がします。目の疲れもスッキリ。月1のペースで通うつもりです。</p><div class="who"><span>30代 女性 ／ 大街道店</span><span class="badge">顔頭＋全身</span></div></div>
-      <div class="voice"><div class="q serif">”</div><div class="stars">★★★★★</div><h3>出張帰りに重宝</h3><p>空港から近いので、出張から戻る日にそのまま立ち寄れて重宝しています。飛行機での腰の張りがほぐれて最高です。</p><div class="who"><span>50代 男性 ／ 空港通り店</span><span class="badge">全身60分</span></div></div>
-      <div class="voice"><div class="q serif">”</div><div class="stars">★★★★★</div><h3>夫婦で利用しています</h3><p>夫婦で月に1回、メンテナンスがてら通っています。会員割引も嬉しいですし、二人で行けるのが幸せな時間です。</p><div class="who"><span>50代 夫婦 ／ 大街道店</span><span class="badge">それぞれのコース</span></div></div>
-      <div class="voice"><div class="q serif">”</div><div class="stars">★★★★★</div><h3>銀天街でお買い物のついでに</h3><p>銀天街で買い物のあと、コメダの2階にあるP・SPO リラクゼーションさんでひと休み。立地が最高です。</p><div class="who"><span>40代 女性 ／ 大街道店</span><span class="badge">足底30分</span></div></div>
-      <div class="voice"><div class="q serif">”</div><div class="stars">★★★★★</div><h3>初めてでも安心でした</h3><p>カウンセリングで丁寧に話を聞いてくださり、初めてでも安心して施術を受けられました。横向きの姿勢が新鮮で楽でした。</p><div class="who"><span>30代 男性 ／ 空港通り店</span><span class="badge">全身60分</span></div></div>
-      <div class="voice"><div class="q serif">”</div><div class="stars">★★★★★</div><h3>価格が良心的</h3><p>これだけしっかりした施術でこの価格、本当にコスパがいいです。続けやすいから、体調管理にも役立っています。</p><div class="who"><span>40代 男性 ／ 大街道店</span><span class="badge">全身60分</span></div></div>
+      <div class="voice" data-tags="okaido yokomomi"><div class="q serif">”</div><div class="stars">★★★★★</div><h3>肩こりが楽になりました</h3><p>デスクワークで慢性的な肩こりに悩んでいましたが、横揉み施術を受けてからとても楽になりました。リーズナブルな価格なので定期的に通えるのも嬉しいです。</p><div class="who"><span>40代 女性 ／ 大街道店</span><span class="badge">全身60分</span></div></div>
+      <div class="voice" data-tags="okaido ashitsubo yokomomi"><div class="q serif">”</div><div class="stars">★★★★★</div><h3>仕事帰りに利用しています</h3><p>大街道店は遅くまで営業しているので、仕事帰りに立ち寄れて便利です。スタッフの方も丁寧で、いつもリフレッシュできます。</p><div class="who"><span>50代 男性 ／ 大街道店</span><span class="badge">足底＋全身</span></div></div>
+      <div class="voice" data-tags="airport aroma"><div class="q serif">”</div><div class="stars">★★★★★</div><h3>アロマが最高です</h3><p>アロマテラピーが本当に気持ち良くて、毎月通っています。ピースポ会員割引があるのも助かります。心身ともにリラックスできる時間です。</p><div class="who"><span>40代 女性 ／ 空港通り店</span><span class="badge">アロマ60分</span></div></div>
+      <div class="voice" data-tags="okaido ashitsubo"><div class="q serif">”</div><div class="stars">★★★★★</div><h3>足のむくみが解消</h3><p>立ち仕事で足がパンパンになっていましたが、足つぼを受けてからむくみが解消されました。スタッフさんの技術力も高いです。</p><div class="who"><span>50代 女性 ／ 大街道店</span><span class="badge">足底60分</span></div></div>
+      <div class="voice" data-tags="airport yokomomi"><div class="q serif">”</div><div class="stars">★★★★★</div><h3>横揉みが気持ちいい</h3><p>うつ伏せが苦手なので、横揉みでお願いしました。呼吸も楽で、寝てしまうほど気持ちよかったです。腰の張りも楽になりました。</p><div class="who"><span>60代 女性 ／ 空港通り店</span><span class="badge">全身90分</span></div></div>
+      <div class="voice" data-tags="airport yokomomi"><div class="q serif">”</div><div class="stars">★★★★★</div><h3>駐車場が便利</h3><p>空港通り店は無料駐車場があるので、車で来られて助かります。お買い物の帰りにふらっと立ち寄れるのが嬉しいです。</p><div class="who"><span>40代 女性 ／ 空港通り店</span><span class="badge">全身60分</span></div></div>
+      <div class="voice" data-tags="okaido yokomomi"><div class="q serif">”</div><div class="stars">★★★★★</div><h3>睡眠の質が変わりました</h3><p>顔・頭コースを試したら、その日の夜から眠りが深くなった気がします。目の疲れもスッキリ。月1のペースで通うつもりです。</p><div class="who"><span>30代 女性 ／ 大街道店</span><span class="badge">顔頭＋全身</span></div></div>
+      <div class="voice" data-tags="airport yokomomi"><div class="q serif">”</div><div class="stars">★★★★★</div><h3>出張帰りに重宝</h3><p>空港から近いので、出張から戻る日にそのまま立ち寄れて重宝しています。飛行機での腰の張りがほぐれて最高です。</p><div class="who"><span>50代 男性 ／ 空港通り店</span><span class="badge">全身60分</span></div></div>
+      <div class="voice" data-tags="okaido"><div class="q serif">”</div><div class="stars">★★★★★</div><h3>夫婦で利用しています</h3><p>夫婦で月に1回、メンテナンスがてら通っています。会員割引も嬉しいですし、二人で行けるのが幸せな時間です。</p><div class="who"><span>50代 夫婦 ／ 大街道店</span><span class="badge">それぞれのコース</span></div></div>
+      <div class="voice" data-tags="okaido ashitsubo"><div class="q serif">”</div><div class="stars">★★★★★</div><h3>銀天街でお買い物のついでに</h3><p>銀天街で買い物のあと、コメダの2階にあるP・SPO リラクゼーションさんでひと休み。立地が最高です。</p><div class="who"><span>40代 女性 ／ 大街道店</span><span class="badge">足底30分</span></div></div>
+      <div class="voice" data-tags="airport yokomomi"><div class="q serif">”</div><div class="stars">★★★★★</div><h3>初めてでも安心でした</h3><p>カウンセリングで丁寧に話を聞いてくださり、初めてでも安心して施術を受けられました。横向きの姿勢が新鮮で楽でした。</p><div class="who"><span>30代 男性 ／ 空港通り店</span><span class="badge">全身60分</span></div></div>
+      <div class="voice" data-tags="okaido yokomomi"><div class="q serif">”</div><div class="stars">★★★★★</div><h3>価格が良心的</h3><p>これだけしっかりした施術でこの価格、本当にコスパがいいです。続けやすいから、体調管理にも役立っています。</p><div class="who"><span>40代 男性 ／ 大街道店</span><span class="badge">全身60分</span></div></div>
     </div>
-    <p style="text-align:center;color:var(--muted);font-size:12.5px;margin-top:30px">※ フィルター機能は表示イメージです。</p>
   </div>
 </section>
 
@@ -514,5 +518,37 @@
     <span class="cta-ico">✓</span><span class="cta-lbl">予約する</span>
   </a>
 </nav>
+<script>
+// お客様の声：カテゴリしぼり込み
+(function () {
+  var btns = document.querySelectorAll('.filters .f');
+  var cards = document.querySelectorAll('.voice-grid .voice');
+  var count = document.getElementById('filterCount');
+  if (!btns.length || !cards.length) return;
+
+  function apply(key) {
+    var shown = 0;
+    cards.forEach(function (c) {
+      var hit = key === 'all' || (' ' + (c.dataset.tags || '') + ' ').indexOf(' ' + key + ' ') > -1;
+      c.hidden = !hit;
+      if (hit) shown++;
+    });
+    if (count) count.textContent = shown + '件を表示中';
+  }
+
+  btns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      btns.forEach(function (o) {
+        var on = o === b;
+        o.classList.toggle('active', on);
+        o.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+      apply(b.dataset.filter);
+    });
+  });
+
+  apply('all');
+})();
+</script>
 </body>
 </html>

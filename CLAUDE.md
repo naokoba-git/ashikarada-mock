@@ -6,9 +6,9 @@
 **2026-07-22 にリブランド確定：店舗名「あしカラダ」→「P・SPO リラクゼーション」、新ドメイン `pspo-relaxation.jp`。**
 **2026-07-23 に Cloudflare Pages デプロイ完了（Phase 1）: `https://pspo-relaxation.pages.dev`（GitHub連携・pushで自動デプロイ・noindex 3層）。実TOPを `index.html` にリネームし比較ビューアを退避、クライアントには「完全に実際と同じ」実サイトを表示。クリーンURL（`/menu` 等）実装済み。詳細は memory `project_pspo-relaxation-hosting-domain` / `project_cloudflare-pages-clean-url-behavior` 参照。**
 
-## 🔜 次セッション開始点（2026-07-22 セッション7 終了時点）
+## 🔜 次セッション開始点（2026-07-22 セッション8 終了時点）
 **タスク: `pspo-relaxation.jp` のネームサーバー切替（本番ドメイン接続）。⚠️メール稼働中＝手順厳守。**
-- **サイト側の作業は一段落**。セッション7で見出し構造の是正とSEO監査の全面対応を完了し全push・本番反映済み（モバイルTOP Lighthouse 65→99・LCP 13.4s→2.0s）。ローカル未pushは監査レポート更新（`a3c5f33`）＋本保存コミットのみ（サイト内容の反映は不要）。
+- **サイト側の作業は一段落**。セッション8でプライバシーポリシー・sitemap配信・ファビコンを追加し全push・本番実測PASS。残りは公開当日の作業のみで、手順は **`Docs/公開切替手順.md`**（正本）にまとめてある。
 - **再開手順（推奨=オプションA）**:
   1. ユーザーがCloudflareで**ゾーンだけ追加**（`ドメイン概要`→`サイトを追加`→`pspo-relaxation.jp`→**Freeプラン選択**）。※NSを切らない限り無害。
   2. 表示される**Cloudflare NS2本**をユーザーが貼る。
@@ -18,8 +18,8 @@
   > `pspo-relaxation.jp` のネームサーバーを下記2つへ変更をお願いします。① ★____.ns.cloudflare.com ② ★____.ns.cloudflare.com ／ 事前にDNS(Web・メール)移設済み・切替後もメール/現行サイト継続。
 - **後日のWeb本番切替（段階3）**: apexをPagesに向ける前に、**MXをさくら実メールサーバ名（`www2192.sakura.ne.jp`系・要さくらパネル確認）へ付替え**。MXがapex参照のままだとメール断。
 - 現行DNS棚卸し結果: NS=`ns1/ns2.dns.ne.jp`(さくら) / A=`182.48.49.102` / MX=`10 pspo-relaxation.jp` / SPF=`v=spf1 a:www2192.sakura.ne.jp mx ~all`。
-- **公開時にまとめてやること**: noindex 3層の解除 → `Docs/seo-audit/sitemap.xml` を `mocks/` へ移設 → `robots.txt` 本番版へ差替 → Google Search Console 登録。
-- **クライアント判断待ち**: メニュー名「睡眠改善コース」の改名可否／施術者情報（資格・経歴・写真＝E-E-A-Tの最大の弱点）／プライバシーポリシーの事業者情報／透過ロゴ。
+- **公開時にまとめてやること**: → **`Docs/公開切替手順.md` に全手順を集約済み**（noindex 3層解除／robots.txt本番版／sitemapのlastmod更新／GSC登録／curlでの実機検証コマンド）。sitemap移設は完了済み。
+- **クライアント判断待ち**: メニュー名「睡眠改善コース」の改名可否／施術者情報（資格・経歴・写真＝E-E-A-Tの最大の弱点）／**プライバシーポリシーの事業者情報（`page-privacy.html` の【要確認】7箇所。`grep -c 'class="todo"'` が0になれば完了）**／透過ロゴ。
 
 - **対象サイト**: https://あしカラダ松山店.jp/ （Punycode: `https://xn--l8jzb2o0cyjn09v9ed4ox.jp/`）
 - **既存サイトの作り**: readdy 製（画像は `storage.readdy-site.link` / `public.readdy.ai` にホスト）
@@ -202,9 +202,11 @@ cd mocks && python3 -m http.server 8777
 
 - 2026-07-22 セッション7（見出し構造是正・SEO監査・全面改善）: ①**見出しレベルの飛びを全12ページで是正**（h2→h4/h5・h1→h3。タグ是正と同時にCSSセレクタを改名し見た目は完全据え置き。フッターの`<h5>`は見出しでなくラベルなので`<p class="foot-title">`＋`<nav aria-label>`へ）②**TOPのH1に地域＋業種を明示** ③**`seo-audit`スキルで6並列監査**（67/100）→ `superpowers:writing-plans` で10タスク計画 → `subagent-driven-development` で実装（タスクごとにレビュー）。ソフト404解消・タップ領域44px・CTAコントラストAA・モバイル固定CTAバー・画像の自前ホスト化+WebP・ヒーローimg化+preload・構造化データ修正・薬機法配慮・セキュリティヘッダ・開発用HTMLの恒久noindex。**モバイルTOP Lighthouse 65→99 / LCP 13.4s→2.0s(-85%)**。全push・本番反映済み。新memory: `feedback_subagent-silent-exit-verify-yourself` / `feedback_plan-values-must-be-measured` / `project_pspo-compliance-decisions` / `project_pspo-public-dir-hygiene`。
 
+- 2026-07-22 セッション8（プライバシーポリシー・配信ファイル整備・ファビコン）: ①**プライバシーポリシー新規作成**（`page-privacy.html` / `/privacy`・全10条）。サイトにフォームもGA/GTMも無い実態に合わせて記述（「入力フォームはありません」「アクセス解析ツール未使用・Googleマップ埋込のCookieのみ」）。事業者情報は未確定のため**【要確認】7箇所を可視マーカー**で残置。**特商法表記は不要と判断**（店頭決済のみで通信販売に非該当）②**全13ページのフッター最下部に規約リンク**を追加（タップ領域44px実測）③**sitemap.xml を `Docs/seo-audit/` から `mocks/` へ移設**（＝それまで `/sitemap.xml` は404だった）・`/privacy` 追加で12URL ④`_redirects` に `/privacy` の200リライトと301正規化を追加 ⑤**`mocks/vercel.json` を削除**（Vercel時代の遺物が公開ディレクトリから取得可能だった）⑥**ファビコン一式を新規作成**（ロゴから「P」を抽出→紺地白抜き。ico/PNG各種＋webmanifest＋head5タグ）⑦**`Docs/公開切替手順.md` を新設**（noindex 3層解除・GSC登録の実行手順の正本）。全push・本番実測PASS。
+
 ## 見出しルール（このサイトの規約・2026-07-22 確定）
 - **h1は各ページに1つだけ**。h2は複数可。h2の中の小見出しは**必ずh3**。h4以下は原則使わない（そもそもその構造にしない）
 - **見出しレベル＝意味。見た目はCSSクラスで与える**（小さく見せたいからh4、は禁止）
 - **見出しでないラベル（フッターの列見出し等）に`<h*>`を当てない**。`<p class="foot-title">`＋`<nav aria-label>` で構造を示す
 
-最終更新: 2026-07-22 セッション7（見出し構造是正・SEO監査・全面改善デプロイ）
+最終更新: 2026-07-22 セッション8（プライバシーポリシー・sitemap配信・ファビコン）

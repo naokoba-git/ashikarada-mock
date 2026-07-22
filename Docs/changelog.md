@@ -1,5 +1,22 @@
 # 修正履歴
 
+## 2026-07-22（セッション7・見出し構造是正＋SEO監査全面対応）
+### バグ修正: 見出しレベルの飛び（h2→h4/h5・h1→h3）を全12ページで是正
+- **変更ファイル**: `mocks/*.html`（全11ページ＋`404.html`）, `mocks/assets/page-template.html`
+- **内容**: 見出しを「サイズで選ぶ」運用になっていたため h2→h4 / h2→h5 の飛び、`page-features.html` の h1→h3 直下りが発生。タグを h3/h2 に是正すると同時に CSS セレクタも改名（`.reason h4`→`h3` / `.voice h5`→`h3` / `.step-line .st h4`→`h3` / `.parking-hi h3`→`h2`）し**見た目は完全据え置き**。フッターの `<h5>` は見出しではなくラベルなので `<p class="foot-title">` ＋ `<nav aria-label>` に置換
+- **理由**: ユーザー指摘。h1は1ページ1つ・小見出しはh3・h4以下は原則使わない、という構造ルールに統一。見出しレベル＝意味であり見た目はCSSで与える
+
+### 改善: TOPのH1に地域＋業種を明示（SEO）
+- **変更ファイル**: `mocks/index.html`
+- **内容**: H1を `<span class="eyebrow">愛媛・松山のマッサージ・リラクゼーションサロン</span>` ＋ `<span class="h1-main">心も体も、ほぐれる時間を。</span>` の2段構成に。PC/SPともレイアウト位置は実測ベースで完全一致させた（`@media(min-width:981px)` にのみ `padding-top:6px`）
+- **理由**: H1がキャッチコピーのみで地域・業種の検索意図に応答していなかった
+
+### 改善: SEO監査（6並列サブエージェント）→ 10タスクの改善を実装・デプロイ
+- **変更ファイル**: `mocks/` 13ファイル, `mocks/_headers`, `mocks/_redirects`, `mocks/404.html`（新規）, `mocks/assets/img/`（新規・WebP 5点）
+- **内容**: ①ソフト404解消（未定義URLが200でTOPを返していた）→`404.html`追加 ②タップ領域44px確保＋CTAコントラストAA適合（`btn-gold`を`gold-deep`へ・`--muted`を`#67726b`へ） ③モバイル下部固定CTAバー追加（電話2店舗/LINE/予約・クラス名は既存`.cta-tel`との衝突回避で`cta-bar-*`） ④外部CDN(readdy)依存の画像5点を自前ホスト化＋WebP変換（-65〜67%） ⑤ヒーローを`<img>`化し`preload`+`fetchpriority=high`（LCP対策） ⑥構造化データ修正（logo誤指定・`@id`連携・店舗別image・パンくず3階層・実料金OfferCatalog） ⑦薬機法配慮（お客様の声に個人差注記／ヘッドスパ説明文を体感表現へ） ⑧セキュリティヘッダ（HSTS/X-Frame-Options/Referrer-Policy/Permissions-Policy） ⑨開発用HTML（mock-a〜d/viewer/_contact）を`_headers`で恒久noindex ⑩`_redirects`に`.html`→クリーンURLの301明示、テンプレの旧リンク24件（実在しない`mock-a-real.html`含む）を修正
+- **理由**: SEO監査スコア67/100。実測結果はモバイルTOP **65→99・LCP 13.4s→2.0s(-85%)** / `/stores/okaido` 68→100 / `/menu` 92→100 / `/voice` 94→100 / デスクトップTOP 100（LCP 0.6s）
+- **維持した制約**: メニュー名「睡眠改善コース」は変更せず／`aggregateRating`・`review`構造化は裏付けなしのため追加せず／LINE緑`#06c755`とゴールドは据え置き／noindex 3層は公開時まで維持
+
 ## 2026-07-23（セッション6）
 ### バグ修正: TOPグローバルメニューがページ内アンカーで下層と不整合＋リンク切れ
 - **変更ファイル**: `mocks/index.html`

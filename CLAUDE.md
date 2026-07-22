@@ -6,11 +6,9 @@
 **2026-07-22 にリブランド確定：店舗名「あしカラダ」→「P・SPO リラクゼーション」、新ドメイン `pspo-relaxation.jp`。**
 **2026-07-23 に Cloudflare Pages デプロイ完了（Phase 1）: `https://pspo-relaxation.pages.dev`（GitHub連携・pushで自動デプロイ・noindex 3層）。実TOPを `index.html` にリネームし比較ビューアを退避、クライアントには「完全に実際と同じ」実サイトを表示。クリーンURL（`/menu` 等）実装済み。詳細は memory `project_pspo-relaxation-hosting-domain` / `project_cloudflare-pages-clean-url-behavior` 参照。**
 
-## 🔜 次セッション開始点（2026-07-23 セッション6 終了時点）
+## 🔜 次セッション開始点（2026-07-22 セッション7 終了時点）
 **タスク: `pspo-relaxation.jp` のネームサーバー切替（本番ドメイン接続）。⚠️メール稼働中＝手順厳守。**
-- 完了済み: Pagesデプロイ・実サイト化・クリーンURL。**セッション6でTOPナビ統一・ロゴ相対パス修正・店舗マップ刷新（公式pb埋込+geo構造化）を実施し全pushしライブ検証済み**。ローカル未pushは本保存のdocsコミットのみ（サイト内容は反映不要）。
-- セッション6の詳細: memory `reference_google-maps-embed-place-label`（マップ埋込の正攻法）・`feedback_post-deploy-live-verify-cache`（デプロイ後ライブ確認のキャッシュ注意）を新設。
-- 中断理由: Cloudflare「サイト追加」画面がブラウザのレンダラー不調で描画できず（スクショ連続タイムアウト）。高リスク作業のためユーザーに段取り提示して終了。
+- **サイト側の作業は一段落**。セッション7で見出し構造の是正とSEO監査の全面対応を完了し全push・本番反映済み（モバイルTOP Lighthouse 65→99・LCP 13.4s→2.0s）。ローカル未pushは監査レポート更新（`a3c5f33`）＋本保存コミットのみ（サイト内容の反映は不要）。
 - **再開手順（推奨=オプションA）**:
   1. ユーザーがCloudflareで**ゾーンだけ追加**（`ドメイン概要`→`サイトを追加`→`pspo-relaxation.jp`→**Freeプラン選択**）。※NSを切らない限り無害。
   2. 表示される**Cloudflare NS2本**をユーザーが貼る。
@@ -20,6 +18,8 @@
   > `pspo-relaxation.jp` のネームサーバーを下記2つへ変更をお願いします。① ★____.ns.cloudflare.com ② ★____.ns.cloudflare.com ／ 事前にDNS(Web・メール)移設済み・切替後もメール/現行サイト継続。
 - **後日のWeb本番切替（段階3）**: apexをPagesに向ける前に、**MXをさくら実メールサーバ名（`www2192.sakura.ne.jp`系・要さくらパネル確認）へ付替え**。MXがapex参照のままだとメール断。
 - 現行DNS棚卸し結果: NS=`ns1/ns2.dns.ne.jp`(さくら) / A=`182.48.49.102` / MX=`10 pspo-relaxation.jp` / SPF=`v=spf1 a:www2192.sakura.ne.jp mx ~all`。
+- **公開時にまとめてやること**: noindex 3層の解除 → `Docs/seo-audit/sitemap.xml` を `mocks/` へ移設 → `robots.txt` 本番版へ差替 → Google Search Console 登録。
+- **クライアント判断待ち**: メニュー名「睡眠改善コース」の改名可否／施術者情報（資格・経歴・写真＝E-E-A-Tの最大の弱点）／プライバシーポリシーの事業者情報／透過ロゴ。
 
 - **対象サイト**: https://あしカラダ松山店.jp/ （Punycode: `https://xn--l8jzb2o0cyjn09v9ed4ox.jp/`）
 - **既存サイトの作り**: readdy 製（画像は `storage.readdy-site.link` / `public.readdy.ai` にホスト）
@@ -45,9 +45,12 @@ ashikarada/
 ├── CLAUDE.md            ← このファイル
 ├── Docs/
 │   ├── prompts.md       ← プロンプト履歴
-│   └── changelog.md     ← 修正履歴
+│   ├── changelog.md     ← 修正履歴
+│   ├── plans/           ← 実装計画書（2026-07-22-seo-improvements.md）
+│   └── seo-audit/       ← SEO監査成果物（FULL-AUDIT-REPORT.md / ACTION-PLAN.md / 各領域md / sitemap.xml / screenshots）
 └── mocks/
     ├── index.html       ★ 実サイトTOP（旧 mock-a-real.html をリネーム・本実装基準・`/` で配信）
+    ├── 404.html         ★ 404ページ（ソフト404対策・2026-07-22追加）
     ├── viewer.html      ← 【比較ビューア】旧 index.html を退避（内部用・案A〜D切替。クライアントには出さない）
     ├── _headers         ← Cloudflare Pages: X-Robots-Tag noindex（3層目）
     ├── _redirects       ← Cloudflare Pages: クリーンURL /menu 等 → page-*.html 200リライト
@@ -69,6 +72,7 @@ ashikarada/
     ├── .screenshots/    ← Playwright自動検証スクリプト＆PNG（20枚）
     └── assets/
         ├── page-template.html  ★ 下層共通テンプレート（ヘッダー/フッター/CSS/CTA骨格）
+        ├── img/         ★ 自前ホスト画像（WebP+JPG 5点・readdy依存を解消）
         ├── line-qr.svg  ← LINE公式 lin.ee/wmRAMM9 のQR（SVG・A案ink色）
         └── line-qr.png  ← 同上 PNG 480px
 ```
@@ -167,7 +171,8 @@ cd mocks && python3 -m http.server 8777
 - [x] **実サイト化（比較ビューア退避・TOP=index.html）** → 完了（2026-07-23）
 - [x] **クリーンURL設定**（`/menu` 等・下層ナビも統一） → 完了（2026-07-23・`_redirects`）
 - [ ] 🔜 **ネームサーバー切替（本番ドメイン接続）**: `pspo-relaxation.jp` はさくら管理・**メール稼働中(MX/SPF)**。①Cloudflareにゾーン追加→②メール込みDNS複製→③検証→④業者へNS切替指示。⚠️複製前にNS切替するとメール断
-- [ ] 🔜 **公開前の残り**: noindex解除（公開時）／readdy画像の自前ホスト化／geo座標をGBPから追加
+- [x] **SEO監査＋全面改善** → 完了（2026-07-22・スコア67/100→主要指摘を全対応・readdy画像も自前ホスト化済み）
+- [ ] 🔜 **公開前の残り**: noindex 3層解除／`Docs/seo-audit/sitemap.xml` を `mocks/` へ移設／robots.txt 本番版差替／GSC登録
 - [ ] ⏳ **クライアントから透過ロゴ(PNG/SVG)＋暗地用の白/反転版** → 受領後フッターも画像化
 - [ ] クライアントレビュー → 文言・写真差し替えの反映
 
@@ -185,4 +190,11 @@ cd mocks && python3 -m http.server 8777
 
 - 2026-07-23 セッション6（TOPナビ統一・ロゴ修正・店舗マップ刷新）: ①**TOPグローバルメニューをクリーンURL別ページリンクに統一**（`#first`等アンカー→`/first-time`等。`初めての方へ`/`よくある質問`のリンク切れ2件解消。本文CTAのページ内スクロールは据置）②**ロゴ/QRの相対パスをroot-relativeに統一**（`/stores/okaido`のネスト階層で相対`assets/`が404→`/assets/`へ全11p+テンプレ修正）③**店舗マップを公式pb埋込コードに刷新**（クライアント提供の共有リンク解決→店名`あしカラダ`ラベル付き情報カード表示・中心ズレ補正・ズーム`1d3000`街区レベル）＋**JSON-LDにgeo座標/hasMapを全6箇所追加**（マップと構造化の位置一致）。全pushしライブで両店の描画・店名・位置を検証。新memory: `reference_google-maps-embed-place-label` / `feedback_post-deploy-live-verify-cache`。
 
-最終更新: 2026-07-23 セッション6（TOPナビ統一・ロゴ相対パス修正・店舗マップ刷新・geo構造化）
+- 2026-07-22 セッション7（見出し構造是正・SEO監査・全面改善）: ①**見出しレベルの飛びを全12ページで是正**（h2→h4/h5・h1→h3。タグ是正と同時にCSSセレクタを改名し見た目は完全据え置き。フッターの`<h5>`は見出しでなくラベルなので`<p class="foot-title">`＋`<nav aria-label>`へ）②**TOPのH1に地域＋業種を明示** ③**`seo-audit`スキルで6並列監査**（67/100）→ `superpowers:writing-plans` で10タスク計画 → `subagent-driven-development` で実装（タスクごとにレビュー）。ソフト404解消・タップ領域44px・CTAコントラストAA・モバイル固定CTAバー・画像の自前ホスト化+WebP・ヒーローimg化+preload・構造化データ修正・薬機法配慮・セキュリティヘッダ・開発用HTMLの恒久noindex。**モバイルTOP Lighthouse 65→99 / LCP 13.4s→2.0s(-85%)**。全push・本番反映済み。新memory: `feedback_subagent-silent-exit-verify-yourself` / `feedback_plan-values-must-be-measured` / `project_pspo-compliance-decisions` / `project_pspo-public-dir-hygiene`。
+
+## 見出しルール（このサイトの規約・2026-07-22 確定）
+- **h1は各ページに1つだけ**。h2は複数可。h2の中の小見出しは**必ずh3**。h4以下は原則使わない（そもそもその構造にしない）
+- **見出しレベル＝意味。見た目はCSSクラスで与える**（小さく見せたいからh4、は禁止）
+- **見出しでないラベル（フッターの列見出し等）に`<h*>`を当てない**。`<p class="foot-title">`＋`<nav aria-label>` で構造を示す
+
+最終更新: 2026-07-22 セッション7（見出し構造是正・SEO監査・全面改善デプロイ）

@@ -4,7 +4,21 @@
 愛媛・松山のリラクゼーションサロン「あしカラダ」の既存サイトを高品質化するための**デザインモック制作**プロジェクト。
 **2026-06-27 にA案（上質・高級スパ系）で方向性確定。TOP＋下層10ページが完成。**
 **2026-07-22 にリブランド確定：店舗名「あしカラダ」→「P・SPO リラクゼーション」、新ドメイン `pspo-relaxation.jp`。**
-**2026-07-23 に Cloudflare Pages デプロイ完了（Phase 1）: `https://pspo-relaxation.pages.dev`（GitHub連携・pushで自動デプロイ・noindex 3層）。実TOPを `index.html` にリネームし比較ビューアを退避、クライアントには「完全に実際と同じ」実サイトを表示。クリーンURL（`/menu` 等）実装済み。詳細は memory `project_pspo-relaxation-hosting-domain` / `project_cloudflare-pages-clean-url-behavior` 参照。次はネームサーバー切替（メールDNS複製が先）。**
+**2026-07-23 に Cloudflare Pages デプロイ完了（Phase 1）: `https://pspo-relaxation.pages.dev`（GitHub連携・pushで自動デプロイ・noindex 3層）。実TOPを `index.html` にリネームし比較ビューアを退避、クライアントには「完全に実際と同じ」実サイトを表示。クリーンURL（`/menu` 等）実装済み。詳細は memory `project_pspo-relaxation-hosting-domain` / `project_cloudflare-pages-clean-url-behavior` 参照。**
+
+## 🔜 次セッション開始点（2026-07-23 終了時点）
+**タスク: `pspo-relaxation.jp` のネームサーバー切替（本番ドメイン接続）。⚠️メール稼働中＝手順厳守。**
+- 完了済み: Pagesデプロイ・実サイト化・クリーンURL・全push・docs/memory更新。ローカル未pushは docsコミット `fe1e360` のみ（サイト内容は反映不要）。
+- 中断理由: Cloudflare「サイト追加」画面がブラウザのレンダラー不調で描画できず（スクショ連続タイムアウト）。高リスク作業のためユーザーに段取り提示して終了。
+- **再開手順（推奨=オプションA）**:
+  1. ユーザーがCloudflareで**ゾーンだけ追加**（`ドメイン概要`→`サイトを追加`→`pspo-relaxation.jp`→**Freeプラン選択**）。※NSを切らない限り無害。
+  2. 表示される**Cloudflare NS2本**をユーザーが貼る。
+  3. Claudeが**取り込みDNSを現行(さくら)と突合**し MX/SPF/A/www/(DKIM等) 完全複製を検証（メール安全ゲート）。
+  4. 検証OK後、**業者送付文**（下記）にNS2本を差し込んで完成 → ユーザーが業者へ送付。
+- **業者送付文ドラフト**（NS2本は段階1で確定後に差込）:
+  > `pspo-relaxation.jp` のネームサーバーを下記2つへ変更をお願いします。① ★____.ns.cloudflare.com ② ★____.ns.cloudflare.com ／ 事前にDNS(Web・メール)移設済み・切替後もメール/現行サイト継続。
+- **後日のWeb本番切替（段階3）**: apexをPagesに向ける前に、**MXをさくら実メールサーバ名（`www2192.sakura.ne.jp`系・要さくらパネル確認）へ付替え**。MXがapex参照のままだとメール断。
+- 現行DNS棚卸し結果: NS=`ns1/ns2.dns.ne.jp`(さくら) / A=`182.48.49.102` / MX=`10 pspo-relaxation.jp` / SPF=`v=spf1 a:www2192.sakura.ne.jp mx ~all`。
 
 - **対象サイト**: https://あしカラダ松山店.jp/ （Punycode: `https://xn--l8jzb2o0cyjn09v9ed4ox.jp/`）
 - **既存サイトの作り**: readdy 製（画像は `storage.readdy-site.link` / `public.readdy.ai` にホスト）

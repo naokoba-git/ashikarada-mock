@@ -1,5 +1,26 @@
 # 修正履歴
 
+## 2026-07-22
+### 機能追加: お得なチケットページ
+- **変更ファイル**: `mocks/page-tickets.html`（新規）, `mocks/assets/page-template.html`, `mocks/*.html`, `mocks/index.html`, `mocks/.screenshots/_shot.cjs`
+- **内容**: ライブ`/tickets`をA案テイストで再現（全身60分回数券 1枚¥3,700／5枚¥18,500[一番お得]／10枚¥37,000＋ご利用について）。導線をフッター「メニュー」列＋モバイルメニュー最下部ボタンに追加
+- **理由**: クライアントサイトにお得なチケットページが追加されたため
+
+### 機能追加: 新ドメイン向けメタ＋構造化データ(JSON-LD)
+- **変更ファイル**: 全11ページ＋`assets/page-template.html`の`<head>`
+- **内容**: canonical/OGP/Twitterカード＋JSON-LD（Organization/DaySpa[LocalBusiness]×2/BreadcrumbList/page-faqにFAQPage23問）。全URLを`https://pspo-relaxation.jp`のクリーンURLで
+- **理由**: 新ドメイン`pspo-relaxation.jp`への移行準備。noindexは公開時まで維持・geoは捏造せず省略
+
+### スタイル: 店舗名リブランド あしカラダ→P・SPO リラクゼーション
+- **変更ファイル**: 確定A案12ファイル＋`index.html`
+- **内容**: タイトル/メタ/OGP/JSON-LD名/本文/コピーライト/altを新名称に一括置換。ヘッダー/フッターのロゴ`.mark`2箇所は「あしカラダ」のまま保持（実ロゴ待ち）。TOPのtitle/meta冗長も解消
+- **理由**: 店舗名変更。ロゴデータは後日受領のためロゴ部分は据え置き指示
+
+### 機能追加: ヘッダーロゴ画像化
+- **変更ファイル**: 確定A案12ファイル, `mocks/assets/logo-pspo.png`（新規）
+- **内容**: ヘッダーのテキストロゴを`<img src=assets/logo-pspo.png>`に差替（height54px/SP42px・MATSUYAMA RELAXATIONサブタイトル削除）。フッターは暗地対応でテキスト維持し`word-break:keep-all`で折返し整形
+- **理由**: 実ロゴ提供。白背景/非透過のため暗地フッターは画像化せずテキスト。透過版受領後にフッターも差替予定
+
 ## 2026-06-27
 ### 設定変更: 公開プレビュー本番デプロイ（下層9ページ・noindex 3層ライブ検証）
 - **対象**: GitHub `naokoba-git/ashikarada-mock` (main) ＋ Vercel プロジェクト `mocks`（alias `mocks-neon.vercel.app`）

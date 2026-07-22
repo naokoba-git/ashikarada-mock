@@ -2,7 +2,8 @@
 
 ## 概要
 愛媛・松山のリラクゼーションサロン「あしカラダ」の既存サイトを高品質化するための**デザインモック制作**プロジェクト。
-**2026-06-27 にA案（上質・高級スパ系）で方向性確定。TOP（`mock-a-real.html`）＋下層9ページ（`page-*.html`）が完成し、`https://mocks-neon.vercel.app` に本番反映済み（noindex 3層）。次はクライアントレビュー → 本実装移行へ。**
+**2026-06-27 にA案（上質・高級スパ系）で方向性確定。TOP（`mock-a-real.html`）＋下層10ページ（`page-*.html`）が完成し、`https://mocks-neon.vercel.app` に反映済み（noindex 3層）。**
+**2026-07-22 にリブランド確定：店舗名「あしカラダ」→「P・SPO リラクゼーション」、新ドメイン `pspo-relaxation.jp`、本番ホスティングは Cloudflare Pages 方針。詳細は memory `project_pspo-relaxation-hosting-domain` 参照。次はCloudflareセットアップ or 実装下準備（クリーンURL等）。**
 
 - **対象サイト**: https://あしカラダ松山店.jp/ （Punycode: `https://xn--l8jzb2o0cyjn09v9ed4ox.jp/`）
 - **既存サイトの作り**: readdy 製（画像は `storage.readdy-site.link` / `public.readdy.ai` にホスト）
@@ -132,15 +133,21 @@ cd mocks && python3 -m http.server 8777
 - 2026-06-14: 公開プレビュー（GitHub + Vercel + noindex 3層）公開。
 - 2026-06-27 セッション2: **A案で方向性確定**。実テキスト・実CTAリンク・実電話・実会社概要を反映した `mock-a-real.html` を作成。両店舗予約CTAを同色統一、料金表2カード完全整列、LINE公式QRをA案テイストで2カラム組込み。
 - 2026-06-27 セッション3: **下層9ページ一気に完成＋本番デプロイ**。共通テンプレート抽出→Task並列で9サブエージェント同時生成→Playwrightで20枚スクショ全項目PASS。`index.html` ビューアを「上段4案＋下段A案下層10ページピル型ナビ」の2段構成に拡張。`git push` ＋ `vercel deploy --prod` で `mocks-neon.vercel.app` に反映、noindex 3層を本番URLでライブ検証済み。
+- 2026-07-22 セッション4（orca coordinator＋sonnetワーカー運用）: ①**お得なチケットページ追加**（`page-tickets.html`・回数券3プラン・フッター＋スマホ最下部ボタン導線）②**新ドメイン`pspo-relaxation.jp`向けメタ＋JSON-LD構造化データ（標準）**を全11ページ＋テンプレに追加（sonnet実装→Opusレビュー）③**店舗名リブランド あしカラダ→P・SPO リラクゼーション**（ロゴ.markは保持）④**ヘッダーをP・SPOロゴ画像に差替**（`assets/logo-pspo.png`・フッターはテキスト・折返しはword-break:keep-all）⑤**本番ホスティングをCloudflare Pagesに決定**（未着手）。全て未push（ローカル6コミット）。委譲手順は memory `feedback_orca-dispatch-inject-fallback`。
 
 ## TODO（次にやること）
 - [x] 4案からベースを選定 → **A案で確定（2026-06-27）**
 - [x] **下層9ページ作成** → 完成（2026-06-27）
 - [x] **本番デプロイ** → `mocks-neon.vercel.app` に反映済み（2026-06-27・noindex 3層ライブ検証済み）
-- [ ] **クライアントレビュー → 文言・写真差し替えの反映**（次セッションの主タスク）
-- [ ] スマホ最適化の最終調整
-- [ ] 実画像の差し替え／追加撮影の検討
-- [ ] 本実装の技術スタック決定（静的HTML / Next.js / 既存readdy更新 など）
+- [x] **お得なチケットページ追加** → 完成（2026-07-22）
+- [x] **リブランド（P・SPO リラクゼーション）＋新ドメイン向けメタ・構造化** → 完成（2026-07-22）
+- [x] **ヘッダーロゴ画像化** → 完成（2026-07-22・透過版待ちでフッターは保留）
+- [x] **本実装の技術スタック決定** → **静的HTML＋Cloudflare Pages**（2026-07-22決定・未着手）
+- [ ] ⏳ **未push 6コミットの push**（ユーザー明示指示待ち）
+- [ ] 🔜 **Cloudflareセットアップ**（アカウント→Pages接続→pspo-relaxation.jp DNS。手順書作成 or 実セットアップ補助。ユーザー操作要）
+- [ ] 🔜 **公開前の実装下準備**: クリーンURL設定（`page-menu.html`→`/menu`）／noindex解除（公開時）／readdy画像の自前ホスト化／geo座標をGBPから追加
+- [ ] ⏳ **クライアントから透過ロゴ(PNG/SVG)＋暗地用の白/反転版** → 受領後フッターも画像化
+- [ ] クライアントレビュー → 文言・写真差し替えの反映
 
 ## 注意点
 - **push/deploy禁止**（明示指示があるまでローカルコミットのみ）
@@ -152,4 +159,4 @@ cd mocks && python3 -m http.server 8777
 - **お得なチケット導線**: フッター「メニュー」列＋モバイルメニュー最下部ボタン（btn-outline）の2箇所（PC上部ナビには入れない方針）。リンク先は全ファイル `page-tickets.html`（`cleanUrls`未設定のため `/tickets` は不可）
 - **新ドメイン＝`pspo-relaxation.jp`**（P・SPO/三福グループのリラクゼーション部門）。全11ページ＋テンプレの`<head>`に canonical/OGP/Twitterカード＋JSON-LD構造化（Organization / DaySpa[LocalBusiness]×2店舗 / 各ページBreadcrumbList / page-faqにFAQPage23問）を追加済み（2026-07-22・sonnetワーカー実装→Opusレビュー済み）。canonicalは対応表どおり（TOP=`/`, 他は `/menu` `/stores/okaido` 等クリーンURL）。**noindex 3層は本番公開時まで維持（構造化追加時に外していない）**。geoは未設定（捏造回避・本実装時にGBP座標で追加）。og:imageは暫定でreaddyヒーロー画像→自前ホスト化時に差替。
 
-最終更新: 2026-06-27 セッション3（本番デプロイ完了）
+最終更新: 2026-07-22 セッション4（チケット追加・リブランド P・SPO リラクゼーション・構造化データ・ロゴ差替・Cloudflare本番方針決定）

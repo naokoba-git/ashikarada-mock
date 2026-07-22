@@ -2,8 +2,9 @@
 
 ## 概要
 愛媛・松山のリラクゼーションサロン「あしカラダ」の既存サイトを高品質化するための**デザインモック制作**プロジェクト。
-**2026-06-27 にA案（上質・高級スパ系）で方向性確定。TOP（`mock-a-real.html`）＋下層10ページ（`page-*.html`）が完成し、`https://mocks-neon.vercel.app` に反映済み（noindex 3層）。**
-**2026-07-22 にリブランド確定：店舗名「あしカラダ」→「P・SPO リラクゼーション」、新ドメイン `pspo-relaxation.jp`、本番ホスティングは Cloudflare Pages 方針。詳細は memory `project_pspo-relaxation-hosting-domain` 参照。次はCloudflareセットアップ or 実装下準備（クリーンURL等）。**
+**2026-06-27 にA案（上質・高級スパ系）で方向性確定。TOP＋下層10ページが完成。**
+**2026-07-22 にリブランド確定：店舗名「あしカラダ」→「P・SPO リラクゼーション」、新ドメイン `pspo-relaxation.jp`。**
+**2026-07-23 に Cloudflare Pages デプロイ完了（Phase 1）: `https://pspo-relaxation.pages.dev`（GitHub連携・pushで自動デプロイ・noindex 3層）。実TOPを `index.html` にリネームし比較ビューアを退避、クライアントには「完全に実際と同じ」実サイトを表示。クリーンURL（`/menu` 等）実装済み。詳細は memory `project_pspo-relaxation-hosting-domain` / `project_cloudflare-pages-clean-url-behavior` 参照。次はネームサーバー切替（メールDNS複製が先）。**
 
 - **対象サイト**: https://あしカラダ松山店.jp/ （Punycode: `https://xn--l8jzb2o0cyjn09v9ed4ox.jp/`）
 - **既存サイトの作り**: readdy 製（画像は `storage.readdy-site.link` / `public.readdy.ai` にホスト）
@@ -31,8 +32,10 @@ ashikarada/
 │   ├── prompts.md       ← プロンプト履歴
 │   └── changelog.md     ← 修正履歴
 └── mocks/
-    ├── index.html       ← 【比較ビューア】「A実」をデフォルト表示・案A〜D比較も可
-    ├── mock-a-real.html ★ A案実テキスト確定版（TOPページ・本実装基準）
+    ├── index.html       ★ 実サイトTOP（旧 mock-a-real.html をリネーム・本実装基準・`/` で配信）
+    ├── viewer.html      ← 【比較ビューア】旧 index.html を退避（内部用・案A〜D切替。クライアントには出さない）
+    ├── _headers         ← Cloudflare Pages: X-Robots-Tag noindex（3層目）
+    ├── _redirects       ← Cloudflare Pages: クリーンURL /menu 等 → page-*.html 200リライト
     ├── mock-a-premium.html  ← 案A（方向性確認用・ダミー文言）
     ├── mock-b-natural.html  ← 案B ナチュラル癒し系
     ├── mock-c-clean.html    ← 案C クリーン洗練（現グリーン路線を磨く）
@@ -76,10 +79,12 @@ ashikarada/
 - ベースURL: `https://storage.readdy-site.link/project_files/f4855191-8498-4dea-80b6-ea07112d8fed/`
 
 ## 公開プレビュー（クライアント共有用）
-- **公開URL**: https://mocks-neon.vercel.app （4案タブ切替・PC/スマホ切替・noindex）
+- **現・公開URL**: **https://pspo-relaxation.pages.dev**（Cloudflare Pages・実サイト表示・クリーンURL・noindex 3層）。★これを共有する
+- **旧**: https://mocks-neon.vercel.app （Vercel・4案切替ビューア時代。移行済み）
 - **GitHub**: https://github.com/naokoba-git/ashikarada-mock （public）
-- **検索除外**: meta robots / robots.txt / `X-Robots-Tag` ヘッダーの3層でnoindex
-- **更新デプロイ**: 修正後 `vercel deploy --prod --cwd mocks --yes`（git連携の自動デプロイは未設定＝push単体では反映されない。コスト対策で意図的にこの運用）
+- **検索除外**: meta robots / robots.txt / `_headers`の`X-Robots-Tag` の3層でnoindex（本番公開時に解除）
+- **更新デプロイ**: **`git push` で自動デプロイ**（Cloudflare Pages GitHub連携。origin/main への push＝本番反映。push はユーザー明示指示時のみ `CLAUDE_ALLOW_PUSH=1`）
+- **Cloudflare**: アカウント Taichan221@gmail.com / account id `bd41691958f6553343d4ccc9a39d2fd7` / プロジェクト `pspo-relaxation`・出力ディレクトリ `mocks`・Free（課金ゼロ）
 
 ## プレビュー方法（ローカル）
 ```bash
@@ -142,10 +147,12 @@ cd mocks && python3 -m http.server 8777
 - [x] **お得なチケットページ追加** → 完成（2026-07-22）
 - [x] **リブランド（P・SPO リラクゼーション）＋新ドメイン向けメタ・構造化** → 完成（2026-07-22）
 - [x] **ヘッダーロゴ画像化** → 完成（2026-07-22・透過版待ちでフッターは保留）
-- [x] **本実装の技術スタック決定** → **静的HTML＋Cloudflare Pages**（2026-07-22決定・未着手）
-- [ ] ⏳ **未push 6コミットの push**（ユーザー明示指示待ち）
-- [ ] 🔜 **Cloudflareセットアップ**（アカウント→Pages接続→pspo-relaxation.jp DNS。手順書作成 or 実セットアップ補助。ユーザー操作要）
-- [ ] 🔜 **公開前の実装下準備**: クリーンURL設定（`page-menu.html`→`/menu`）／noindex解除（公開時）／readdy画像の自前ホスト化／geo座標をGBPから追加
+- [x] **本実装の技術スタック決定** → **静的HTML＋Cloudflare Pages**（2026-07-22）
+- [x] **Cloudflare Pagesデプロイ（Phase1）** → 完了（2026-07-23・`pspo-relaxation.pages.dev`・GitHub連携・全push済み）
+- [x] **実サイト化（比較ビューア退避・TOP=index.html）** → 完了（2026-07-23）
+- [x] **クリーンURL設定**（`/menu` 等・下層ナビも統一） → 完了（2026-07-23・`_redirects`）
+- [ ] 🔜 **ネームサーバー切替（本番ドメイン接続）**: `pspo-relaxation.jp` はさくら管理・**メール稼働中(MX/SPF)**。①Cloudflareにゾーン追加→②メール込みDNS複製→③検証→④業者へNS切替指示。⚠️複製前にNS切替するとメール断
+- [ ] 🔜 **公開前の残り**: noindex解除（公開時）／readdy画像の自前ホスト化／geo座標をGBPから追加
 - [ ] ⏳ **クライアントから透過ロゴ(PNG/SVG)＋暗地用の白/反転版** → 受領後フッターも画像化
 - [ ] クライアントレビュー → 文言・写真差し替えの反映
 
@@ -156,7 +163,9 @@ cd mocks && python3 -m http.server 8777
 - **下層ページのヘッダー/フッター/CTAは `assets/page-template.html` 由来**。修正時はテンプレートを更新し、各 page-*.html へ同期する（または共通化を本実装フェーズで判断）。
 - 料金行や2カラムレイアウト等の高さ揃えは Playwrightで実寸計測 → CSSで `min-height`/`align-items:stretch` 調整が確実
 - **ヘッダーPCナビは6項目**（初めての方へ／メニュー・料金／施術の特徴／店舗案内／お客様の声／よくある質問）＋予約CTA3つ。ハンバーガー切替境界は980px。※お得なチケットを7項目目に一度入れたが中間幅(981〜1100px)でナビが詰まり横スクロールが出たため、2026-07-22にPCナビからは外した（フッター＋モバイルに集約）。ナビ項目を増やす時はこの幅で overflow 再検証必須。
-- **お得なチケット導線**: フッター「メニュー」列＋モバイルメニュー最下部ボタン（btn-outline）の2箇所（PC上部ナビには入れない方針）。リンク先は全ファイル `page-tickets.html`（`cleanUrls`未設定のため `/tickets` は不可）
+- **お得なチケット導線**: フッター「メニュー」列＋モバイルメニュー最下部ボタン（btn-outline）の2箇所（PC上部ナビには入れない方針）。リンク先は**クリーンURL `/tickets`**（2026-07-23の`_redirects`で全ページ統一済み。実ファイルは `page-tickets.html`）
 - **新ドメイン＝`pspo-relaxation.jp`**（P・SPO/三福グループのリラクゼーション部門）。全11ページ＋テンプレの`<head>`に canonical/OGP/Twitterカード＋JSON-LD構造化（Organization / DaySpa[LocalBusiness]×2店舗 / 各ページBreadcrumbList / page-faqにFAQPage23問）を追加済み（2026-07-22・sonnetワーカー実装→Opusレビュー済み）。canonicalは対応表どおり（TOP=`/`, 他は `/menu` `/stores/okaido` 等クリーンURL）。**noindex 3層は本番公開時まで維持（構造化追加時に外していない）**。geoは未設定（捏造回避・本実装時にGBP座標で追加）。og:imageは暫定でreaddyヒーロー画像→自前ホスト化時に差替。
 
-最終更新: 2026-07-22 セッション4（チケット追加・リブランド P・SPO リラクゼーション・構造化データ・ロゴ差替・Cloudflare本番方針決定）
+- 2026-07-23 セッション5（Cloudflare Pages デプロイ）: **Cloudflare Pages に本番デプロイ（Phase1）**。①GitHub連携（`ashikarada-mock` 限定）でプロジェクト`pspo-relaxation`作成→`pspo-relaxation.pages.dev`公開 ②未pushだった9コミットをpush（origin/main が9遅れていた）＋`_headers`でX-Robots-Tag移植（noindex3層復活）③「完全に実際と同じ」指示で**比較ビューアを`viewer.html`に退避・実TOPを`index.html`にリネーム**し`/`で実サイト配信 ④**クリーンURL不具合を発見・修正**（TOPは`/menu`でリンクするが該当ファイル無く未定義URLがTOPにフォールバック＝「下層ページ消えた」の正体）→`_redirects`で`/menu`等→`page-*.html`を200リライト＋下層10ページのナビ237箇所もクリーンURL統一 ⑤ドメイン`pspo-relaxation.jp`のDNS棚卸し（さくら管理・メール稼働中＝NS切替はメールDNS複製が先）。全push済み。CF Pages固有の落とし穴は memory `project_cloudflare-pages-clean-url-behavior`。
+
+最終更新: 2026-07-23 セッション5（Cloudflare Pages デプロイ・実サイト化・クリーンURL・DNS棚卸し）

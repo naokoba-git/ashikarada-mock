@@ -1,5 +1,21 @@
 # 修正履歴
 
+## 2026-07-23
+### 機能追加: Cloudflare Pages デプロイ（Phase1・クライアント共有先を移行）
+- **変更ファイル**: `mocks/_headers`（新規）, GitHub連携（Cloudflare側設定）
+- **内容**: Cloudflare Pages でプロジェクト`pspo-relaxation`作成（GitHub連携`ashikarada-mock`限定・出力`mocks`・Free）。`https://pspo-relaxation.pages.dev`公開。未pushだった9コミットをpush。`_headers`で`X-Robots-Tag: noindex,nofollow,noarchive`を付与（Vercel`vercel.json`はCF無効のため移植・noindex3層復活）
+- **理由**: 本番ホスティングをVercel→Cloudflare Pagesへ移行（静的で完全無料・商用OK・暴走課金リスク低）
+
+### 変更: 実サイト化（比較ビューア退避・TOPをindex.htmlに）
+- **変更ファイル**: `mocks/index.html`（旧ビューア→`viewer.html`にリネーム）, `mocks/mock-a-real.html`→`mocks/index.html`, 下層10ページのhomeリンク
+- **内容**: 実TOPを`index.html`にリネームし`/`でネイティブ配信。旧比較ビューア（A/B/C/D切替）は`viewer.html`へ退避（内部保全）。下層のhomeリンク`mock-a-real.html`→`/`
+- **理由**: ユーザー指示「完全に実際と同じようにやって」＝案確定後はモック切替を見せず本番同一に（memory `feedback_client-preview-production-identical`）
+
+### バグ修正: クリーンURL未接続で下層ページに到達不能だった不具合
+- **変更ファイル**: `mocks/_redirects`（新規）, `mocks/index.html`, 下層10ページのナビ（`page-*.html`→クリーンURL 237箇所）
+- **内容**: TOPは`/menu`等クリーンURLでリンクするが該当ファイル無く、未定義URLがindex.htmlに200フォールバック→クリックしてもTOP再表示だった。`_redirects`で`/menu /features /stores/okaido`等→`page-*`へ200リライト（宛先は`.html`無しでURL保持）。下層ナビもクリーンURLに統一
+- **理由**: TODOの「クリーンURL設定」未実装分が実サイト表示で露呈。CF Pages固有挙動は memory `project_cloudflare-pages-clean-url-behavior`
+
 ## 2026-07-22
 ### 機能追加: お得なチケットページ
 - **変更ファイル**: `mocks/page-tickets.html`（新規）, `mocks/assets/page-template.html`, `mocks/*.html`, `mocks/index.html`, `mocks/.screenshots/_shot.cjs`

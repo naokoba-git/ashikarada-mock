@@ -181,6 +181,22 @@
     .flow-step{border-right:0}
     .foot-grid{grid-template-columns:1fr}
   }
+
+  /* ===== モバイル下部固定CTAバー ===== */
+  .cta-bar{display:none}
+  @media(max-width:980px){
+    .cta-bar{display:grid;grid-template-columns:repeat(4,1fr);position:fixed;left:0;right:0;bottom:0;z-index:60;
+      background:rgba(255,253,249,.97);backdrop-filter:blur(10px);border-top:1px solid var(--line);
+      box-shadow:0 -6px 24px -14px rgba(40,30,15,.4);padding-bottom:env(safe-area-inset-bottom)}
+    .cta-bar-item{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
+      min-height:56px;font-size:11px;letter-spacing:.04em;color:var(--ink-soft);border-right:1px solid var(--line)}
+    .cta-bar-item:last-child{border-right:0}
+    .cta-ico{font-size:16px;line-height:1}
+    .cta-bar-line{color:#04a847}
+    .cta-bar-reserve{background:var(--gold-deep);color:#fff}
+    /* 固定バーに隠れないよう本文下部に余白 */
+    body{padding-bottom:56px}
+  }
 </style>
 <script type="application/ld+json">
 {
@@ -522,5 +538,19 @@
   // FAQ accordion (使うページのみ動作)
   document.querySelectorAll('.faq-q').forEach(q=>q.addEventListener('click',()=>q.classList.toggle('open')));
 </script>
+<nav class="cta-bar" aria-label="予約導線">
+  <a class="cta-bar-item cta-bar-tel" href="tel:0120919323">
+    <span class="cta-ico">☎</span><span class="cta-lbl">大街道店</span>
+  </a>
+  <a class="cta-bar-item cta-bar-tel" href="tel:0120695427">
+    <span class="cta-ico">☎</span><span class="cta-lbl">空港通り店</span>
+  </a>
+  <a class="cta-bar-item cta-bar-line" href="https://lin.ee/wmRAMM9" target="_blank" rel="noopener">
+    <span class="cta-ico">💬</span><span class="cta-lbl">LINE</span>
+  </a>
+  <a class="cta-bar-item cta-bar-reserve" href="/reserve">
+    <span class="cta-ico">✓</span><span class="cta-lbl">予約する</span>
+  </a>
+</nav>
 </body>
 </html>

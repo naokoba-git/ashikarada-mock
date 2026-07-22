@@ -1,0 +1,6 @@
+# Cloudflare Pages headers
+# 公開プレビュー（クライアント共有用）は検索除外を維持する。
+# meta robots / robots.txt と合わせて3層目（HTTPヘッダー）を担保。
+# 本番公開時にこの noindex 指定を解除する。
+/*
+  X-Robots-Tag: noindex, nofollow, noarchive

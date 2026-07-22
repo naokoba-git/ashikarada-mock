@@ -25,7 +25,7 @@
   :root{
     --ink:#22302c; --ink-soft:#3c4a45; --gold:#a9854f; --gold-deep:#8a6a3a;
     --cream:#f7f2e9; --cream-2:#efe7d8; --paper:#fffdf9; --line:#e0d6c4;
-    --muted:#6f7a73; --line-green:#06c755;
+    --muted:#67726b; --line-green:#06c755;
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
@@ -50,8 +50,8 @@
   .menu a.current{color:var(--ink)}
   .nav-cta{display:flex;gap:8px;align-items:center}
   .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-size:14px;font-weight:500;border-radius:2px;padding:13px 22px;transition:.25s;cursor:pointer;letter-spacing:.04em;border:0}
-  .btn-gold{background:var(--gold);color:#fff}
-  .btn-gold:hover{background:var(--gold-deep)}
+  .btn-gold{background:var(--gold-deep);color:#fff}
+  .btn-gold:hover{background:#6f5530}
   .btn-outline{border:1px solid var(--ink);color:var(--ink);background:transparent}
   .btn-outline:hover{background:var(--ink);color:var(--cream)}
   .btn-ghost{border:1px solid var(--line);color:var(--ink-soft);background:transparent}
@@ -64,7 +64,7 @@
   .head-cta .lbl{display:flex;flex-direction:column;line-height:1.15;text-align:left;align-items:flex-start}
   .head-cta .lbl small{font-size:9.5px;letter-spacing:.16em;opacity:.85;font-weight:500}
   .head-cta .lbl b{font-size:12.5px;font-weight:600;letter-spacing:.04em}
-  .ham{display:none;background:none;border:0;color:var(--ink);font-size:22px;cursor:pointer}
+  .ham{display:none;background:none;border:0;color:var(--ink);font-size:22px;cursor:pointer;padding:11px 12px;margin:-11px -12px;line-height:1;min-width:44px;min-height:44px}
 
   /* ===== Page hero (下層共通) ===== */
   .page-hero{position:relative;padding:90px 0 70px;background:var(--cream);border-bottom:1px solid var(--line);overflow:hidden}
@@ -133,8 +133,8 @@
   .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.4fr;gap:40px;padding-bottom:36px;border-bottom:1px solid rgba(255,255,255,.1)}
   .foot-col .foot-title{color:#fff;font-family:"Shippori Mincho",serif;font-size:15px;letter-spacing:.16em;margin-bottom:18px;font-weight:500}
   .foot-col ul{list-style:none}
-  .foot-col li{margin-bottom:9px}
-  .foot-col a{color:#aeb6b0;transition:.2s}
+  .foot-col li{margin-bottom:0}
+  .foot-col a{color:#aeb6b0;transition:.2s;display:inline-block;padding:10px 0}
   .foot-col a:hover{color:#e7c98c}
   .foot-brand .mark{font-family:"Shippori Mincho",serif;color:#fff;font-size:24px;letter-spacing:.14em;margin-bottom:14px;display:block;word-break:keep-all}
   .foot-brand .desc{font-size:12.5px;line-height:1.9;color:#8b938c;margin-bottom:18px}

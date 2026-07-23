@@ -11,6 +11,7 @@
 /reserve          /page-reserve         200
 /tickets          /page-tickets         200
 /privacy          /page-privacy         200
+/company          /page-company         200
 /stores/okaido    /page-stores-okaido   200
 /stores/airport   /page-stores-airport  200
 /stores           /page-stores          200
@@ -28,3 +29,4 @@
 /page-reserve         /reserve          301
 /page-tickets         /tickets          301
 /page-privacy         /privacy          301
+/page-company         /company          301

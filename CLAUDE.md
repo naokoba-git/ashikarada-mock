@@ -6,11 +6,13 @@
 **2026-07-22 にリブランド確定：店舗名「あしカラダ」→「P・SPO リラクゼーション」、新ドメイン `pspo-relaxation.jp`。**
 **2026-07-23 に Cloudflare Pages デプロイ完了（Phase 1）: `https://pspo-relaxation.pages.dev`（GitHub連携・pushで自動デプロイ・noindex 3層）。実TOPを `index.html` にリネームし比較ビューアを退避、クライアントには「完全に実際と同じ」実サイトを表示。クリーンURL（`/menu` 等）実装済み。詳細は memory `project_pspo-relaxation-hosting-domain` / `project_cloudflare-pages-clean-url-behavior` 参照。**
 
-## 🔜 次セッション開始点（2026-07-23 セッション9 時点）
+## 🔜 次セッション開始点（2026-07-24 セッション10 時点＝NS浸透待ち）
 **タスク: 2ドメインを Cloudflare に集約 → 新ドメイン公開 → 旧（日本語）ドメインを301転送。**
-- **状態: サイトの中身は完成。本番実測PASS・要確認プレースホルダ0件。** 残るのは公開の「手続き」だけで、手順は **`Docs/公開切替手順.md`**（正本）に集約済み。
-- **⚠️ 新セッション最初のアクション: Cloudflare MCP の認証確認**。`claude mcp add --transport http cloudflare-api https://mcp.cloudflare.com/mcp` は**追加済み（`~/.claude.json` プロジェクトスコープ）だが、OAuth認可はまだ**。`/mcp` → `cloudflare-api` → **Authenticate**（ブラウザで Taichan221@gmail.com を選択）をユーザーに依頼する。認可が通れば**ゾーン作成/DNS編集/リダイレクトルール/Pages を Claude から直接実行できる**（APIトークンの手動作成は不要）→ [[reference_cloudflare-official-mcp]]。
-- 認証が通ったら、**ユーザーの追加操作を待たず段階1を自分で実行**してよい（前セッションまでの「ユーザーがダッシュボードでゾーン追加」は不要になった）。
+- **状態: サイトの中身は完成。段階1（新ドメインのゾーン作成〜MX付替〜NS切替準備）完了。2026-07-24 にユーザーが業者へNS変更を依頼済み → 現在「NS浸透待ち」。**
+- **新ドメイン `pspo-relaxation.jp`**: Cloudflareゾーン作成済み（ゾーンID `dd98db9050ee9454320e4833e7dc3f64`・Free）。**業者に渡したCloudflare NS = `nia.ns.cloudflare.com` / `paul.ns.cloudflare.com`**。DNSは無風構成に是正済み（MX→`www2192.sakura.ne.jp`・apex/www/mail/ftpは🔘DNS only）。
+- **⚠️ 新セッション最初のアクション: NS浸透確認**。`dig NS pspo-relaxation.jp +short` が `nia/paul.ns.cloudflare.com` を返すか＆ Cloudflareゾーン `status` が `active`（MCP `GET /zones/dd98db9050ee9454320e4833e7dc3f64`）。**未浸透なら待つ**（数時間〜48h）。浸透後は**メール疎通テスト**（段階2へ進む前の必須ゲート）。
+- **⚠️ Cloudflare MCP の権限**: 認可時に**必ず Full access を選ぶ**（既定 Read only だと書き込み全滅）。**ゾーン作成・トークン発行はMCP不可**（ダッシュボードのページfetchで回避＝旧ドメイン段階3でも同じ手が要る）→ [[reference_cloudflare-official-mcp]]。
+- **ユーザー宣言の次タスク: 開通後に Search Console 登録＋Googleタグマネージャでアナリティクス設定**。⚠️ 現状サイトは GA/GTM 未導入で、**プライバシーポリシーに「アクセス解析ツール未使用」と明記済み**。GTM/GA4を入れるなら **PPのCookie・解析ツール記載の追記が必要** → 着手前に必ず突き合わせる（[[project_pspo-compliance-decisions]]）。
 - **先に手を動かしてよい例外**: クライアント依頼リスト（透過ロゴ／施術者情報／睡眠改善コース改名可否／アロマのお客様の声追加）はいずれも素材待ちのため着手不可。手すきなら `/audit`（memory定期監査・期限超過中）が候補。
 
 ### 確定方針（2026-07-23 セッション9）
@@ -226,7 +228,7 @@ cd mocks && python3 -m http.server 8777
 - [x] **Cloudflare Pagesデプロイ（Phase1）** → 完了（2026-07-23・`pspo-relaxation.pages.dev`・GitHub連携・全push済み）
 - [x] **実サイト化（比較ビューア退避・TOP=index.html）** → 完了（2026-07-23）
 - [x] **クリーンURL設定**（`/menu` 等・下層ナビも統一） → 完了（2026-07-23・`_redirects`）
-- [ ] 🔜 **ネームサーバー切替（本番ドメイン接続）**: `pspo-relaxation.jp` はさくら管理・**メール稼働中(MX/SPF)**。①Cloudflareにゾーン追加→②メール込みDNS複製→③検証→④業者へNS切替指示。⚠️複製前にNS切替するとメール断
+- [~] 🔜 **ネームサーバー切替（本番ドメイン接続）**: 段階1完了。①ゾーン作成✅（ID `dd98db9050ee9454320e4833e7dc3f64`）②DNS取り込み・MX付替✅（→`www2192.sakura.ne.jp`・apex/www/mail/ftpは🔘DNS only）③④業者へNS切替依頼済み（2026-07-24・CF NS=`nia`/`paul`.ns.cloudflare.com）→ **現在NS浸透待ち**。開通後にメール疎通テスト→段階2へ
 - [x] **SEO監査＋全面改善** → 完了（2026-07-22・スコア67/100→主要指摘を全対応・readdy画像も自前ホスト化済み）
 - [x] **プライバシーポリシー作成・sitemap移設・robots整理** → 完了（2026-07-22）。公開切替の全手順は **`Docs/公開切替手順.md`**（正本）に集約
 - [x] **ファビコン一式** → 完了（2026-07-22）。`logo-pspo.png` の上段1文字目「P」（bbox: x28-104 / y12-88 の77×77）を抽出し、紺 `#113062` 地に白抜きで再構成。**ロゴ全体は4行構成のため16pxでは判読不能** → 正方形マーク化が必須だった。再生成する場合も同じ抽出方法を踏襲すること
@@ -279,4 +281,6 @@ cd mocks && python3 -m http.server 8777
 
 - 2026-07-23 セッション9（ドメイン移行の段取り確定・DNS実測・Cloudflare MCP接続）: **サイト本体のコード変更はゼロ**。移行方針の確定と事前実測のセッション。①ユーザーから**旧日本語ドメインも Cloudflare に集約し全ページ301転送**という新方針 → 手順を段階1〜3に再設計（www なし apex統一・順序は必ず「新→旧」）②**2ドメインのDNSを dig/curl で実測**し、机上では見えない事実を確定（`182.48.49.102` の逆引き＝`www2192.sakura.ne.jp` でMX付替先が確定／**旧ドメインはMX・TXTゼロ＝メール未使用**／旧NSは `dnsv.jp` でさくらとは別事業者／新ドメインapexにWeb実体なし＝Pagesに向けても損失ゼロ）③**旧サイトのsitemapが新とURL構造完全一致**と判明 → **301はワイルドカード1本**で足りる ④メールは未使用申告だが**MXは削除せず実サーバ名に付け替えて残す**方針（コストゼロの保険）⑤**Cloudflare公式API MCP を接続**（OAuth・手動トークン不要。当初トークン作成を案内したが指摘を受け撤回）。新memory: `reference_cloudflare-official-mcp` / `feedback_domain-migration-preflight-dns` / `feedback_verify-integration-options-before-declaring`。
 
-最終更新: 2026-07-23 セッション9（ドメイン移行の段取り確定・DNS実測・Cloudflare MCP接続）
+- 2026-07-24 セッション10（段階1実行：新ドメインのCloudflareゾーン作成〜MX付替〜NS切替依頼）: **サイト本体のコード変更はゼロ**。ドメイン移行の段階1を実行したセッション。①**Cloudflare MCP の権限問題を実測で解明**：認可画面の「Access template」が既定`Read only`で、これだと読み取りは通るのに書き込み（`zone.create`等）が全滅。`Full access`に切替えて解決（4回の認可空振りの後、Claude in Chromeで認可画面を実際に読んで原因特定）。ただし**ゾーン作成・APIトークン発行はFull accessでもMCP不可**と判明 ②**`.jp`ドメインはCloudflareのドメイン追加UIが壊れて進めない**（内部のRegistrar在庫チェックが`.jp`非対応で`Unable to check`→UI停止）→ **ダッシュボードのページfetch（`POST /api/v4/zones`）で突破**し200で作成成功（ゾーンID `dd98db9050ee9454320e4833e7dc3f64`・Free） ③**DNS自動取り込み6件を実測値と突合＝一致**。取り込み直後の是正：MXを`10 pspo-relaxation.jp`(apex参照＝地雷)→**`10 www2192.sakura.ne.jp`に付替**、A/www/mail/ftpの🟠プロキシON→**全て🔘DNS only**（メール保護＋NS切替しても無風） ④**ユーザーが業者へNS変更を依頼**（CF NS=`nia`/`paul`.ns.cloudflare.com）→現在NS浸透待ち。全push済み（ドキュメントのみ）。新/更新memory: `reference_cloudflare-official-mcp`（権限・回避策を実測反映）／`feedback_cf-zone-import-mail-proxy-off`（新規）。
+
+最終更新: 2026-07-24 セッション10（段階1実行：Cloudflareゾーン作成・MX付替・NS切替依頼／NS浸透待ち）

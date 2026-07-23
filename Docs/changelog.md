@@ -1,5 +1,23 @@
 # 修正履歴
 
+## 2026-07-24（セッション10・ドメイン移行 段階1：Cloudflareゾーン作成／MX付替／NS切替依頼）
+
+### 設定変更: 新ドメイン pspo-relaxation.jp の Cloudflare ゾーンを作成
+- **変更対象**: Cloudflare（ゾーンID `dd98db9050ee9454320e4833e7dc3f64`・Free Website）※コード変更なし
+- **内容**: MCP・ダッシュボードUIのどちらもゾーン作成が通らなかったため、ログイン済みChromeのページcontextで `POST /api/v4/zones` を直接叩いて作成（200成功）。CF NS = `nia.ns.cloudflare.com` / `paul.ns.cloudflare.com`
+- **理由**: (1) Cloudflare公式MCPは認可のAccess templateがFull accessでも `zone.create`/`token発行` の権限を付与しない。(2) `.jp`はドメイン追加UIが内部のRegistrar在庫チェック（`.jp`非対応）で `Unable to check` を返しフローが停止する。両方の回避策としてセッションCookieでのAPI直叩きが唯一通った
+
+### 設定変更: DNS自動取り込みの是正（メール保護・無風構成）
+- **変更対象**: Cloudflareゾーンのdns_records
+- **内容**: 自動取り込み6件を実測値と突合（一致）。MX `10 pspo-relaxation.jp`(apex参照)→**`10 www2192.sakura.ne.jp`** に付替。A(apex)/www/mail/ftp の🟠プロキシON→**全て🔘DNS only**。TXT(SPF)維持
+- **理由**: 自動取り込みはA/CNAMEを一律プロキシONにする。MXがapex参照＋apexプロキシONだとメール配送がCloudflare(SMTP非対応)に当たり受信不達。mail/ftpのプロキシONも接続を壊す。NSがまだ旧DNS＝Cloudflare非権威のうちに是正すればライブ無影響。NS切替後もWeb(実体なし)・メール(www2192.sakura.ne.jp)とも今と同挙動＝無風
+
+### 作業: NS変更をユーザーが業者へ依頼
+- **内容**: `pspo-relaxation.jp` のNSを Cloudflare の2本（`nia`/`paul`.ns.cloudflare.com）へ変更する依頼をユーザーが発出（2026-07-24）
+- **理由**: 段階1の最終工程。次セッションはNS浸透確認→メール疎通テストから再開。開通後にユーザーがGSC登録＋GTMアナリティクス設定を予定（※現状GA/GTM未導入・PPに「解析未使用」と明記のため、導入時はPP追記が必要）
+
+### 注記: サイト本体のコード変更なし（ドメイン移行の手続きのみ）
+
 ## 2026-07-23（セッション9・ドメイン移行の段取り確定／DNS実測／Cloudflare MCP接続）
 
 ### ドキュメント: 2ドメインのDNS実測結果と301転送方針を記録

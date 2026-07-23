@@ -185,7 +185,7 @@ cd mocks && python3 -m http.server 8777
 - [x] **ファビコン一式** → 完了（2026-07-22）。`logo-pspo.png` の上段1文字目「P」（bbox: x28-104 / y12-88 の77×77）を抽出し、紺 `#113062` 地に白抜きで再構成。**ロゴ全体は4行構成のため16pxでは判読不能** → 正方形マーク化が必須だった。再生成する場合も同じ抽出方法を踏襲すること
 - [ ] 🔜 **公開前の残り**: `Docs/公開切替手順.md` に従って noindex 3層解除／robots.txt 本番版差替／sitemap の lastmod 更新／GSC登録
 - [x] **プライバシーポリシーの事業者情報を確定値で反映＋会社概要ページ新設** → 完了（2026-07-23）
-- [ ] ⏳ **残る【要確認】4箇所**: `page-privacy.html` の郵便番号1件／`page-company.html` の郵便番号・設立年月・資本金の3件。`grep -c 'class="todo"' mocks/page-privacy.html mocks/page-company.html` が両方0になれば完了
+- [x] **【要確認】プレースホルダを全て解消** → 完了（2026-07-23）。設立年月・資本金はクライアント判断で行ごと削除、郵便番号は `790-0964` を反映。**全14ページで `.todo` マーカー0件を実測確認済み**
 - [x] **個人情報保護管理者を確定** → **鎌倉 令羅**（`kamakura@3puku.co.jp` は同氏のアドレス）。2026-07-23にクライアント回答で確定・仮置きは解消済み
 - [ ] ⏳ **クライアントから透過ロゴ(PNG/SVG)＋暗地用の白/反転版** → 受領後フッターも画像化
 - [ ] クライアントレビュー → 文言・写真差し替えの反映
@@ -207,6 +207,16 @@ cd mocks && python3 -m http.server 8777
 - 2026-07-22 セッション7（見出し構造是正・SEO監査・全面改善）: ①**見出しレベルの飛びを全12ページで是正**（h2→h4/h5・h1→h3。タグ是正と同時にCSSセレクタを改名し見た目は完全据え置き。フッターの`<h5>`は見出しでなくラベルなので`<p class="foot-title">`＋`<nav aria-label>`へ）②**TOPのH1に地域＋業種を明示** ③**`seo-audit`スキルで6並列監査**（67/100）→ `superpowers:writing-plans` で10タスク計画 → `subagent-driven-development` で実装（タスクごとにレビュー）。ソフト404解消・タップ領域44px・CTAコントラストAA・モバイル固定CTAバー・画像の自前ホスト化+WebP・ヒーローimg化+preload・構造化データ修正・薬機法配慮・セキュリティヘッダ・開発用HTMLの恒久noindex。**モバイルTOP Lighthouse 65→99 / LCP 13.4s→2.0s(-85%)**。全push・本番反映済み。新memory: `feedback_subagent-silent-exit-verify-yourself` / `feedback_plan-values-must-be-measured` / `project_pspo-compliance-decisions` / `project_pspo-public-dir-hygiene`。
 
 - 2026-07-22 セッション8（プライバシーポリシー・配信ファイル整備・ファビコン）: ①**プライバシーポリシー新規作成**（`page-privacy.html` / `/privacy`・全10条）。サイトにフォームもGA/GTMも無い実態に合わせて記述（「入力フォームはありません」「アクセス解析ツール未使用・Googleマップ埋込のCookieのみ」）。事業者情報は未確定のため**【要確認】7箇所を可視マーカー**で残置。**特商法表記は不要と判断**（店頭決済のみで通信販売に非該当）②**全13ページのフッター最下部に規約リンク**を追加（タップ領域44px実測）③**sitemap.xml を `Docs/seo-audit/` から `mocks/` へ移設**（＝それまで `/sitemap.xml` は404だった）・`/privacy` 追加で12URL ④`_redirects` に `/privacy` の200リライトと301正規化を追加 ⑤**`mocks/vercel.json` を削除**（Vercel時代の遺物が公開ディレクトリから取得可能だった）⑥**ファビコン一式を新規作成**（ロゴから「P」を抽出→紺地白抜き。ico/PNG各種＋webmanifest＋head5タグ）⑦**`Docs/公開切替手順.md` を新設**（noindex 3層解除・GSC登録の実行手順の正本）。全push・本番実測PASS。
+
+## 運営会社（確定情報・2026-07-23 クライアント提供）
+| 項目 | 内容 |
+|---|---|
+| 会社名 | 株式会社三福テンダーネス |
+| 所在地 | 〒790-0964 愛媛県松山市中村2丁目1-3 三福本社ビル3階 |
+| 代表者 | 代表取締役 村上 晃平 |
+| 個人情報保護管理者 | 鎌倉 令羅（`kamakura@3puku.co.jp` は同氏のアドレス） |
+| 掲載箇所 | `page-company.html`（/company）・`page-privacy.html`（/privacy）・全13ページのOrganization構造化データ（legalName/email/address） |
+※ 設立年月・資本金はクライアント判断で**掲載しない**（行ごと削除済み・再追加しないこと）。
 
 ## 見出しルール（このサイトの規約・2026-07-22 確定）
 - **h1は各ページに1つだけ**。h2は複数可。h2の中の小見出しは**必ずh3**。h4以下は原則使わない（そもそもその構造にしない）

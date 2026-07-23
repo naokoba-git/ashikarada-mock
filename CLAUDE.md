@@ -6,9 +6,11 @@
 **2026-07-22 にリブランド確定：店舗名「あしカラダ」→「P・SPO リラクゼーション」、新ドメイン `pspo-relaxation.jp`。**
 **2026-07-23 に Cloudflare Pages デプロイ完了（Phase 1）: `https://pspo-relaxation.pages.dev`（GitHub連携・pushで自動デプロイ・noindex 3層）。実TOPを `index.html` にリネームし比較ビューアを退避、クライアントには「完全に実際と同じ」実サイトを表示。クリーンURL（`/menu` 等）実装済み。詳細は memory `project_pspo-relaxation-hosting-domain` / `project_cloudflare-pages-clean-url-behavior` 参照。**
 
-## 🔜 次セッション開始点（2026-07-22 セッション8 終了時点）
+## 🔜 次セッション開始点（2026-07-23 セッション8 終了時点）
 **タスク: `pspo-relaxation.jp` のネームサーバー切替（本番ドメイン接続）。⚠️メール稼働中＝手順厳守。**
-- **サイト側の作業は一段落**。セッション8でプライバシーポリシー・sitemap配信・ファビコンを追加し全push・本番実測PASS。残りは公開当日の作業のみで、手順は **`Docs/公開切替手順.md`**（正本）にまとめてある。
+- **状態: サイトの中身は完成。未pushゼロ・本番実測PASS・要確認プレースホルダ0件。** 残るのは公開の「手続き」だけで、手順は **`Docs/公開切替手順.md`**（正本）に集約済み。
+- **⚠️ 最初のアクションはユーザー操作待ち**（下記「再開手順」の1）。Claudeから先に着手できる作業はない。セッション開始時は現状を要約し、**Cloudflareでのゾーン追加を依頼して NS2本の入力を待つ**こと。
+- **先に手を動かしてよい例外**（ユーザーが別件を指示した場合）: クライアント依頼リスト（透過ロゴ／施術者情報／睡眠改善コース改名可否／アロマのお客様の声追加）はいずれも素材待ちのため着手不可。手すきなら `/audit`（memory定期監査・期限超過中）が候補。
 - **再開手順（推奨=オプションA）**:
   1. ユーザーがCloudflareで**ゾーンだけ追加**（`ドメイン概要`→`サイトを追加`→`pspo-relaxation.jp`→**Freeプラン選択**）。※NSを切らない限り無害。
   2. 表示される**Cloudflare NS2本**をユーザーが貼る。
@@ -19,7 +21,8 @@
 - **後日のWeb本番切替（段階3）**: apexをPagesに向ける前に、**MXをさくら実メールサーバ名（`www2192.sakura.ne.jp`系・要さくらパネル確認）へ付替え**。MXがapex参照のままだとメール断。
 - 現行DNS棚卸し結果: NS=`ns1/ns2.dns.ne.jp`(さくら) / A=`182.48.49.102` / MX=`10 pspo-relaxation.jp` / SPF=`v=spf1 a:www2192.sakura.ne.jp mx ~all`。
 - **公開時にまとめてやること**: → **`Docs/公開切替手順.md` に全手順を集約済み**（noindex 3層解除／robots.txt本番版／sitemapのlastmod更新／GSC登録／curlでの実機検証コマンド）。sitemap移設は完了済み。
-- **クライアント判断待ち**: メニュー名「睡眠改善コース」の改名可否／施術者情報（資格・経歴・写真＝E-E-A-Tの最大の弱点）／**プライバシーポリシーの事業者情報（`page-privacy.html` の【要確認】7箇所。`grep -c 'class="todo"'` が0になれば完了）**／透過ロゴ。
+- **クライアント判断待ち（いずれも公開の必須条件ではない）**: ①透過ロゴ(PNG/SVG)＋暗地用の白/反転版 → 受領後フッターも画像化 ②施術者情報（資格・経歴・写真＝E-E-A-Tの最大の弱点）③メニュー名「睡眠改善コース」の改名可否 ④**アロマのお客様の声を数件**（`/voice` のアロマフィルターが1件しかヒットしない）。
+- **提案済み・未着手**: 開示請求の連絡先が電話のみになったため、**個人名を含まない共用メール**（`privacy@3puku.co.jp` 等）を作って掲載する案を提示済み。ユーザーは「急ぎでない」と判断。**先方から作成連絡が来たら掲載する**。
 
 - **対象サイト**: https://あしカラダ松山店.jp/ （Punycode: `https://xn--l8jzb2o0cyjn09v9ed4ox.jp/`）
 - **既存サイトの作り**: readdy 製（画像は `storage.readdy-site.link` / `public.readdy.ai` にホスト）
@@ -47,7 +50,8 @@ ashikarada/
 │   ├── prompts.md       ← プロンプト履歴
 │   ├── changelog.md     ← 修正履歴
 │   ├── plans/           ← 実装計画書（2026-07-22-seo-improvements.md）
-│   └── seo-audit/       ← SEO監査成果物（FULL-AUDIT-REPORT.md / ACTION-PLAN.md / 各領域md / sitemap.xml / screenshots）
+│   ├── seo-audit/       ← SEO監査成果物（FULL-AUDIT-REPORT.md / ACTION-PLAN.md / 各領域md / screenshots）※sitemap.xmlは mocks/ へ移設済み
+│   └── 公開切替手順.md  ★ 公開当日の実行手順（noindex 3層解除・robots本番版・GSC登録・curl検証）＝正本
 └── mocks/
     ├── index.html       ★ 実サイトTOP（旧 mock-a-real.html をリネーム・本実装基準・`/` で配信）
     ├── 404.html         ★ 404ページ（ソフト404対策・2026-07-22追加）
@@ -70,7 +74,7 @@ ashikarada/
     ├── page-tickets.html            ★ 下層: お得なチケット（全身60分専用回数券・2026-07-22追加）
     ├── page-privacy.html            ★ 下層: プライバシーポリシー（2026-07-22追加・2026-07-23に事業者情報を確定値で反映）
     ├── page-company.html            ★ 下層: 会社概要（2026-07-23追加・株式会社三福テンダーネス）
-    ├── sitemap.xml       ← 公開ディレクトリへ移設済み（12URL・本番ドメイン基準）
+    ├── sitemap.xml       ← 公開ディレクトリへ移設済み（13URL・本番ドメイン基準）
     ├── robots.txt        ← 現在 Disallow:/（noindex 3層の1層）。公開時に差替
     ├── favicon.ico       ← 紺地に白抜き「P」（16/32/48/64 マルチサイズ）
     ├── favicon-32x32.png / apple-touch-icon.png(180) / icon-192.png / icon-512.png
@@ -208,6 +212,8 @@ cd mocks && python3 -m http.server 8777
 
 - 2026-07-22 セッション8（プライバシーポリシー・配信ファイル整備・ファビコン）: ①**プライバシーポリシー新規作成**（`page-privacy.html` / `/privacy`・全10条）。サイトにフォームもGA/GTMも無い実態に合わせて記述（「入力フォームはありません」「アクセス解析ツール未使用・Googleマップ埋込のCookieのみ」）。事業者情報は未確定のため**【要確認】7箇所を可視マーカー**で残置。**特商法表記は不要と判断**（店頭決済のみで通信販売に非該当）②**全13ページのフッター最下部に規約リンク**を追加（タップ領域44px実測）③**sitemap.xml を `Docs/seo-audit/` から `mocks/` へ移設**（＝それまで `/sitemap.xml` は404だった）・`/privacy` 追加で12URL ④`_redirects` に `/privacy` の200リライトと301正規化を追加 ⑤**`mocks/vercel.json` を削除**（Vercel時代の遺物が公開ディレクトリから取得可能だった）⑥**ファビコン一式を新規作成**（ロゴから「P」を抽出→紺地白抜き。ico/PNG各種＋webmanifest＋head5タグ）⑦**`Docs/公開切替手順.md` を新設**（noindex 3層解除・GSC登録の実行手順の正本）。全push・本番実測PASS。
 
+- 2026-07-23 セッション8（プライバシーポリシー・会社概要・ファビコン・フィルター実装）: ①**プライバシーポリシー新設**（`/privacy`・全10条）。フォームもGA/GTMも無い実態をgrepで確認したうえで記述。**特商法表記は不要と判断**（店頭決済のみ＝通信販売に非該当）②**会社概要新設**（`/company`）＋事業者情報を確定（株式会社三福テンダーネス／〒790-0964 松山市中村2-1-3 三福本社ビル3階／代表取締役 村上 晃平）③**個人情報保護は組織名義「個人情報保護担当窓口」**に統一し、個人名と `kamakura@3puku.co.jp` をサイト・JSON-LDから完全削除（Pマーク未取得のため個人名の開示義務なし）④**可視の【要確認】マーカー方式**で情報待ちを回避、4往復で全解消（最終 `.todo` 0件を実測）⑤**sitemap.xml を公開ディレクトリへ移設**（それまで `/sitemap.xml` は404）・13URLへ ⑥**ファビコン一式を新規作成**（ロゴの「P」を抽出→紺地白抜き。ロゴ全体は4行構成で16pxでは判読不能だった）⑦**お客様の声のフィルターを実動作化**し「表示イメージです」注記を削除 ⑧`vercel.json` 削除・`Docs/公開切替手順.md` 新設。全push・本番実測PASS。新memory: `feedback_user-reports-missing-check-unpushed` / `feedback_push-hook-separate-commit-and-push` / `feedback_visible-todo-placeholder-delivery`。
+
 ## 運営会社（確定情報・2026-07-23 クライアント提供）
 | 項目 | 内容 |
 |---|---|
@@ -228,4 +234,4 @@ cd mocks && python3 -m http.server 8777
 - **見出しレベル＝意味。見た目はCSSクラスで与える**（小さく見せたいからh4、は禁止）
 - **見出しでないラベル（フッターの列見出し等）に`<h*>`を当てない**。`<p class="foot-title">`＋`<nav aria-label>` で構造を示す
 
-最終更新: 2026-07-22 セッション8（プライバシーポリシー・sitemap配信・ファビコン）
+最終更新: 2026-07-23 セッション8（プライバシーポリシー・会社概要・ファビコン・フィルター実装）

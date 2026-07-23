@@ -9,7 +9,8 @@
 ## 🔜 次セッション開始点（2026-07-23 セッション9 時点）
 **タスク: 2ドメインを Cloudflare に集約 → 新ドメイン公開 → 旧（日本語）ドメインを301転送。**
 - **状態: サイトの中身は完成。本番実測PASS・要確認プレースホルダ0件。** 残るのは公開の「手続き」だけで、手順は **`Docs/公開切替手順.md`**（正本）に集約済み。
-- **Cloudflare 公式 API MCP を接続済み**（`claude mcp add --transport http cloudflare-api https://mcp.cloudflare.com/mcp`・OAuth認可・**APIトークン作成は不要**）。ゾーン作成/DNS編集/リダイレクトルール/Pages を Claude から直接操作できる。未認証なら `/mcp` → `cloudflare-api` → Authenticate。
+- **⚠️ 新セッション最初のアクション: Cloudflare MCP の認証確認**。`claude mcp add --transport http cloudflare-api https://mcp.cloudflare.com/mcp` は**追加済み（`~/.claude.json` プロジェクトスコープ）だが、OAuth認可はまだ**。`/mcp` → `cloudflare-api` → **Authenticate**（ブラウザで Taichan221@gmail.com を選択）をユーザーに依頼する。認可が通れば**ゾーン作成/DNS編集/リダイレクトルール/Pages を Claude から直接実行できる**（APIトークンの手動作成は不要）→ [[reference_cloudflare-official-mcp]]。
+- 認証が通ったら、**ユーザーの追加操作を待たず段階1を自分で実行**してよい（前セッションまでの「ユーザーがダッシュボードでゾーン追加」は不要になった）。
 - **先に手を動かしてよい例外**: クライアント依頼リスト（透過ロゴ／施術者情報／睡眠改善コース改名可否／アロマのお客様の声追加）はいずれも素材待ちのため着手不可。手すきなら `/audit`（memory定期監査・期限超過中）が候補。
 
 ### 確定方針（2026-07-23 セッション9）
@@ -276,4 +277,6 @@ cd mocks && python3 -m http.server 8777
 - **見出しレベル＝意味。見た目はCSSクラスで与える**（小さく見せたいからh4、は禁止）
 - **見出しでないラベル（フッターの列見出し等）に`<h*>`を当てない**。`<p class="foot-title">`＋`<nav aria-label>` で構造を示す
 
-最終更新: 2026-07-23 セッション8（プライバシーポリシー・会社概要・ファビコン・フィルター実装）
+- 2026-07-23 セッション9（ドメイン移行の段取り確定・DNS実測・Cloudflare MCP接続）: **サイト本体のコード変更はゼロ**。移行方針の確定と事前実測のセッション。①ユーザーから**旧日本語ドメインも Cloudflare に集約し全ページ301転送**という新方針 → 手順を段階1〜3に再設計（www なし apex統一・順序は必ず「新→旧」）②**2ドメインのDNSを dig/curl で実測**し、机上では見えない事実を確定（`182.48.49.102` の逆引き＝`www2192.sakura.ne.jp` でMX付替先が確定／**旧ドメインはMX・TXTゼロ＝メール未使用**／旧NSは `dnsv.jp` でさくらとは別事業者／新ドメインapexにWeb実体なし＝Pagesに向けても損失ゼロ）③**旧サイトのsitemapが新とURL構造完全一致**と判明 → **301はワイルドカード1本**で足りる ④メールは未使用申告だが**MXは削除せず実サーバ名に付け替えて残す**方針（コストゼロの保険）⑤**Cloudflare公式API MCP を接続**（OAuth・手動トークン不要。当初トークン作成を案内したが指摘を受け撤回）。新memory: `reference_cloudflare-official-mcp` / `feedback_domain-migration-preflight-dns` / `feedback_verify-integration-options-before-declaring`。
+
+最終更新: 2026-07-23 セッション9（ドメイン移行の段取り確定・DNS実測・Cloudflare MCP接続）
